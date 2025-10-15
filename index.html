@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNIK - Portal Educativo</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <!-- Efecto de ondas animadas 
+    <div class="waves-container">
+        <canvas class="waves-canvas" width="1520" height="701"></canvas>
+    </div> -->
+
+    <!-- Header superior de navegación -->
+    <!--<header id="site-header" class="site-header">
+        <div class="header-inner">
+            <div class="header-left">
+                <a class="brand" href="index.html" aria-label="UNIK Home">
+                    <img src="images/Logo_unik_blanco.png" alt="UNIK Logo" />
+                </a>
+                <nav class="primary-nav" aria-label="Primaria">
+                    <a class="btn-link" href="index.html">Cursos</a>
+                    <a class="btn-link" href="index.html">Proyectos</a>
+                </nav>
+            </div>
+            <div class="header-center">
+                <form class="header-search" role="search" aria-label="Buscar cursos" action="index.html">
+                    <input type="search" name="q" placeholder="Buscar cursos..." aria-label="Buscar cursos" />
+                    <button type="submit" aria-label="Buscar">
+                            <svg width="18" height="18" viewBox="0 0 13 13" aria-hidden="true">
+                                <path d="m4.8495 7.8226c0.82666 0 1.5262-0.29146 2.0985-0.87438 0.57232-0.58292 0.86378-1.2877 0.87438-2.1144 0.010599-0.82666-0.28086-1.5262-0.87438-2.0985-0.59352-0.57232-1.293-0.86378-2.0985-0.87438-0.8055-0.010599-1.5103 0.28086-2.1144 0.87438-0.60414 0.59352-0.8956 1.293-0.87438 2.0985 0.021197 0.8055 0.31266 1.5103 0.87438 2.1144 0.56172 0.60414 1.2665 0.8956 2.1144 0.87438zm4.4695 0.2115 3.681 3.6819-1.259 1.284-3.6817-3.7 0.0019784-0.69479-0.090043-0.098846c-0.87973 0.76087-1.92 1.1413-3.1207 1.1413-1.3553 0-2.5025-0.46363-3.4417-1.3909s-1.4088-2.0686-1.4088-3.4239c0-1.3553 0.4696-2.4966 1.4088-3.4239 0.9392-0.92727 2.0864-1.3969 3.4417-1.4088 1.3553-0.011889 2.4906 0.45771 3.406 1.4088 0.9154 0.95107 1.379 2.0924 1.3909 3.4239 0 1.2126-0.38043 2.2588-1.1413 3.1385l0.098834 0.090049z"></path>
+                            </svg>
+                    </button>
+                </form>
+            </div>
+            <div class="header-right">
+                <a class="icon-button" href="index.html" aria-label="Acceso rápido 1">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                </a>
+                <a class="icon-button" href="index.html" aria-label="Acceso rápido 2">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                </a>
+                <div class="login-dropdown">
+                    <button class="user-button" aria-haspopup="true" aria-expanded="false" aria-controls="login-menu" aria-label="Abrir menú de usuario">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </button>
+                    <div id="login-menu" class="login-menu" role="menu" aria-label="Opciones de usuario">
+                        <a href="index.html" role="menuitem">Iniciar sesión</a>
+                        <a href="index.html" role="menuitem">Crear cuenta</a>
+                        <a href="index.html" role="menuitem">Recuperar contraseña</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header> -->
+
+    <!-- Seccion gif  -->
+
+    <section id="gif-section" class="gif-section">
+        <div class="gif-container">
+            <img src="gif/1450x720_Oficial.gif" alt="Gif_Unik" class="gif-image" />
+        </div>  
+    </section>
+
+    <!-- Seccion carousel multimages  -->
+
+    <section id="multimages-section" class="multimages-section">
+  <div class="multimages-slide active" style="background-image: url('images/Carrusel_1/banners_de_unik_03.jpg');">
+    <div class="multimages-content">
+      <h2></h2>
+      <!-- <a href="https://example.com/1" class="multimages-btn" target="_blank">Miralo ahora</a> -->
+    </div>
+    <!-- CONTROLES DE PUNTOS INFERIORES -->
+  <div class="multimages-dots">
+    <span class="multimages-dot active" data-slide="0"></span>
+    <span class="multimages-dot" data-slide="1"></span>
+    <span class="multimages-dot" data-slide="2"></span>
+  </div>
+  </div>
+
+  <div class="multimages-slide" style="background-image: url('images/Carrusel_1/banners_de_unik_Mesa_de_trabajo_1.jpg');">
+    <div class="multimages-content">
+      <h2></h2>
+      <!-- <a href="https://example.com/2" class="multimages-btn" target="_blank">Miralo ahora</a> -->
+    </div>
+    <!-- CONTROLES DE PUNTOS INFERIORES -->
+  <div class="multimages-dots">
+    <span class="multimages-dot active" data-slide="0"></span>
+    <span class="multimages-dot" data-slide="1"></span>
+    <span class="multimages-dot" data-slide="2"></span>
+  </div>
+  </div>
+
+  <div class="multimages-slide" style="background-image: url('images/Carrusel_1/banners_de_unik_02.jpg');">
+    <div class="multimages-content">
+      <h2></h2>
+      <!-- <a href="https://example.com/3" class="multimages-btn" target="_blank">Miralo ahora</a> -->
+    </div>
+    <!-- CONTROLES DE PUNTOS INFERIORES -->
+  <div class="multimages-dots">
+    <span class="multimages-dot active" data-slide="0"></span>
+    <span class="multimages-dot" data-slide="1"></span>
+    <span class="multimages-dot" data-slide="2"></span>
+  </div>
+  </div>
+
+  
+</section>
+
+
+    <!-- Seccion carousel  -->
+
+   
+    
+    <!-- Tarjetas informativas -->
+    <section id="feature-cards-section" class="feature-cards-section">
+        <div class="feature-cards-container">
+            <div class="feature-card bg-blue">
+                <div class="feature-icon">
+                    <img src="assets/icons/icono_pulgar_blanco.png" alt="Calidad Garantizada" />
+                </div>
+                <div class="feature-text">Calidad <br>Garantizada</div>
+            </div>
+            <div class="feature-card bg-green">
+                <div class="feature-icon">
+                    <img src="assets/icons/icono_personas_blanco.png" alt="Colaboración Activa" />
+                </div>
+                <div class="feature-text">Colaboración <br>Activa</div>
+            </div>
+            <div class="feature-card bg-blue">
+                <div class="feature-icon">
+                    <img src="assets/icons/icono_k_blanco.png" alt="Formación Única" />
+                </div>
+                <div class="feature-text">Formación<br> Única</div>
+            </div>
+            <div class="feature-card bg-green">
+                <div class="feature-icon">
+                    <img src="assets/icons/icono_birrete_blanco.png" alt="Cursos Certificados" />
+                </div>
+                <div class="feature-text">Cursos <br>Certificados</div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Sección descriptiva con imagen y botón -->
+    <section id="about-unik-section" class="about-unik-section">
+        <div class="about-unik-container">
+            <div class="about-unik-text">
+                <div class="about-unik-block about-unik-block1">
+                    <span class="unik-bold">Unik</span> <span class="unik-regular">como <br>tu manera <br>de</span> <span class="aprender-bold">aprender</span>
+                </div>
+                <div class="about-unik-block about-unik-block2">
+                    <span class="unik-regular">Somos el portal que te permite aprender <br>
+                    y fortalecer tus habilidades. <br>
+                    Encuentra un catálogo de cursos en línea <br>
+                    con aprendizaje continuo.</span>
+                </div>
+                <div class="about-unik-block about-unik-block3">
+                    <span class="about-unik-block3-bold">Estamos aquí para acompañarte en cada paso <br>
+                    de la transformación de tu desarrollo profesional</span>
+                </div>
+            </div>
+            <div class="about-unik-image-container">
+                <div class="about-unik-image-wrapper">
+                    <img class="about-unik-image" src="images/mujer_sentada.png" alt="Mujer sentada" />
+                    <a href="index.html" class="about-unik-btn">Comienza ya</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NUEVA SECCIÓN MUESTRA MOOC -->    
+
+    <section id="muestra-mooc" class="muestra-mooc">
+  <div class="muestra-tabs">
+    <button class="muestra-tab-sec-mooc active" data-tab="info">MOOC</button>
+    <button class="muestra-tab-sec-mooc" data-tab="about">Acerca del MOOC</button>
+  </div>
+
+  <!-- Sección 1 -->
+  <div class="muestra-content active fade" id="muestra-info">
+    <img src="images/profe_uadina_2.png" alt="MOOC" class="muestra-image" />
+    <div class="muestra-overlay">
+      <div class="muestra-left">
+        <span class="muestra-tag">MOOC</span>
+        <h1 style="line-height: 1; font-size: 5rem;">Herramientas y técnicas<br>para hablar en público</h1>
+        <p style="line-height: 1.4; font-size: 1.8rem; margin-top: 1.5rem;">
+          Desarrolla habilidades esenciales de comunicación clara y efectiva,
+          enfocada en la asertividad del lenguaje verbal y corporal.
+        </p>
+      </div>
+      <div class="muestra-right">
+        <img src="images/A.png" alt="A" class="muestra-logo" />
+        <img src="assets/icons/icono_Uni_azulfblanco.png" alt="Uni Azul" class="muestra-logo" />
+        <button class="muestra-btn">Explóralo ahora</button>
+      </div>
+    </div>
+  </div>
+
+ <!-- Sección 2 -->
+<div class="muestra-content fade" id="muestra-about">
+  <div class="muestra-about-left">
+    <h2 style="font-size: 1.8rem;">Herramientas y técnicas para hablar en público</h2>
+    <p>
+      Desarrollaremos <b>habilidades esenciales</b> para comunicarte de manera clara y efectiva.
+      Este <b>MOOC</b> está diseñado para ayudarte a
+      <b>dominar el arte de hablar en público</b>, enfocándonos en el uso del
+      <b>lenguaje verbal y corporal</b>.
+    </p>
+
+    <!-- Profesor 1 -->
+<div class="profesor-container">
+  <div class="muestra-profesor">
+    <img src="assets/icons/icono_profesor.png" alt="Profesor">
+    <div class="info-profesor">
+      <div class="muestra-etiquetas">
+        <span class="etiqueta">Autor</span>
+        <span class="etiqueta">Comunicador Social</span>
+      </div>
+      <h3 style="font-size: 1.8rem;">Diego Trujillo Pareja</h3>
+    </div>
+  </div>
+  <div class="texto-profesor-am">
+    <p >
+      Técnico en Comunicación Social y Periodismo. Tecnólogo en Mercadeo y Comunicador Social.
+      Especialista en Educación Virtual y a Distancia. Experiencia de 12 años en radio comercial
+      (Caracol, RCN, Todelar, Radio Súper, Red Sonora) y 12 años en Radio Universitaria (Radio UNIAJC).
+    </p>
+  </div>
+</div>
+
+<!-- Profesor 2 -->
+<div class="profesor-container">
+  <div class="muestra-profesor">
+    <img src="assets/icons/icono_profesora.png" alt="Profesora Juliet" />
+    <div class="info-profesor">
+      <div class="muestra-etiquetas">
+        <span class="etiqueta azul">Autora</span>
+        <span class="etiqueta azul">Pedagoga</span>
+      </div>
+      <h3 style="font-size: 1.8rem;">Julieth Mejía Giraldo</h3>
+    </div>
+  </div>
+  <div class="texto-profesora-am">
+    <p>
+      Licenciada en Pedagogía Infantil – UT. Especialista en Educación a Distancia y Virtual – UNAD.
+      Magíster en Tecnología Educativa y Competencias Digitales – UNIR.
+    </p>
+  </div>
+</div>
+
+    <p class="muestra-colaboradores">
+      <b>Colaboradores:</b> Mónica Peláez Montoya, Julián Arturo López Rodríguez,
+      Juan Felipe Ocampo, Johan Orozco.
+    </p>
+  </div>
+
+
+  
+  <!-- Explora el contenido con tarjetas -->
+<div class="explora-contenido-cards">
+    <h2>Explora el contenido</h2>
+    
+    <div class="leccion-card">
+        <h3>Lección 1</h3>
+        <p>¿Por qué es importante desarrollar la habilidad de hablar en público?</p>
+    </div>
+    
+    <div class="leccion-card">
+        <h3>Lección 2</h3>
+        <p>Preparación de un discurso efectivo</p>
+    </div>
+    
+    <div class="leccion-card">
+        <h3>Lección 3</h3>
+        <p>Recursos prácticos para acompañar tu voz</p>
+    </div>
+    
+    <div class="leccion-card">
+        <h3>Lección 4</h3>
+        <p>Entre luces y cámaras</p>
+    </div>
+</div>
+
+</div>
+</section>
+
+<!-- Sección Nuevo Planeamiento Ofertas -->
+<section id="nuevo-planeamiento-ofertas" class="nuevo-planeamiento-ofertas">
+  <div class="npo-container">
+    <!-- Header -->
+    <div class="npo-header">
+      <h1>Ofertas educativas de <span class="unik-text">Unik</span></h1>
+      <div class="npo-separator"></div>
+      <p>Aprende a tu ritmo con cursos prácticos y certificados, diseñados para fortalecer tus habilidades y conectar con el futuro del conocimiento.</p>
+            
+    </div>
+
+    <!-- Grid de Cursos -->
+    <div class="npo-grid">
+      <!-- Curso 1 -->
+      <div class="npo-item">
+        <div class="npo-image">
+          <img src="images/ofertas educativas-03.jpg" alt="Marketing visual para redes sociales">
+        </div>
+        
+        <!-- Contenedor único que incluye título y contenido -->
+        <div class="npo-content-wrapper">
+          <!-- Título que se desplaza -->
+          <div class="npo-title-section">
+            <div class="title-with-birrete">
+              <img src="assets/icons/icono_birrete_blanco.png" alt="Icono birrete" class="birrete-icon">
+              <h3>Herramientas y técnicas para hablar en público</h3>
+            </div>
+          </div>
+          
+          <!-- Contenido que se revela -->
+          <div class="npo-content">
+            <p>Aprende los fundamentos básicos del diseño visual y cómo aplicarlos a publicaciones en Instagram, Facebook y TikTok. Descubre principios de color, tipografía, composición y storytelling visual para crear contenido atractivo y profesional.</p>
+            <div class="npo-buttons">
+              <!-- <a href="#" class="npo-btn">Conoce Más</a> -->
+              <a href="#" class="npo-btn secundario">Conoce Más</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Curso 2 -->
+      <div class="npo-item">
+        <div class="npo-image">
+          <img src="images/ofertas educativas-02.jpg" alt="Marketing visual para redes sociales">
+        </div>
+        
+        <!-- Contenedor único que incluye título y contenido -->
+        <div class="npo-content-wrapper">
+          <!-- Título que se desplaza -->
+          <div class="npo-title-section">
+            <div class="title-with-birrete">
+              <img src="assets/icons/icono_birrete_blanco.png" alt="Icono birrete" class="birrete-icon">
+              <h3>Diseño creativo con herramientas digitales IA</h3>
+            </div>
+          </div>
+          
+          <!-- Contenido que se revela -->
+          <div class="npo-content">
+            <p>Aprende los fundamentos básicos del diseño visual y cómo aplicarlos a publicaciones en Instagram, Facebook y TikTok. Descubre principios de color, tipografía, composición y storytelling visual para crear contenido atractivo y profesional.</p>
+            <div class="npo-buttons">
+              <!-- <a href="#" class="npo-btn">Conoce Más</a> -->
+              <a href="#" class="npo-btn secundario">Conoce Más</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Curso 3 -->
+      <div class="npo-item">
+        <div class="npo-image">
+          <img src="images/ofertas educativas-04.jpg" alt="Marketing visual para redes sociales">
+        </div>
+        
+        <!-- Contenedor único que incluye título y contenido -->
+        <div class="npo-content-wrapper">
+          <!-- Título que se desplaza -->
+          <div class="npo-title-section">
+            <div class="title-with-birrete">
+              <img src="assets/icons/icono_birrete_blanco.png" alt="Icono birrete" class="birrete-icon">
+              <h3>Comunicación efectiva</h3>
+            </div>
+          </div>
+          
+          <!-- Contenido que se revela -->
+          <div class="npo-content">
+            <p>Aprende los fundamentos básicos del diseño visual y cómo aplicarlos a publicaciones en Instagram, Facebook y TikTok. Descubre principios de color, tipografía, composición y storytelling visual para crear contenido atractivo y profesional.</p>
+            <div class="npo-buttons">
+              <!-- <a href="#" class="npo-btn">Conoce Más</a> -->
+              <a href="#" class="npo-btn secundario">Conoce Más</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Curso 4 -->
+      <div class="npo-item">
+        <div class="npo-image">
+          <img src="images/ofertas educativas_Mesa de trabajo 1.jpg" alt="Marketing visual para redes sociales">
+        </div>
+        
+        <!-- Contenedor único que incluye título y contenido -->
+        <div class="npo-content-wrapper">
+          <!-- Título que se desplaza -->
+          <div class="npo-title-section">
+            <div class="title-with-birrete">
+              <img src="assets/icons/icono_birrete_blanco.png" alt="Icono birrete" class="birrete-icon">
+              <h3>Marketing visual para redes sociales</h3>
+            </div>
+          </div>
+          
+          <!-- Contenido que se revela -->
+          <div class="npo-content">
+            <p>Aprende los fundamentos básicos del diseño visual y cómo aplicarlos a publicaciones en Instagram, Facebook y TikTok. Descubre principios de color, tipografía, composición y storytelling visual para crear contenido atractivo y profesional.</p>
+            <div class="npo-buttons">
+              <!-- <a href="#" class="npo-btn">Conoce Más</a> -->
+              <a href="#" class="npo-btn secundario">Conoce Más</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    
+  </div>
+  <!-- Botón Ver cursos -->
+  <div class="npo-footer">
+      <a href="#" class="npo-ver-cursos-btn">Ver cursos</a>
+    </div>
+</section>
+
+<!-- Sección Preguntas Frecuentes -->
+<section class="pfaq-section">
+  <div class="pfaq-container">
+    <h1 class="pfaq-main-title">Preguntas Frecuentes</h1>
+    
+    <div class="pfaq-grid">
+      <!-- Columna Izquierda -->
+      <div class="pfaq-column">
+        <div class="pfaq-card">
+          <div class="pfaq-card-content">
+            <h3 class="pfaq-question">¿Cómo me inscribo en los cursos?</h3>
+            <button class="pfaq-toggle">+</button>
+          </div>
+          <div class="pfaq-answer">
+            <p>Para inscribirte en los cursos, debes registrarte en nuestra plataforma<br>y seguir el proceso de inscripción.</p>
+          </div>
+        </div>
+
+        <div class="pfaq-card">
+          <div class="pfaq-card-content">
+            <h3 class="pfaq-question">¿Puedo obtener un certificado al completar el MOOC?</h3>
+            <button class="pfaq-toggle">+</button>
+          </div>
+          <div class="pfaq-answer">
+            <p>Sí, al completar satisfactoriamente recibirás un certificado digital.</p>
+          </div>
+        </div>
+
+        <div class="pfaq-card">
+          <div class="pfaq-card-content">
+            <h3 class="pfaq-question">¿Puedo obtener un certificado al completar el MOOC?</h3>
+            <button class="pfaq-toggle">+</button>
+          </div>
+          <div class="pfaq-answer">
+            <p>Sí, al completar satisfactoriamente recibirás un certificado digital.</p>
+          </div>
+        </div>
+
+        <div class="pfaq-card">
+          <div class="pfaq-card-content">
+            <h3 class="pfaq-question">¿Qué hago si no puedo acceder al contenido del curso?</h3>
+            <button class="pfaq-toggle">+</button>
+          </div>
+          <div class="pfaq-answer">
+            <p>Contacta a nuestro equipo de soporte técnico.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna Derecha -->
+      <div class="pfaq-column">
+        <div class="pfaq-card">
+          <div class="pfaq-card-content">
+            <h3 class="pfaq-question">¿Es necesario pagar para acceder al curso?</h3>
+            <button class="pfaq-toggle">+</button>
+          </div>
+          <div class="pfaq-answer">
+            <p>No, todos nuestros cursos MOOC son completamente gratuitos.</p>
+          </div>
+        </div>
+
+        <div class="pfaq-card">
+          <div class="pfaq-card-content">
+            <h3 class="pfaq-question">¿Puedo retomar el curso si no lo termino?</h3>
+            <button class="pfaq-toggle">+</button>
+          </div>
+          <div class="pfaq-answer">
+            <p>Sí, puedes retomar el curso donde lo dejaste en cualquier momento.</p>
+          </div>
+        </div>
+
+        <div class="pfaq-card">
+          <div class="pfaq-card-content">
+            <h3 class="pfaq-question">¿Qué pasa si no apruebo una actividad en el curso?</h3>
+            <button class="pfaq-toggle">+</button>
+          </div>
+          <div class="pfaq-answer">
+            <p>Puedes reintentar las actividades las veces que necesites.</p>
+          </div>
+        </div>
+
+        <div class="pfaq-card">
+          <div class="pfaq-card-content">
+            <h3 class="pfaq-question">¿Qué hago si tengo dudas sobre el contenido del curso?</h3>
+            <button class="pfaq-toggle">+</button>
+          </div>
+          <div class="pfaq-answer">
+            <p>Puedes utilizar los foros de discusión del curso.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    
+    <script src="js/main.js"></script>
+    <script src="js/waves.js"></script>
+</body>
+</html>

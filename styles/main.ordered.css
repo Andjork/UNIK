@@ -1,0 +1,174 @@
+/* Reordered stylesheet to match index.html sections
+   Order: variables/reset -> Header -> GIF -> Carousel -> Feature Cards -> About Unik
+          -> MOOC Tabs -> Ofertas Educativas -> FAQ -> Footer -> Utilities/Responsive
+   File created: main.ordered.css
+*/
+
+/* =============================== */
+/* Variables & Reset
+/* =============================== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --primary-color: #27907d;
+  --secondary-color: #2c3e50;
+  --accent-color: #e74c3c;
+  --text-dark: #2c3e50;
+  --text-light: #7f8c8d;
+  --white: #ffffff;
+  --light-gray: #f8f9fa;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+  --transition-normal: 0.3s ease-in-out;
+  --font-primary: 'DM Sans', Arial, Helvetica, sans-serif;
+}
+body { font-family: var(--font-primary); color: var(--text-dark); line-height: 1.6; background: var(--white); overflow-x: hidden; }
+
+/* ===================== */
+/* Header (first in HTML)
+/* ===================== */
+.site-header {
+  position: sticky; top: 0; z-index: 1000; background: #002C51; backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.header-inner { max-width: 1400px; margin: 0 auto; padding: 10px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.header-left { display:flex; align-items:center; gap:16px; }
+.brand img { height: 40px; display:block; }
+.primary-nav { display:flex; gap:8px; }
+.btn-link { padding:8px 14px; border-radius:999px; background: rgba(255,255,255,0.08); color:var(--white); text-decoration:none; font-weight:600; font-size:14px; transition:var(--transition-normal); }
+.btn-link:hover { background: var(--primary-color); }
+.header-center { display:flex; justify-content:center; }
+.header-search { display:flex; align-items:center; width:100%; max-width:520px; background:var(--white); border-radius:999px; padding:6px 10px; border:1px solid rgba(0,0,0,0.06); box-shadow:var(--shadow-sm); }
+.header-search input[type="search"] { flex:1; border:none; outline:none; }
+.header-right { display:flex; align-items:center; gap:8px; }
+.icon-button, .user-button { width:40px; height:40px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.08); color:var(--white); border:none; cursor:pointer; }
+.login-menu { position:absolute; top:calc(100% + 8px); right:0; min-width:200px; background:var(--white); border-radius:12px; box-shadow:var(--shadow-lg); padding:8px; display:none; }
+.login-dropdown.open .login-menu { display:block; }
+
+@media (max-width: 1024px) {
+  .header-inner { flex-direction:column; gap:10px; }
+  .header-left, .header-center, .header-right { width:100%; justify-content:center; }
+}
+
+/* ===================== */
+/* GIF full-width section (second in HTML)
+/* ===================== */
+.gif-section { width:100vw; height:auto; margin:0; padding:0; display:flex; justify-content:center; align-items:center; overflow:hidden; background:transparent; }
+.gif-container { width:100%; height:100%; display:flex; justify-content:center; align-items:center; }
+.gif-image { width:100%; height:auto; object-fit:cover; display:block; }
+
+/* ===================== */
+/* Carousel (third in HTML)
+/* ===================== */
+.carousel-section { position:relative; width:100%; height:60vh; min-height:400px; overflow:hidden; background: linear-gradient(135deg,#27907d 0%,#2c3e50 100%); }
+.carousel-container { position:relative; width:100%; height:100%; }
+.carousel-wrapper { position:relative; width:100%; height:100%; overflow:hidden; }
+.carousel-slide { position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; transition:opacity 0.5s; z-index:1; }
+.carousel-slide.active { opacity:1; z-index:2; }
+.carousel-slide img { width:100%; height:60vh; object-fit:cover; display:block; }
+.carousel-overlay { position:absolute; bottom:20px; right:20px; z-index:10; }
+.carousel-btn { padding:12px 24px; background:#fff; color:#111; border-radius:25px; font-weight:700; box-shadow:var(--shadow-lg); border:2px solid #111; cursor:pointer; }
+.carousel-controls { position:absolute; top:50%; transform:translateY(-50%); width:100%; display:flex; justify-content:space-between; padding:0 20px; }
+.carousel-prev, .carousel-next { width:50px; height:50px; border-radius:50%; background:rgba(255,255,255,0.9); border:none; display:inline-flex; align-items:center; justify-content:center; box-shadow:var(--shadow-md); cursor:pointer; }
+.carousel-indicators { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:8px; z-index:10; }
+.indicator { width:12px; height:12px; border-radius:50%; background: rgba(255,255,255,0.5); cursor:pointer; }
+.indicator.active { background: var(--white); transform:scale(1.2); }
+
+@media (max-width: 768px) {
+  .carousel-section { height:50vh; min-height:300px; }
+  .carousel-prev, .carousel-next { width:40px; height:40px; }
+}
+
+/* ===================== */
+/* Feature Cards (fourth in HTML)
+/* ===================== */
+.feature-cards-section { padding:4rem 0; background:transparent; display:flex; justify-content:center; }
+.feature-cards-container { display:flex; gap:3rem; flex-wrap:wrap; justify-content:center; width:100%; max-width:1200px; }
+.feature-card { border-radius:24px; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1); padding:2rem 3rem; display:flex; flex-direction:column; align-items:center; min-width:180px; max-width:220px; flex:1 1 200px; transition:transform 0.2s; background: rgba(255,255,255,0.08); }
+.feature-card.bg-blue { background:#002C51; }
+.feature-card.bg-green { background:#27a57d; }
+.feature-card:hover { transform: translateY(-6px) scale(1.03); box-shadow:0 10px 15px -3px rgba(0,0,0,0.1); }
+.feature-icon { width:64px; height:64px; display:flex; align-items:center; justify-content:center; margin-bottom:1rem; }
+.feature-icon img { width:38px; height:38px; object-fit:contain; }
+.feature-text { color:#fff; font-weight:700; font-size:20px; text-align:center; }
+
+/* ===================== */
+/* About Unik (fifth in HTML)
+/* ===================== */
+.about-unik-section { background:#fff; padding:4rem 0; }
+.about-unik-container { display:flex; align-items:center; justify-content:center; gap:3rem; max-width:1200px; margin:0 auto; flex-wrap:wrap; }
+.about-unik-text { flex:1 1 350px; display:flex; flex-direction:column; gap:1.5rem; color:#002C51; }
+.about-unik-block1 { font-size:66px; line-height:53px; }
+.about-unik-btn { position:absolute; right:24px; bottom:24px; padding:0.75rem 2.2rem; background:#002C51; color:#fff; border-radius:30px; font-weight:600; cursor:pointer; }
+.about-unik-btn:hover { background:#005080; }
+@media (max-width:900px) { .about-unik-container { flex-direction:column; padding:0 1rem; text-align:center; } .about-unik-btn { right:12px; bottom:12px; padding:0.6rem 1.5rem; } }
+
+/* ===================== */
+/* MOOC Tabs (next in HTML)
+/* ===================== */
+.mooc-tabs-section { padding:2.5rem 0; background:transparent; }
+.mooc-tabs-content { max-width:1200px; margin:0 auto; padding:0 1rem; }
+.mooc-tab-content { width:100%; }
+.mooc-info-tab.active, .mooc-tab-content.active { display:block; }
+.acerca-mooc-tab { display:none; }
+/* Core MOOC visuals (kept minimal) */
+.mooc-main-content { display:flex; justify-content:space-between; gap:1rem; align-items:flex-start; }
+.mooc-title { font-size:2rem; font-weight:700; color:#002C51; }
+@media (max-width:900px) { .mooc-main-content{ flex-direction:column; align-items:center; } }
+
+/* ===================== */
+/* Ofertas Educativas (next in HTML)
+/* ===================== */
+.ofertas-educativas-section { background:#002C51; padding:0; width:100%; min-height:480px; display:flex; align-items:center; justify-content:center; }
+.ofertas-educativas-container { display:flex; max-width:1200px; margin:0 auto; width:120%; padding:4rem 2rem; }
+.ofertas-educativas-texto { padding:2.5rem 1.5rem 2.5rem 2.5rem; width:100%; }
+.ofertas-educativas-tarjetas { display:grid; grid-template-columns:1fr 1fr; gap:15px; padding:2.5rem 2.5rem 2.5rem 1.5rem; }
+.oferta-mosaico { width:100%; max-width:378px; min-width:266px; aspect-ratio:1.25/1; position:relative; border-radius:10px; overflow:hidden; box-shadow:0 6px 32px rgba(0,0,0,0.13); background:#fff; border:2px solid #fff; }
+.oferta-img { width:100%; height:100%; object-fit:cover; display:block; }
+.oferta-overlay { position:absolute; left:0; right:0; bottom:0; min-height:90px; width:100%; background: linear-gradient(180deg, rgba(0,44,81,0) 0%, rgba(0,44,81,0.85) 100%); color:#fff; display:flex; flex-direction:column; justify-content:flex-end; padding:1.1rem; pointer-events:none; }
+.oferta-mosaico:hover .oferta-overlay { min-height:180px; background: rgba(0,44,81,0.4); }
+@media (max-width:900px) { .ofertas-educativas-container{ flex-direction:column; padding:2.5rem 0.5rem; } .oferta-mosaico{ width:100%; } }
+
+/* ===================== */
+/* FAQ (next in HTML)
+/* ===================== */
+.faq { width:100vw; max-width:100vw; margin:0 0 60px 0; padding:40px 0 32px 0; background:#fff; box-shadow:0 4px 24px rgba(0,0,0,0.08); position:relative; left:50%; transform:translateX(-50%); }
+.faq-columns { display:grid; grid-template-columns:1fr 1fr 1fr; max-width:1200px; margin:0 auto; }
+.faq-column { display:flex; flex-direction:column; align-items:center; }
+.faq-title { font-size:2.2rem; font-weight:700; text-align:center; color:#1a237e; margin-bottom:32px; }
+.faq-item { border-bottom:1px solid #e0e0e0; }
+.faq-question { width:100%; background:none; border:none; font-size:1.15rem; font-weight:600; padding:22px 0; display:flex; justify-content:space-between; cursor:pointer; }
+.faq-icon { transition: transform 0.3s; }
+.faq-item.active .faq-icon { transform: rotate(45deg); }
+.faq-answer { max-height:0; overflow:hidden; opacity:0; transition:max-height 0.4s, opacity 0.3s; }
+.faq-item.active .faq-answer { max-height:2000px; opacity:1; padding-bottom:18px; }
+@media (max-width:1100px) { .faq-columns { grid-template-columns: 1fr 0.2fr 1fr; } }
+@media (max-width:900px) { .faq { width:100vw; transform:none; padding:24px 0 16px 0; } .faq-columns { grid-template-columns:1fr; } }
+
+/* ===================== */
+/* Footer (last in HTML)
+/* ===================== */
+.footer { background: var(--text-dark); color: var(--white); padding: 48px 0 16px; }
+.footer-content { display:grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap:24px; margin-bottom:24px; }
+.footer-section h3 { font-size:16px; margin-bottom:12px; }
+.footer-logo img { max-width:120px; }
+.footer-links a { color: rgba(255,255,255,0.6); text-decoration:none; }
+.footer-bottom { border-top:1px solid rgba(255,255,255,0.1); padding-top:16px; }
+
+/* ===================== */
+/* Utilities and Responsive (end of file)
+/* ===================== */
+.dots-navigation { position:fixed; right:24px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:8px; }
+.dot { width:12px; height:12px; border-radius:50%; background: rgba(39,144,125,0.3); cursor:pointer; }
+.dot.active { background: var(--primary-color); transform:scale(1.2); }
+
+@media (max-width: 1024px) {
+  .faq-columns, .footer-content { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .carousel-section { height:50vh; }
+  .gif-image { height:auto; }
+}
+
+/* Hover accent for main buttons */
+.carousel-btn:hover, .about-unik-btn:hover, .mooc-btn-explore:hover, .ofertas-educativas-btn:hover { background-color:#27A57D !important; color:#fff !important; }
