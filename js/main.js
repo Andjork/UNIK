@@ -1,3 +1,55 @@
+// Carrusel Pantalla Completa
+function initCarruselFullscreen() {
+    const slides = document.querySelectorAll('.carrusel-fs-slide');
+    const dots = document.querySelectorAll('.carrusel-fs-dot');
+    
+    if (!slides.length || !dots.length) return;
+
+    let currentSlide = 0;
+    let autoPlayInterval;
+
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+        
+        currentSlide = index;
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    // Autoplay
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(nextSlide, 5000);
+    }
+
+    // Event listeners para los dots
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', function() {
+            showSlide(index);
+        });
+    });
+
+    // Iniciar autoplay
+    startAutoPlay();
+
+    // Pausar al interactuar
+    const carrusel = document.getElementById('carrusel-fullscreen');
+    if (carrusel) {
+        carrusel.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+        carrusel.addEventListener('mouseleave', startAutoPlay);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    initCarruselFullscreen();
+});
+
 // Funcionalidad para tarjetas PFAQ
 document.addEventListener('DOMContentLoaded', function() {
   const pfaqCards = document.querySelectorAll('.pfaq-card');
