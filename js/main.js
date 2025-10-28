@@ -18,57 +18,123 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Carrusel Pantalla Completa
-function initCarruselFullscreen() {
-    const slides = document.querySelectorAll('.carrusel-fs-slide');
-    const dots = document.querySelectorAll('.carrusel-fs-dot');
+class CarruselFullscreen {
+    constructor() {
+        this.carrusel = document.getElementById('carrusel-fullscreen');
+        this.slides = document.querySelectorAll('.carrusel-fs-slide');
+        this.dots = document.querySelectorAll('.carrusel-fs-dot');
+        this.currentSlide = 0;
+        this.isAnimating = false;
+        this.autoPlayInterval = null;
+        
+        this.init();
+    }
     
-    if (!slides.length || !dots.length) return;
-
-    let currentSlide = 0;
-    let autoPlayInterval;
-
-    function showSlide(index) {
-        slides.forEach(slide => slide.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
+    init() {
+        console.log('Inicializando carrusel...');
+        console.log('Slides encontrados:', this.slides.length);
+        console.log('Dots encontrados:', this.dots.length);
         
-        slides[index].classList.add('active');
-        dots[index].classList.add('active');
+        // Inicializar primer slide
+        this.showSlide(this.currentSlide);
         
-        currentSlide = index;
-    }
-
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-    }
-
-    // Autoplay
-    function startAutoPlay() {
-        autoPlayInterval = setInterval(nextSlide, 5000);
-    }
-
-    // Event listeners para los dots
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', function() {
-            showSlide(index);
+        // Event listeners para dots
+        this.dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                console.log('Click en dot:', index);
+                this.goToSlide(index);
+            });
         });
-    });
-
-    // Iniciar autoplay
-    startAutoPlay();
-
-    // Pausar al interactuar
-    const carrusel = document.getElementById('carrusel-fullscreen');
-    if (carrusel) {
-        carrusel.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
-        carrusel.addEventListener('mouseleave', startAutoPlay);
+        
+        // Iniciar auto-play
+        this.startAutoPlay();
+        
+        // Event listeners para pausar auto-play al interactuar
+        this.carrusel.addEventListener('mouseenter', () => this.stopAutoPlay());
+        this.carrusel.addEventListener('mouseleave', () => this.startAutoPlay());
+    }
+    
+    showSlide(index) {
+        console.log('Mostrando slide:', index);
+        
+        // Ocultar todos los slides
+        this.slides.forEach(slide => {
+            slide.classList.remove('active');
+        });
+        
+        // Remover active de todos los dots
+        this.dots.forEach(dot => {
+            dot.classList.remove('active');
+        });
+        
+        // Mostrar slide actual
+        this.slides[index].classList.add('active');
+        this.dots[index].classList.add('active');
+        
+        this.currentSlide = index;
+    }
+    
+    goToSlide(index) {
+        if (this.isAnimating || index === this.currentSlide) return;
+        
+        console.log('Cambiando al slide:', index);
+        this.isAnimating = true;
+        
+        // Ocultar slide actual
+        this.slides[this.currentSlide].classList.remove('active');
+        this.dots[this.currentSlide].classList.remove('active');
+        
+        // Mostrar nuevo slide
+        this.slides[index].classList.add('active');
+        this.dots[index].classList.add('active');
+        
+        this.currentSlide = index;
+        
+        // Resetear flag de animación después de la transición
+        setTimeout(() => {
+            this.isAnimating = false;
+        }, 600);
+    }
+    
+    nextSlide() {
+        const nextIndex = (this.currentSlide + 1) % this.slides.length;
+        this.goToSlide(nextIndex);
+    }
+    
+    startAutoPlay() {
+        // Limpiar intervalo existente
+        if (this.autoPlayInterval) {
+            clearInterval(this.autoPlayInterval);
+        }
+        
+        // Iniciar nuevo intervalo
+        this.autoPlayInterval = setInterval(() => {
+            if (!this.isAnimating) {
+                this.nextSlide();
+            }
+        }, 5000); // Cambia cada 5 segundos
+    }
+    
+    stopAutoPlay() {
+        if (this.autoPlayInterval) {
+            clearInterval(this.autoPlayInterval);
+            this.autoPlayInterval = null;
+        }
     }
 }
 
+// Inicializar carrusel cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', function() {
-    initCarruselFullscreen();
+    console.log('DOM cargado, inicializando carrusel...');
+    new CarruselFullscreen();
 });
 
+// Fallback en caso de que el DOM ya esté cargado
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => new CarruselFullscreen());
+} else {
+    new CarruselFullscreen();
+}
 // Funcionalidad para tarjetas PFAQ
 document.addEventListener('DOMContentLoaded', function() {
   const pfaqCards = document.querySelectorAll('.pfaq-card');
