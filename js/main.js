@@ -1,3 +1,22 @@
+// Tu código JavaScript existente aquí
+
+// Funcionalidad específica para la sección de video
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.querySelector('.video-container video');
+    
+    // Asegurar que el video se reproduzca automáticamente
+    video.play().catch(function(error) {
+        console.log('Reproducción automática prevenida:', error);
+        // Aquí puedes agregar un botón de reproducción si es necesario
+    });
+    
+    // Manejar cambios de tamaño de ventana
+    window.addEventListener('resize', function() {
+        // El CSS ya maneja el responsive, pero puedes agregar lógica adicional aquí
+        console.log('Ventana redimensionada - video se adapta automáticamente');
+    });
+});
+
 // Carrusel Pantalla Completa
 function initCarruselFullscreen() {
     const slides = document.querySelectorAll('.carrusel-fs-slide');
