@@ -1,37 +1,57 @@
 
-/* Sección de Video a Pantalla Completa */
+/* Sección de Video Centrado Total */
 .video-section {
     position: relative;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f8f9fa; /* Color de fondo para los márgenes */
+    padding: 40px; /* Márgenes externos */
 }
 
 .video-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+    width: 80%;
+    max-width: 1200px;
+    height: 70vh;
+    max-height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .video-container video {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Usa 'contain' si prefieres ver todo el video sin recortar */
 }
 
 /* Responsive */
 @media (max-width: 768px) {
     .video-section {
-        height: 70vh; /* Ajusta según necesites en móviles */
+        padding: 30px;
+    }
+    
+    .video-container {
+        width: 90%;
+        height: 60vh;
     }
 }
 
 @media (max-width: 480px) {
     .video-section {
-        height: 60vh; /* Ajusta según necesites en móviles pequeños */
+        padding: 20px;
+    }
+    
+    .video-container {
+        width: 95%;
+        height: 50vh;
+        border-radius: 8px;
     }
 }
 
@@ -1057,170 +1077,6 @@
 }
 /* --- fin secction pfaq --- */
 
-/* MOOC Section reorganizada */
-.mooc-section {
-    padding: 0;
-    background: none;
-}
-.mooc-bg {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    min-height: 480px;
-    display: flex;
-    align-items: stretch;
-    justify-content: center;
-}
-.mooc-bg-img {
-    width: 100vw;
-    height: auto;
-    max-width: 100vw;
-    max-height: 100vh;
-    object-fit: cover;
-    border-radius: 0;
-    display: block;
-    margin: 0 auto;
-}
-.mooc-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    z-index: 2;
-    pointer-events: none;
-}
-.mooc-overlay-content {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-}
-.mooc-top-center {
-    display: flex;
-    justify-content: center;
-    gap: 1.2rem;
-    margin-top: 2.2rem;
-    margin-bottom: 2.2rem;
-    pointer-events: auto;
-}
-.mooc-main-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    pointer-events: auto;
-}
-.mooc-main-left {
-    flex: 1 1 400px;
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: 500;
-    text-align: left;
-    margin-top: 1.5rem;
-}
-.mooc-title {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    color: #fff;
-    line-height: 80px;
-}
-.mooc-block {
-    margin-bottom: 0.5rem;
-}
-.mooc-main-right {
-    flex: 0 0 120px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.2rem;
-    margin-top: 1.5rem;
-}
-.mooc-icons {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    align-items: center;
-}
-.mooc-icon {
-    width: 54px;
-    height: 54px;
-    object-fit: contain;
-    background: #fff;
-    border-radius: 50%;
-    box-shadow: 0 2px 8px 0 rgba(26,35,126,0.10);
-    padding: 8px;
-}
-.mooc-btn {
-    display: inline-block;
-    padding: 0.7rem 1.8rem;
-    border-radius: 30px;
-    font-size: 1rem;
-    font-weight: 600;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s, box-shadow 0.2s;
-    box-shadow: 0 2px 12px 0 rgba(26,35,126,0.08);
-    pointer-events: auto;
-}
-.mooc-btn-primary {
-    background: #002C51;
-    color: #fff;
-}
-.mooc-btn-secondary {
-    background: transparent;
-    color: #fff;
-    border: 2px solid #fff;
-}
-.mooc-btn-explore {
-    background: #fff;
-    color: #002C51;
-    margin-top: 1.5rem;
-    width: 100%;
-    text-align: center;
-}
-.mooc-btn:hover {
-    background: #005080;
-}
-@media (max-width: 900px) {
-    .mooc-main-content {
-        flex-direction: column;
-        align-items: center;
-        padding: 0 0.5rem;
-    }
-    .mooc-main-left, .mooc-main-right {
-        width: 100%;
-        align-items: center;
-        text-align: center;
-        margin-top: 1rem;
-    }
-    .mooc-main-right {
-        flex-direction: row;
-        gap: 1rem;
-        justify-content: center;
-    }
-    .mooc-icons {
-        flex-direction: row;
-        gap: 1rem;
-    }
-    .mooc-btn-explore {
-        margin-top: 1rem;
-    }
-}
 /* Sección descriptiva con imagen y botón */
 .about-unik-section {
     background: #fff;
