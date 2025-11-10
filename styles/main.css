@@ -160,8 +160,7 @@
 .carrusel-fs-imagen {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Muestra toda la imagen */
-  background: #000; /* Fondo por si hay bordes */
+  
 }
 
 /* Botón */
