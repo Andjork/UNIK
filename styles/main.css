@@ -376,7 +376,9 @@
 /* --- Columna izquierda --- */
 
 .separador-vertical-izquierdo{
-  margin: none;
+  height: 100%;
+  width: 100%;
+  margin-right: 4%;
 }
 .muestra-about-left {
   height: 100%;
