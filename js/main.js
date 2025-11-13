@@ -1,5 +1,7 @@
 // Tu código JavaScript existente aquí
 
+
+
 // Funcionalidad específica para la sección de video
 document.addEventListener('DOMContentLoaded', function() {
     const video = document.querySelector('.video-container video');

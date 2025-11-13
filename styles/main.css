@@ -959,8 +959,16 @@
 }
 
 .npo-btn.secundario {
-  background: transparent;
-  color: white;
+  display: inline-block;
+  background: white;
+  color: #002C51;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  border: 2px solid white;
 }
 
 .npo-btn:hover {
@@ -977,8 +985,9 @@
 }
 
 .npo-btn.secundario:hover {
-  background: white;
-  color: #1a3a6b;
+  background: #002C51;
+  color: white;
+  transform: translateY(-2px);
 }
 
 .npo-ver-cursos-btn {
@@ -1077,17 +1086,17 @@
 
 /* Tarjetas cuadradas */
 .pfaq-card {
-    width: 600px; /* ← Ancho fijo */
-  height: 90px; /* ← Alto fijo */
+    width: 100%; /* ← Ancho fijo */
+  height: 100%; /* ← Alto fijo */
   background: #f5f5f5; /* Fondo gris claro */
   border-radius: 12px; /* Bordes redondos */
-  padding: 1.3rem 1.8rem; /* 1rem vertical, 1.5rem horizontal */
-  min-height: 40px;
+  padding: 6% 6%; /* 1rem vertical, 1.5rem horizontal */
+  /* min-height: 40px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
-   /* align-items: center; */ /* ← Centrado HORIZONTAL */
-    transition: all 0.3s ease;
+  /* align-items: center; */ /* ← Centrado HORIZONTAL */
+  transition: all 0.3s ease;
   text-align: left; /* ← Texto centrado */
   border: 1px solid #e0e0e0;
   margin-bottom: 0.5rem; /* ← Espacio entre tarjetas */
