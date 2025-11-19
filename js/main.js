@@ -20,125 +20,141 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Carrusel Pantalla Completa
-class CarruselFullscreen {
-    constructor() {
-        this.carrusel = document.getElementById('carrusel-fullscreen');
-        this.slides = document.querySelectorAll('.carrusel-fs-slide');
-        this.dots = document.querySelectorAll('.carrusel-fs-dot');
-        this.currentSlide = 0;
-        this.isAnimating = false;
-        this.autoPlayInterval = null;
-        
-        this.init();
-    }
+// Datos para el carrusel
+const carouselData = [
+    { title: "Tu próximo logro comienza hoy" },
+    { title: "Desarrolla tus habilidades profesionales" },
+    { title: "Aprende con los mejores expertos" }
+];
+
+let currentIndex = 0;
+const slides = document.querySelectorAll('.carrusel-fs-slide');
+const dots = document.querySelectorAll('.carrusel-fs-dot');
+const titleElement = document.getElementById('dynamicTitle');
+let isAnimating = false;
+
+function changeSlide(index) {
+    if (isAnimating || index === currentIndex) return;
+    isAnimating = true;
     
-    init() {
-        console.log('Inicializando carrusel...');
-        console.log('Slides encontrados:', this.slides.length);
-        console.log('Dots encontrados:', this.dots.length);
-        
-        // Inicializar primer slide
-        this.showSlide(this.currentSlide);
-        
-        // Event listeners para dots
-        this.dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                console.log('Click en dot:', index);
-                this.goToSlide(index);
-            });
-        });
-        
-        // Iniciar auto-play
-        this.startAutoPlay();
-        
-        // Event listeners para pausar auto-play al interactuar
-        this.carrusel.addEventListener('mouseenter', () => this.stopAutoPlay());
-        this.carrusel.addEventListener('mouseleave', () => this.startAutoPlay());
-    }
+    console.log('Cambiando de slide', currentIndex, 'a', index);
     
-    showSlide(index) {
-        console.log('Mostrando slide:', index);
-        
-        // Ocultar todos los slides
-        this.slides.forEach(slide => {
-            slide.classList.remove('active');
-        });
-        
-        // Remover active de todos los dots
-        this.dots.forEach(dot => {
-            dot.classList.remove('active');
-        });
-        
-        // Mostrar slide actual
-        this.slides[index].classList.add('active');
-        this.dots[index].classList.add('active');
-        
-        this.currentSlide = index;
-    }
+    const currentSlide = slides[currentIndex];
+    const nextSlide = slides[index];
+    const currentImage = currentSlide.querySelector('.carrusel-fs-imagen');
     
-    goToSlide(index) {
-        if (this.isAnimating || index === this.currentSlide) return;
-        
-        console.log('Cambiando al slide:', index);
-        this.isAnimating = true;
-        
-        // Ocultar slide actual
-        this.slides[this.currentSlide].classList.remove('active');
-        this.dots[this.currentSlide].classList.remove('active');
-        
-        // Mostrar nuevo slide
-        this.slides[index].classList.add('active');
-        this.dots[index].classList.add('active');
-        
-        this.currentSlide = index;
-        
-        // Resetear flag de animación después de la transición
-        setTimeout(() => {
-            this.isAnimating = false;
-        }, 600);
-    }
+    // Cambiar título inmediatamente
+    titleElement.textContent = carouselData[index].title;
     
-    nextSlide() {
-        const nextIndex = (this.currentSlide + 1) % this.slides.length;
-        this.goToSlide(nextIndex);
-    }
+    // Actualizar dots
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[index].classList.add('active');
     
-    startAutoPlay() {
-        // Limpiar intervalo existente
-        if (this.autoPlayInterval) {
-            clearInterval(this.autoPlayInterval);
-        }
-        
-        // Iniciar nuevo intervalo
-        this.autoPlayInterval = setInterval(() => {
-            if (!this.isAnimating) {
-                this.nextSlide();
-            }
-        }, 5000); // Cambia cada 5 segundos
-    }
+    // POSICIONAR los slides correctamente:
+    // - Slide actual: arriba (z-index: 3) - se va a desvanecer
+    // - Slide siguiente: medio (z-index: 2) - se va a mostrar
+    // - Otros slides: abajo (z-index: 1) - ocultos
     
-    stopAutoPlay() {
-        if (this.autoPlayInterval) {
-            clearInterval(this.autoPlayInterval);
-            this.autoPlayInterval = null;
+    slides.forEach(slide => {
+        slide.style.zIndex = '1'; // Todos abajo por defecto
+    });
+    
+    nextSlide.style.zIndex = '2'; // Siguiente slide en el medio
+    currentSlide.style.zIndex = '3'; // Slide actual arriba
+    
+    // Asegurar que el siguiente slide esté activo
+    nextSlide.classList.add('active');
+    
+    // Crear tiles container para la imagen ACTUAL (la que se va)
+    const tilesContainer = document.createElement('div');
+    tilesContainer.className = 'tiles-container';
+    currentSlide.appendChild(tilesContainer);
+    
+    // Crear tiles que muestran la imagen ACTUAL
+    const totalTiles = 100; // 10x10
+    let tilesAnimated = 0;
+    
+    for (let row = 0; row < 10; row++) {
+        for (let col = 0; col < 10; col++) {
+            const tile = document.createElement('div');
+            tile.className = 'tile';
+            
+            // Cada tile muestra su fragmento de la imagen actual
+            tile.style.backgroundImage = `url('${currentImage.src}')`;
+            tile.style.backgroundPosition = `${col * 10}% ${row * 10}%`;
+            
+            // Calcular delay: esquina superior izquierda → inferior derecha
+            const delay = (row * 0.14) + (col * 0.1); // Más rápido
+            
+            tilesContainer.appendChild(tile);
+            
+            // Animar tile después de un delay
+            setTimeout(() => {
+                tile.style.opacity = '0';
+                tile.style.transform = 'rotateY(180deg) scale(0)';
+                
+                tilesAnimated++;
+                
+                // Cuando todos los tiles hayan animado, limpiar
+                if (tilesAnimated === totalTiles) {
+                    setTimeout(() => {
+                        // Remover tiles y ocultar slide actual
+                        tilesContainer.remove();
+                        currentSlide.classList.remove('active');
+                        currentSlide.style.zIndex = '1';
+                        
+                        currentIndex = index;
+                        isAnimating = false;
+                    }, 200);
+                }
+            }, delay * 1000);
         }
     }
 }
 
-// Inicializar carrusel cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM cargado, inicializando carrusel...');
-    new CarruselFullscreen();
+// Event listeners para los dots
+dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        changeSlide(index);
+    });
 });
 
+// Cambio automático
+function autoSlide() {
+    if (!isAnimating) {
+        let nextIndex = (currentIndex + 1) % slides.length;
+        changeSlide(nextIndex);
+    }
+}
+
+// Inicializar - mostrar primer slide
+slides[0].classList.add('active');
+slides[0].style.zIndex = '3';
+
+// Ocultar otros slides
+for (let i = 1; i < slides.length; i++) {
+    slides[i].style.zIndex = '1';
+}
+
+// Iniciar cambio automático
+setTimeout(() => {
+    setInterval(autoSlide, 5000);
+}, 3000);
+
+// Inicializar carrusel cuando el DOM esté listo
+/* document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM cargado, inicializando carrusel...');
+    new CarruselFullscreen();
+}); */
+
 // Fallback en caso de que el DOM ya esté cargado
-if (document.readyState === 'loading') {
+/* if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => new CarruselFullscreen());
 } else {
     new CarruselFullscreen();
-}
+} */
 // Funcionalidad para tarjetas PFAQ
-document.addEventListener('DOMContentLoaded', function() {
+/* document.addEventListener('DOMContentLoaded', function() {
   const pfaqCards = document.querySelectorAll('.pfaq-card');
   
   pfaqCards.forEach(card => {
@@ -162,14 +178,14 @@ document.addEventListener('DOMContentLoaded', function() {
       cardContent.click();
     });
   });
-});
+}); */
 
 
 
 // Inicializar cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', function() {
+/* document.addEventListener('DOMContentLoaded', function() {
     initMultimagesCarousel();
-});
+}); */
 // cambio entre secciones del mooc
 
 // Tabs para sección MOOC

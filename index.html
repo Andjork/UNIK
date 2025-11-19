@@ -16,27 +16,35 @@
 </head>
 <body>
     <section id="carrusel-fullscreen" class="carrusel-fullscreen">
-      <div class="carrusel-fs-slide active">
-        <img src="images/Carrusel_1/1_1.jpg" class="carrusel-fs-imagen" alt="Imagen 1">
-        <a href="#" class="carrusel-fs-btn">Ver más</a>
-      </div>
+        <!-- Sección izquierda (texto) -->
+        <div class="text-section-carrusel">
+            <div class="logo">UNICAMACHO</div>
+            <p class="subtitle">Como tu manera de <strong>aprender</strong></p>
+            <h1 class="variable-title" id="dynamicTitle">Tu próximo logro comienza hoy</h1>
+            <button class="cta-button">¡Da el primer paso!</button>
+        </div>
 
-      <div class="carrusel-fs-slide">
-        <img src="images/Carrusel_1/2.jpg" class="carrusel-fs-imagen" alt="Imagen 2">
-        <a href="#" class="carrusel-fs-btn">Ver más</a>
-      </div>
+        <!-- Sección derecha (tu carrusel existente) -->
+        <div class="carrusel-container">
+            <div class="carrusel-fs-slide active">
+                <img src="images/Carrusel_1/1_1.jpg" class="carrusel-fs-imagen" alt="Imagen 1">
+            </div>
 
-      <div class="carrusel-fs-slide">
-        <img src="images/Carrusel_1/3.jpg" class="carrusel-fs-imagen" alt="Imagen 3">
-        <a href="#" class="carrusel-fs-btn">Ver más</a>
-      </div>
+            <div class="carrusel-fs-slide">
+                <img src="images/Carrusel_1/2.jpg" class="carrusel-fs-imagen" alt="Imagen 2">
+            </div>
 
-      <!-- Controles de puntos -->
-      <div class="carrusel-fs-dots">
-        <span class="carrusel-fs-dot active" data-slide="0"></span>
-        <span class="carrusel-fs-dot" data-slide="1"></span>
-        <span class="carrusel-fs-dot" data-slide="2"></span>
-      </div>
+            <div class="carrusel-fs-slide">
+                <img src="images/Carrusel_1/3.jpg" class="carrusel-fs-imagen" alt="Imagen 3">
+            </div>
+
+            <!-- Controles de puntos -->
+            <div class="carrusel-fs-dots">
+                <span class="carrusel-fs-dot active" data-slide="0"></span>
+                <span class="carrusel-fs-dot" data-slide="1"></span>
+                <span class="carrusel-fs-dot" data-slide="2"></span>
+            </div>
+        </div>
     </section>
 
     
@@ -55,31 +63,39 @@
     <!-- Seccion carousel  -->
     
     <!-- Tarjetas informativas -->
+      <div class="title-container-una-experiencia">
+        <h1 class="main-title-una-experiencia">Una experiencia de aprendizaje pensada para ti</h1>
+        <div class="title-underline-una-experiecia"></div>
+      </div>
     <section id="feature-cards-section" class="feature-cards-section">
         <div class="feature-cards-container">
             <div class="feature-card bg-blue">
                 <div class="feature-icon">
-                    <img src="assets/icons/icono_pulgar_blanco.png" alt="Calidad Garantizada" />
+                    <img src="assets/icons/Like.png" alt="Calidad Garantizada" />
                 </div>
-                <div class="feature-text">Calidad <br>Garantizada</div>
+                <h3>Calidad garantizada</h3>
+                <p>Aprende con recursos diseñados por expertos y con estándares institucionales.</p>
             </div>
             <div class="feature-card bg-green">
                 <div class="feature-icon">
-                    <img src="assets/icons/icono_personas_blanco.png" alt="Colaboración Activa" />
+                    <img src="images/Recurso 44.png" alt="Colaboración Activa" />
                 </div>
-                <div class="feature-text">Colaboración <br>Activa</div>
+                <h3>Colaboración activa</h3>
+                <p>Forma parte de una comunidad donde compartir, dialogar y crecer es parte del proceso.</p>
             </div>
             <div class="feature-card bg-blue">
                 <div class="feature-icon">
-                    <img src="assets/icons/icono_k_blanco.png" alt="Formación Única" />
+                    <img src="assets/icons/k_unik.png" alt="Formación Única" />
                 </div>
-                <div class="feature-text">Formación<br> UNIK</div>
+                <h3>Formación UNIK</h3>
+                <p>Accede a cursos diseñados para impulsar tus competencias profesionales.</p>
             </div>
             <div class="feature-card bg-green">
                 <div class="feature-icon">
-                    <img src="assets/icons/icono_birrete_blanco.png" alt="Cursos Certificados" />
+                    <img src="images/Recurso 39.png"alt="Cursos Certificados" />
                 </div>
-                <div class="feature-text">Cursos <br>Certificados</div>
+                <h3>Cursos certificados</h3>
+                <p>Obtén certificados oficiales que respaldan tu aprendizaje y tu crecimiento laboral.</p>
             </div>
         </div>
     </section>
@@ -104,7 +120,9 @@
                 </div>
             </div>
             <div class="about-unik-image-container">
+                    <div class="corner-green"></div>
                 <div class="about-unik-image-wrapper">
+                    <div class="half-ring-orange"></div>
                     <img class="about-unik-image" src="images/mujer_sentada.png" alt="Mujer sentada" />
                     <a href="https://unik.unicamacho.edu.co/" class="about-unik-btn">Comienza ya</a>
                 </div>
@@ -527,7 +545,7 @@
             <button class="pfaq-toggle">+</button>
           </div>
           <div class="pfaq-answer">
-            <p>Sí, puedes retomar el curso donde lo dejaste en cualquier momento.</p>
+            <p>Sí puedes retomar el curso donde lo dejaste en cualquier momento.</p>
           </div>
         </div>
 
