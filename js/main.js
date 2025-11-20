@@ -49,6 +49,16 @@ cursosOfertasNextBtn.addEventListener('click', () => {
 
 cursosOfertasCarousel.addEventListener('scroll', updateCarouselButtons);
 
+// Función para cerrar hover cuando se hace click fuera
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.curso-oferta-card')) {
+        const expandedCards = document.querySelectorAll('.curso-oferta-card:hover');
+        expandedCards.forEach(card => {
+            card.classList.remove('hover-active');
+        });
+    }
+});
+
 window.addEventListener('load', () => {
     updateCarouselButtons();
     const containerWidth = cursosOfertasCarousel.clientWidth;

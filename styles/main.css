@@ -327,13 +327,16 @@
 
 /* Sección Cursos Ofertas */
 .cursos-ofertas-section {
-    padding: 60px 20px;
+    padding: 80px 20px; /* Más padding para dar espacio al hover */
     background: #f8f9fa;
+    position: relative;
+    z-index: 1;
 }
 
 .cursos-ofertas-container {
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
 }
 
 .cursos-ofertas-header {
@@ -363,45 +366,49 @@
     justify-content: center;
     gap: 20px;
     position: relative;
+    min-height: 400px; /* Altura mínima para el hover */
 }
 
 /* Contenedor del carrusel */
 .cursos-ofertas-carousel-container {
     width: 100%;
     max-width: 1000px;
-    overflow: hidden;
+    overflow: visible; /* Cambiado de hidden a visible */
+    position: relative;
 }
 
 /* Carrusel */
 .cursos-ofertas-carousel {
     display: flex;
     gap: 25px;
-    padding: 20px 10px;
+    padding: 60px 10px; /* Más padding arriba y abajo para el hover */
     scroll-behavior: smooth;
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
     scroll-snap-type: x mandatory;
     justify-content: center;
+    align-items: flex-start; /* Alinear arriba para dar espacio abajo */
 }
 
 .cursos-ofertas-carousel::-webkit-scrollbar {
     display: none;
 }
 
-/* Tarjeta Principal - MÁS PEQUEÑA */
+/* Tarjeta Principal */
 .curso-oferta-card {
     position: relative;
     width: 280px;
     height: 340px;
     border-radius: 12px;
-    overflow: visible;
+    overflow: visible; /* Cambiado de hidden a visible */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     cursor: pointer;
     background: white;
     flex-shrink: 0;
     scroll-snap-align: center;
+    margin: 50px 0; /* Margen para el hover */
 }
 
 /* Estado Compacto (por defecto) */
@@ -416,6 +423,7 @@
     transition: all 0.3s ease;
     border-radius: 12px;
     overflow: hidden;
+    z-index: 10;
 }
 
 .curso-oferta-image-container {
@@ -479,23 +487,23 @@
     transform: translateY(-1px);
 }
 
-/* Estado Expandido (en hover) - MÁS GRANDE Y COMPLETO */
+/* Estado Expandido (en hover) - POSICIÓN CORREGIDA */
 .curso-oferta-card-expanded {
     position: absolute;
-    top: -50px;
-    left: -30px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
     width: 340px;
     height: 500px;
     background: white;
     opacity: 0;
-    transform: scale(0.8);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     pointer-events: none;
     display: flex;
     flex-direction: column;
     border-radius: 16px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-    z-index: 100;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+    z-index: 1000; /* Z-index muy alto para que esté por encima de todo */
     overflow: hidden;
 }
 
@@ -637,10 +645,10 @@
     transform: translateY(-2px);
 }
 
-/* Efectos Hover */
+/* Efectos Hover CORREGIDOS */
 .curso-oferta-card:hover {
     transform: translateY(-5px);
-    z-index: 100;
+    z-index: 1000; /* Z-index alto en hover */
 }
 
 .curso-oferta-card:hover .curso-oferta-card-compact {
@@ -650,8 +658,21 @@
 
 .curso-oferta-card:hover .curso-oferta-card-expanded {
     opacity: 1;
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
     pointer-events: all;
+}
+
+/* Overlay para cuando hay hover (opcional) */
+.curso-oferta-card:hover::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    pointer-events: none;
 }
 
 /* Botones del carrusel */
@@ -671,7 +692,8 @@
     font-weight: bold;
     color: #667eea;
     flex-shrink: 0;
-    z-index: 20;
+    z-index: 100; /* Z-index menor que el hover */
+    position: relative;
 }
 
 .cursos-ofertas-carousel-btn:hover {
@@ -679,6 +701,7 @@
     border-color: #667eea;
     color: white;
     transform: scale(1.1);
+    z-index: 1001; /* Por encima del overlay */
 }
 
 .cursos-ofertas-carousel-btn:disabled {
@@ -701,7 +724,6 @@
     .curso-oferta-card-expanded {
         width: 320px;
         height: 480px;
-        left: -20px;
     }
     
     .cursos-ofertas-carousel {
@@ -710,6 +732,10 @@
 }
 
 @media (max-width: 768px) {
+    .cursos-ofertas-section {
+        padding: 60px 15px;
+    }
+    
     .cursos-ofertas-wrapper {
         gap: 10px;
     }
@@ -722,7 +748,6 @@
     .curso-oferta-card-expanded {
         width: 300px;
         height: 460px;
-        left: -10px;
     }
     
     .cursos-ofertas-header h1 {
@@ -745,6 +770,10 @@
 }
 
 @media (max-width: 480px) {
+    .cursos-ofertas-section {
+        padding: 50px 10px;
+    }
+    
     .cursos-ofertas-carousel-container {
         max-width: 100%;
     }
@@ -757,13 +786,24 @@
     .curso-oferta-card-expanded {
         width: 280px;
         height: 440px;
-        left: -5px;
     }
     
     .cursos-ofertas-carousel-btn {
         width: 40px;
         height: 40px;
         font-size: 18px;
+    }
+    
+    .cursos-ofertas-carousel {
+        padding: 40px 5px;
+    }
+}
+
+/* Asegurar que el hover no se corte en móviles */
+@media (max-height: 700px) {
+    .curso-oferta-card-expanded {
+        height: 400px;
+        top: 45%;
     }
 }
 
