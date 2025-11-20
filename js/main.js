@@ -33,6 +33,59 @@ const dots = document.querySelectorAll('.carrusel-fs-dot');
 const titleElement = document.getElementById('dynamicTitle');
 let isAnimating = false;
 
+function createTiles(imageUrl) {
+    const tilesContainer = document.createElement('div');
+    tilesContainer.className = 'tiles-container';
+    tilesContainer.style.position = 'absolute';
+    tilesContainer.style.top = '0';
+    tilesContainer.style.left = '0';
+    tilesContainer.style.width = '100%';
+    tilesContainer.style.height = '100%';
+    tilesContainer.style.zIndex = '10';
+    tilesContainer.style.display = 'grid';
+    tilesContainer.style.gridTemplateColumns = 'repeat(10, 1fr)';
+    tilesContainer.style.gridTemplateRows = 'repeat(6, 1fr)';
+    
+    const columns = 10;
+    const rows = 6;
+
+    for (let i = 0; i < columns * rows; i++) {
+        const tile = document.createElement('div');
+        tile.classList.add('tile');
+        
+        const col = i % columns;
+        const row = Math.floor(i / columns);
+        
+        tile.style.backgroundImage = `url('${imageUrl}')`;
+        tile.style.backgroundSize = `${columns * 100}% ${rows * 100}%`;
+        tile.style.backgroundPosition = `${col * (100 / (columns - 1))}% ${row * (100 / (rows - 1))}%`;
+        tile.style.opacity = '1';
+        tile.style.transform = 'scale(1)';
+        tile.style.transition = 'all 0.5s ease';
+        
+        tilesContainer.appendChild(tile);
+    }
+    
+    document.querySelector('.carrusel-container').appendChild(tilesContainer);
+    return tilesContainer;
+}
+
+function animateTiles(tilesContainer, callback) {
+    const tiles = tilesContainer.querySelectorAll('.tile');
+    
+    tiles.forEach((tile, index) => {
+        setTimeout(() => {
+            tile.style.opacity = '0';
+            tile.style.transform = 'scale(0.3) rotate(20deg)';
+        }, index * 25);
+    });
+
+    setTimeout(() => {
+        tilesContainer.remove();
+        callback();
+    }, 1600);
+}
+
 function changeSlide(index) {
     if (isAnimating || index === currentIndex) return;
     isAnimating = true;
@@ -40,6 +93,7 @@ function changeSlide(index) {
     const currentSlide = slides[currentIndex];
     const nextSlide = slides[index];
     const currentImage = currentSlide.querySelector('.carrusel-fs-imagen');
+    const nextImage = nextSlide.querySelector('.carrusel-fs-imagen');
     
     // Cambiar título inmediatamente
     titleElement.textContent = carouselData[index].title;
@@ -48,106 +102,26 @@ function changeSlide(index) {
     dots.forEach(dot => dot.classList.remove('active'));
     dots[index].classList.add('active');
     
-    // ⭐⭐ ENFOQUE COMPLETAMENTE NUEVO ⭐⭐
+    // ⭐⭐ LÓGICA CORRECTA BASADA EN TU CÓDIGO ⭐⭐
     
-    // 1. MOSTRAR NUEVA IMAGEN INMEDIATAMENTE
+    // 1. Crear tiles con la imagen ACTUAL
+    const tilesContainer = createTiles(currentImage.src);
+    
+    // 2. MOSTRAR NUEVA IMAGEN INMEDIATAMENTE
+    currentSlide.classList.remove('active');
+    currentSlide.style.opacity = '0';
     nextSlide.classList.add('active');
-    nextSlide.style.display = 'block';
     nextSlide.style.opacity = '1';
-    nextSlide.style.zIndex = '2';
     
-    // 2. IMAGEN ACTUAL ENCIMA
-    currentSlide.style.display = 'block';
-    currentSlide.style.opacity = '1';
-    currentSlide.style.zIndex = '3';
+    console.log('🔄 Imagen cambiada - Nueva imagen visible AHORA');
     
-    // 3. CREAR CONTENEDOR DE TILES INDEPENDIENTE
-    const tilesContainer = document.createElement('div');
-    tilesContainer.className = 'tiles-container';
-    tilesContainer.style.position = 'absolute';
-    tilesContainer.style.top = '0';
-    tilesContainer.style.left = '0';
-    tilesContainer.style.width = '100%';
-    tilesContainer.style.height = '100%';
-    tilesContainer.style.zIndex = '4'; // Encima de todo
-    
-    // Agregar tilesContainer al carrusel-container (no al slide)
-    const carruselContainer = document.querySelector('.carrusel-container');
-    carruselContainer.appendChild(tilesContainer);
-    
-    const img = currentImage;
-    const imgAspectRatio = img.naturalWidth / img.naturalHeight;
-    
-    let cols, rows;
-    if (imgAspectRatio > 1.5) {
-        cols = 12;
-        rows = 8;
-    } else if (imgAspectRatio > 1) {
-        cols = 10;
-        rows = 8;
-    } else if (imgAspectRatio < 0.7) {
-        cols = 8;
-        rows = 12;
-    } else if (imgAspectRatio < 1) {
-        cols = 8;
-        rows = 10;
-    } else {
-        cols = 8;
-        rows = 8;
-    }
-    
-    tilesContainer.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
-    tilesContainer.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
-    
-    const totalTiles = cols * rows;
-    let tilesAnimated = 0;
-    
-    for (let row = 0; row < rows; row++) {
-        for (let col = 0; col < cols; col++) {
-            const tile = document.createElement('div');
-            tile.className = 'tile';
-            
-            const bgPosX = (col / cols) * 100;
-            const bgPosY = (row / rows) * 100;
-            
-            // TILES usan la imagen ACTUAL
-            tile.style.backgroundImage = `url('${currentImage.src}')`;
-            tile.style.backgroundPosition = `${bgPosX}% ${bgPosY}%`;
-            tile.style.backgroundSize = `${cols * 100}% ${rows * 100}%`;
-            
-            const delay = (row * 0.12) + (col * 0.06);
-            
-            tilesContainer.appendChild(tile);
-            
-            setTimeout(() => {
-                tile.style.opacity = '0';
-                tile.style.transform = 'scale(0) rotate(45deg)';
-                
-                tilesAnimated++;
-                
-                // Cuando terminan los tiles, limpiar
-                if (tilesAnimated === totalTiles) {
-                    setTimeout(() => {
-                        // Remover tiles container
-                        tilesContainer.remove();
-                        
-                        // Ocultar imagen actual
-                        currentSlide.style.display = 'none';
-                        currentSlide.style.opacity = '0';
-                        currentSlide.style.zIndex = '1';
-                        currentSlide.classList.remove('active');
-                        
-                        currentIndex = index;
-                        isAnimating = false;
-                        
-                        console.log('Cambio completado: Imagen', index, 'visible');
-                    }, 400);
-                }
-            }, delay * 1000);
-        }
-    }
-    
-    console.log('Efecto iniciado: Nueva imagen', index, 'debería ser visible');
+    // 3. Animar tiles
+    animateTiles(tilesContainer, () => {
+        // Limpieza después de la animación
+        currentIndex = index;
+        isAnimating = false;
+        console.log('✅ Animación completada');
+    });
 }
 
 // Event listeners para los dots
@@ -167,21 +141,16 @@ function autoSlide() {
 
 // Inicializar
 slides[0].classList.add('active');
-slides[0].style.display = 'block';
 slides[0].style.opacity = '1';
-slides[0].style.zIndex = '3';
 
-// Ocultar otros slides
 for (let i = 1; i < slides.length; i++) {
     slides[i].classList.remove('active');
-    slides[i].style.display = 'none';
     slides[i].style.opacity = '0';
-    slides[i].style.zIndex = '1';
 }
 
 // Iniciar cambio automático
 setTimeout(() => {
-    setInterval(autoSlide, 6000);
+    setInterval(autoSlide, 5000);
 }, 3000);
 
 // Inicializar carrusel cuando el DOM esté listo
