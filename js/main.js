@@ -37,8 +37,6 @@ function changeSlide(index) {
     if (isAnimating || index === currentIndex) return;
     isAnimating = true;
     
-    console.log('Cambiando de slide', currentIndex, 'a', index);
-    
     const currentSlide = slides[currentIndex];
     const nextSlide = slides[index];
     const currentImage = currentSlide.querySelector('.carrusel-fs-imagen');
@@ -50,66 +48,106 @@ function changeSlide(index) {
     dots.forEach(dot => dot.classList.remove('active'));
     dots[index].classList.add('active');
     
-    // POSICIONAR los slides correctamente:
-    // - Slide actual: arriba (z-index: 3) - se va a desvanecer
-    // - Slide siguiente: medio (z-index: 2) - se va a mostrar
-    // - Otros slides: abajo (z-index: 1) - ocultos
+    // ⭐⭐ ENFOQUE COMPLETAMENTE NUEVO ⭐⭐
     
-    slides.forEach(slide => {
-        slide.style.zIndex = '1'; // Todos abajo por defecto
-    });
-    
-    nextSlide.style.zIndex = '2'; // Siguiente slide en el medio
-    currentSlide.style.zIndex = '3'; // Slide actual arriba
-    
-    // Asegurar que el siguiente slide esté activo
+    // 1. MOSTRAR NUEVA IMAGEN INMEDIATAMENTE
     nextSlide.classList.add('active');
+    nextSlide.style.display = 'block';
+    nextSlide.style.opacity = '1';
+    nextSlide.style.zIndex = '2';
     
-    // Crear tiles container para la imagen ACTUAL (la que se va)
+    // 2. IMAGEN ACTUAL ENCIMA
+    currentSlide.style.display = 'block';
+    currentSlide.style.opacity = '1';
+    currentSlide.style.zIndex = '3';
+    
+    // 3. CREAR CONTENEDOR DE TILES INDEPENDIENTE
     const tilesContainer = document.createElement('div');
     tilesContainer.className = 'tiles-container';
-    currentSlide.appendChild(tilesContainer);
+    tilesContainer.style.position = 'absolute';
+    tilesContainer.style.top = '0';
+    tilesContainer.style.left = '0';
+    tilesContainer.style.width = '100%';
+    tilesContainer.style.height = '100%';
+    tilesContainer.style.zIndex = '4'; // Encima de todo
     
-    // Crear tiles que muestran la imagen ACTUAL
-    const totalTiles = 100; // 10x10
+    // Agregar tilesContainer al carrusel-container (no al slide)
+    const carruselContainer = document.querySelector('.carrusel-container');
+    carruselContainer.appendChild(tilesContainer);
+    
+    const img = currentImage;
+    const imgAspectRatio = img.naturalWidth / img.naturalHeight;
+    
+    let cols, rows;
+    if (imgAspectRatio > 1.5) {
+        cols = 12;
+        rows = 8;
+    } else if (imgAspectRatio > 1) {
+        cols = 10;
+        rows = 8;
+    } else if (imgAspectRatio < 0.7) {
+        cols = 8;
+        rows = 12;
+    } else if (imgAspectRatio < 1) {
+        cols = 8;
+        rows = 10;
+    } else {
+        cols = 8;
+        rows = 8;
+    }
+    
+    tilesContainer.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+    tilesContainer.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
+    
+    const totalTiles = cols * rows;
     let tilesAnimated = 0;
     
-    for (let row = 0; row < 10; row++) {
-        for (let col = 0; col < 10; col++) {
+    for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
             const tile = document.createElement('div');
             tile.className = 'tile';
             
-            // Cada tile muestra su fragmento de la imagen actual
-            tile.style.backgroundImage = `url('${currentImage.src}')`;
-            tile.style.backgroundPosition = `${col * 10}% ${row * 10}%`;
+            const bgPosX = (col / cols) * 100;
+            const bgPosY = (row / rows) * 100;
             
-            // Calcular delay: esquina superior izquierda → inferior derecha
-            const delay = (row * 0.14) + (col * 0.1); // Más rápido
+            // TILES usan la imagen ACTUAL
+            tile.style.backgroundImage = `url('${currentImage.src}')`;
+            tile.style.backgroundPosition = `${bgPosX}% ${bgPosY}%`;
+            tile.style.backgroundSize = `${cols * 100}% ${rows * 100}%`;
+            
+            const delay = (row * 0.12) + (col * 0.06);
             
             tilesContainer.appendChild(tile);
             
-            // Animar tile después de un delay
             setTimeout(() => {
                 tile.style.opacity = '0';
-                tile.style.transform = 'rotateY(180deg) scale(0)';
+                tile.style.transform = 'scale(0) rotate(45deg)';
                 
                 tilesAnimated++;
                 
-                // Cuando todos los tiles hayan animado, limpiar
+                // Cuando terminan los tiles, limpiar
                 if (tilesAnimated === totalTiles) {
                     setTimeout(() => {
-                        // Remover tiles y ocultar slide actual
+                        // Remover tiles container
                         tilesContainer.remove();
-                        currentSlide.classList.remove('active');
+                        
+                        // Ocultar imagen actual
+                        currentSlide.style.display = 'none';
+                        currentSlide.style.opacity = '0';
                         currentSlide.style.zIndex = '1';
+                        currentSlide.classList.remove('active');
                         
                         currentIndex = index;
                         isAnimating = false;
-                    }, 200);
+                        
+                        console.log('Cambio completado: Imagen', index, 'visible');
+                    }, 400);
                 }
             }, delay * 1000);
         }
     }
+    
+    console.log('Efecto iniciado: Nueva imagen', index, 'debería ser visible');
 }
 
 // Event listeners para los dots
@@ -127,18 +165,23 @@ function autoSlide() {
     }
 }
 
-// Inicializar - mostrar primer slide
+// Inicializar
 slides[0].classList.add('active');
+slides[0].style.display = 'block';
+slides[0].style.opacity = '1';
 slides[0].style.zIndex = '3';
 
 // Ocultar otros slides
 for (let i = 1; i < slides.length; i++) {
+    slides[i].classList.remove('active');
+    slides[i].style.display = 'none';
+    slides[i].style.opacity = '0';
     slides[i].style.zIndex = '1';
 }
 
 // Iniciar cambio automático
 setTimeout(() => {
-    setInterval(autoSlide, 5000);
+    setInterval(autoSlide, 6000);
 }, 3000);
 
 // Inicializar carrusel cuando el DOM esté listo
