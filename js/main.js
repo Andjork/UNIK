@@ -113,14 +113,14 @@ function changeSlide(index) {
     nextSlide.classList.add('active');
     nextSlide.style.opacity = '1';
     
-    console.log('🔄 Imagen cambiada - Nueva imagen visible AHORA');
+    console.log('Imagen cambiada - Nueva imagen visible AHORA');
     
     // 3. Animar tiles
     animateTiles(tilesContainer, () => {
         // Limpieza después de la animación
         currentIndex = index;
         isAnimating = false;
-        console.log('✅ Animación completada');
+        console.log('Animación completada');
     });
 }
 
@@ -150,8 +150,8 @@ for (let i = 1; i < slides.length; i++) {
 
 // Iniciar cambio automático
 setTimeout(() => {
-    setInterval(autoSlide, 5000);
-}, 3000);
+    setInterval(autoSlide, 3000);
+}, 1000);
 
 // Inicializar carrusel cuando el DOM esté listo
 /* document.addEventListener('DOMContentLoaded', function() {
