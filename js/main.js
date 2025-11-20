@@ -1,5 +1,65 @@
 // Tu código JavaScript existente aquí
 
+// Sección Cursos Ofertas 
+// Funcionalidad del carrusel
+const cursosOfertasCarousel = document.getElementById('cursosOfertasCarousel');
+const cursosOfertasPrevBtn = document.getElementById('cursosOfertasPrevBtn');
+const cursosOfertasNextBtn = document.getElementById('cursosOfertasNextBtn');
+
+let cursosOfertasScrollAmount = 0;
+const cursosOfertasScrollStep = 305; // Ancho de tarjeta + gap
+
+function updateCarouselButtons() {
+    const maxScroll = cursosOfertasCarousel.scrollWidth - cursosOfertasCarousel.clientWidth;
+    cursosOfertasScrollAmount = cursosOfertasCarousel.scrollLeft;
+    
+    if (cursosOfertasScrollAmount <= 10) {
+        cursosOfertasPrevBtn.style.opacity = '0.5';
+        cursosOfertasPrevBtn.style.pointerEvents = 'none';
+    } else {
+        cursosOfertasPrevBtn.style.opacity = '1';
+        cursosOfertasPrevBtn.style.pointerEvents = 'auto';
+    }
+    
+    if (cursosOfertasScrollAmount >= maxScroll - 10) {
+        cursosOfertasNextBtn.style.opacity = '0.5';
+        cursosOfertasNextBtn.style.pointerEvents = 'none';
+    } else {
+        cursosOfertasNextBtn.style.opacity = '1';
+        cursosOfertasNextBtn.style.pointerEvents = 'auto';
+    }
+}
+
+cursosOfertasPrevBtn.addEventListener('click', () => {
+    cursosOfertasScrollAmount = Math.max(0, cursosOfertasScrollAmount - cursosOfertasScrollStep);
+    cursosOfertasCarousel.scrollTo({
+        left: cursosOfertasScrollAmount,
+        behavior: 'smooth'
+    });
+});
+
+cursosOfertasNextBtn.addEventListener('click', () => {
+    const maxScroll = cursosOfertasCarousel.scrollWidth - cursosOfertasCarousel.clientWidth;
+    cursosOfertasScrollAmount = Math.min(maxScroll, cursosOfertasScrollAmount + cursosOfertasScrollStep);
+    cursosOfertasCarousel.scrollTo({
+        left: cursosOfertasScrollAmount,
+        behavior: 'smooth'
+    });
+});
+
+cursosOfertasCarousel.addEventListener('scroll', updateCarouselButtons);
+
+window.addEventListener('load', () => {
+    updateCarouselButtons();
+    const containerWidth = cursosOfertasCarousel.clientWidth;
+    const contentWidth = cursosOfertasCarousel.scrollWidth;
+    
+    if (contentWidth > containerWidth) {
+        cursosOfertasCarousel.scrollLeft = (contentWidth - containerWidth) / 2;
+    }
+});
+
+window.addEventListener('resize', updateCarouselButtons);
 
 
 // Funcionalidad específica para la sección de video
