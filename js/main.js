@@ -49,16 +49,45 @@ cursosOfertasNextBtn.addEventListener('click', () => {
 
 cursosOfertasCarousel.addEventListener('scroll', updateCarouselButtons);
 
-// Función para cerrar hover cuando se hace click fuera
+// Funcionalidad de toggle entre estados
 document.addEventListener('click', (e) => {
-    if (!e.target.closest('.curso-oferta-card')) {
-        const expandedCards = document.querySelectorAll('.curso-oferta-card:hover');
-        expandedCards.forEach(card => {
-            card.classList.remove('hover-active');
+    if (e.target.classList.contains('curso-oferta-btn-toggle')) {
+        const button = e.target;
+        const action = button.getAttribute('data-action');
+        const card = button.closest('.curso-oferta-card');
+        
+        if (action === 'expand') {
+            // Cerrar otras tarjetas expandidas
+            document.querySelectorAll('.curso-oferta-card[data-card-state="expanded"]').forEach(otherCard => {
+                if (otherCard !== card) {
+                    otherCard.setAttribute('data-card-state', 'compact');
+                }
+            });
+            
+            // Expandir esta tarjeta
+            card.setAttribute('data-card-state', 'expanded');
+            
+            // Centrar la tarjeta expandida en el viewport
+            setTimeout(() => {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
+            
+        } else if (action === 'compact') {
+            card.setAttribute('data-card-state', 'compact');
+        }
+    }
+});
+
+// Cerrar tarjetas expandidas al hacer click fuera
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.curso-oferta-card') && !e.target.closest('.cursos-ofertas-carousel-btn')) {
+        document.querySelectorAll('.curso-oferta-card[data-card-state="expanded"]').forEach(card => {
+            card.setAttribute('data-card-state', 'compact');
         });
     }
 });
 
+// Inicializar
 window.addEventListener('load', () => {
     updateCarouselButtons();
     const containerWidth = cursosOfertasCarousel.clientWidth;
