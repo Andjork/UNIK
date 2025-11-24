@@ -368,7 +368,7 @@
 .cursos-ofertas-section {
     padding: 80px 0px 0px;
     background: #f8f9fa;
-    /* min-height: 100vh; */
+    min-height: 80vh;
 }
 
 .cursos-ofertas-container {
@@ -1139,6 +1139,7 @@
     top: clamp(-25px, -4vw, -50px);
     right: clamp(10px, 2vw, 20px);
     z-index: 0;
+    transform: translate(16px, -40px);
 }
 
 /* Medio anillo naranja */
