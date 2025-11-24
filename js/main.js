@@ -1,54 +1,6 @@
 // Tu código JavaScript existente aquí
 
 // Sección Cursos Ofertas 
-// Funcionalidad del carrusel
-const cursosOfertasCarousel = document.getElementById('cursosOfertasCarousel');
-const cursosOfertasPrevBtn = document.getElementById('cursosOfertasPrevBtn');
-const cursosOfertasNextBtn = document.getElementById('cursosOfertasNextBtn');
-
-let cursosOfertasScrollAmount = 0;
-const cursosOfertasScrollStep = 305; // Ancho de tarjeta + gap
-
-function updateCarouselButtons() {
-    const maxScroll = cursosOfertasCarousel.scrollWidth - cursosOfertasCarousel.clientWidth;
-    cursosOfertasScrollAmount = cursosOfertasCarousel.scrollLeft;
-    
-    if (cursosOfertasScrollAmount <= 10) {
-        cursosOfertasPrevBtn.style.opacity = '0.5';
-        cursosOfertasPrevBtn.style.pointerEvents = 'none';
-    } else {
-        cursosOfertasPrevBtn.style.opacity = '1';
-        cursosOfertasPrevBtn.style.pointerEvents = 'auto';
-    }
-    
-    if (cursosOfertasScrollAmount >= maxScroll - 10) {
-        cursosOfertasNextBtn.style.opacity = '0.5';
-        cursosOfertasNextBtn.style.pointerEvents = 'none';
-    } else {
-        cursosOfertasNextBtn.style.opacity = '1';
-        cursosOfertasNextBtn.style.pointerEvents = 'auto';
-    }
-}
-
-cursosOfertasPrevBtn.addEventListener('click', () => {
-    cursosOfertasScrollAmount = Math.max(0, cursosOfertasScrollAmount - cursosOfertasScrollStep);
-    cursosOfertasCarousel.scrollTo({
-        left: cursosOfertasScrollAmount,
-        behavior: 'smooth'
-    });
-});
-
-cursosOfertasNextBtn.addEventListener('click', () => {
-    const maxScroll = cursosOfertasCarousel.scrollWidth - cursosOfertasCarousel.clientWidth;
-    cursosOfertasScrollAmount = Math.min(maxScroll, cursosOfertasScrollAmount + cursosOfertasScrollStep);
-    cursosOfertasCarousel.scrollTo({
-        left: cursosOfertasScrollAmount,
-        behavior: 'smooth'
-    });
-});
-
-cursosOfertasCarousel.addEventListener('scroll', updateCarouselButtons);
-
 // Funcionalidad de toggle entre estados
 document.addEventListener('click', (e) => {
     if (e.target.classList.contains('curso-oferta-btn-toggle')) {
@@ -63,14 +15,8 @@ document.addEventListener('click', (e) => {
                     otherCard.setAttribute('data-card-state', 'compact');
                 }
             });
-            
             // Expandir esta tarjeta
             card.setAttribute('data-card-state', 'expanded');
-            
-            // Centrar la tarjeta expandida en el viewport
-            setTimeout(() => {
-                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 100);
             
         } else if (action === 'compact') {
             card.setAttribute('data-card-state', 'compact');
@@ -78,26 +24,44 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Cerrar tarjetas expandidas al hacer click fuera
-document.addEventListener('click', (e) => {
-    if (!e.target.closest('.curso-oferta-card') && !e.target.closest('.cursos-ofertas-carousel-btn')) {
-        document.querySelectorAll('.curso-oferta-card[data-card-state="expanded"]').forEach(card => {
-            card.setAttribute('data-card-state', 'compact');
-        });
-    }
+// Carrusel con navegación mejorada
+const carousel = document.getElementById('cursosOfertasCarousel');
+const prevBtn = document.getElementById('cursosOfertasPrevBtn');
+const nextBtn = document.getElementById('cursosOfertasNextBtn');
+
+const cardWidth = 350;
+const gap = 25;
+const scrollAmount = cardWidth + gap;
+
+// Función para actualizar visibilidad de botones
+function updateCarouselButtons() {
+    const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+    const currentScroll = carousel.scrollLeft;
+    
+    prevBtn.style.opacity = currentScroll > 0 ? '1' : '0.5';
+    prevBtn.style.pointerEvents = currentScroll > 0 ? 'auto' : 'none';
+    
+    nextBtn.style.opacity = currentScroll < maxScroll - 10 ? '1' : '0.5';
+    nextBtn.style.pointerEvents = currentScroll < maxScroll - 10 ? 'auto' : 'none';
+}
+
+prevBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
 });
+
+nextBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+});
+
+// Actualizar botones al hacer scroll
+carousel.addEventListener('scroll', updateCarouselButtons);
 
 // Inicializar
 window.addEventListener('load', () => {
     updateCarouselButtons();
-    const containerWidth = cursosOfertasCarousel.clientWidth;
-    const contentWidth = cursosOfertasCarousel.scrollWidth;
-    
-    if (contentWidth > containerWidth) {
-        cursosOfertasCarousel.scrollLeft = (contentWidth - containerWidth) / 2;
-    }
 });
 
+// Recalcular en resize
 window.addEventListener('resize', updateCarouselButtons);
 
 
@@ -252,39 +216,46 @@ setTimeout(() => {
     setInterval(autoSlide, 3000);
 }, 1000);
 
-
-
-
-// Menú hamburguesa
-function initHamburgerMenu() {
-    const hamburger = document.querySelector('.hamburger');
-    const menu = document.querySelector('.menu-principal');
-    const body = document.body;
-
-    if (hamburger && menu) {
-        hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
-            menu.classList.toggle('active');
-            body.classList.toggle('menu-open');
+// Funcionalidad del acordeón de Preguntas Frecuentes
+document.addEventListener('DOMContentLoaded', function() {
+    const faqCards = document.querySelectorAll('.pfaq-card');
+    
+    faqCards.forEach(card => {
+        const toggleBtn = card.querySelector('.pfaq-toggle');
+        const cardContent = card.querySelector('.pfaq-card-content');
+        
+        // Agregar evento click al botón y al contenido de la pregunta
+        toggleBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleFaqCard(card);
         });
-
-        // Cerrar menú al hacer clic fuera
-        document.addEventListener('click', function(e) {
-            if (!hamburger.contains(e.target) && !menu.contains(e.target)) {
-                hamburger.classList.remove('active');
-                menu.classList.remove('active');
-                body.classList.remove('menu-open');
-            }
+        
+        cardContent.addEventListener('click', function() {
+            toggleFaqCard(card);
         });
-
-        // Cerrar menú al hacer clic en un enlace
-        const menuLinks = menu.querySelectorAll('a');
-        menuLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                hamburger.classList.remove('active');
-                menu.classList.remove('active');
-                body.classList.remove('menu-open');
-            });
+    });
+    
+    function toggleFaqCard(clickedCard) {
+        const isActive = clickedCard.classList.contains('active');
+        
+        // Cerrar todas las tarjetas primero
+        faqCards.forEach(card => {
+            card.classList.remove('active');
         });
+        
+        // Abrir la tarjeta clickeada si no estaba activa
+        if (!isActive) {
+            clickedCard.classList.add('active');
+        }
     }
-}
+    
+    // Cerrar al hacer click fuera de las tarjetas
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.pfaq-card')) {
+            faqCards.forEach(card => {
+                card.classList.remove('active');
+            });
+        }
+    });
+});
+

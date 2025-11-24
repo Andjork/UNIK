@@ -25,32 +25,110 @@
 
 /* fin titulo una experiencia */
 
-.titulo-centrado {
-    text-align: center;
-    width: 100%;
-    display: block;
-    margin: 4% 10% 40px auto;
+/* Sección "Qué esperar" */
+/* Sección "Qué esperar" */
+.que-esperar-unik {
+    padding: 80px 20px;
+    background: #f8f9fa;
 }
 
+.que-esperar-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.titulo-centrado {
+    font-size: 3rem;
+    color: #2d3748;
+    margin: 0;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.titulo-linea1 {
+    display: block;
+    line-height: 1.5;
+}
+
+.titulo-linea2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    line-height: 1.5;
+}
+
+.unik-logo-texto {
+    height: 50px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* El resto del CSS se mantiene igual */
 .que-esperar-filas {
     display: flex;
     flex-direction: column;
     gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .que-esperar-fila {
     display: flex;
     gap: 40px;
-    align-items: flex-start;
+    align-items: stretch;
 }
 
 .que-esperar-item {
-    margin-left: 2%;
-    margin-right: 2%;
     display: flex;
     align-items: flex-start;
     gap: 15px;
     flex: 1;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    min-height: 180px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* Estados normal y hover se mantienen igual */
+.que-esperar-item {
+    color: #002C51;
+}
+
+.que-esperar-item h2 {
+    color: #002C51;
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.que-esperar-item p {
+    color: #002C51;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.que-esperar-item:hover {
+    background: #002C51;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 44, 81, 0.3);
+}
+
+.que-esperar-item:hover h2,
+.que-esperar-item:hover p {
+    color: white;
+}
+
+.que-esperar-item:hover .que-esperar-icono img {
+    filter: brightness(0) invert(1);
 }
 
 .que-esperar-icono {
@@ -62,30 +140,16 @@
     width: 40px;
     height: 40px;
     object-fit: contain;
+    transition: all 0.3s ease;
 }
 
 .que-esperar-contenido {
     line-height: 1;
     flex: 1;
-}
-
-.que-esperar-contenido h2 {
-    margin-top: 0;
-    margin-bottom: 8px;
-}
-
-.que-esperar-contenido p {
-    line-height: 1.5;
-    margin: 0;
-}
-
-/* Para que estén perfectamente alineados */
-.que-esperar-fila .que-esperar-item:first-child {
-    text-align: left;
-}
-
-.que-esperar-fila .que-esperar-item:last-child {
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100%;
 }
 
 /* Responsive */
@@ -93,6 +157,37 @@
     .que-esperar-fila {
         flex-direction: column;
         gap: 20px;
+    }
+    
+    .que-esperar-item {
+        min-height: 160px;
+    }
+    
+    .titulo-centrado {
+        font-size: 2rem;
+    }
+    
+    .unik-logo-texto {
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .que-esperar-unik {
+        padding: 60px 15px;
+    }
+    
+    .titulo-centrado {
+        font-size: 1.8rem;
+    }
+    
+    .que-esperar-item {
+        padding: 25px;
+        min-height: 150px;
+    }
+    
+    .unik-logo-texto {
+        height: 35px;
     }
 }
 
@@ -325,10 +420,12 @@
     background: #0f3ba6;
 }
 
-/* Sección Cursos Ofertas */
+/* ESTILOS PARA LA SECTION DE CURSOS Y OFERTAS */
+/* ESTILOS PARA LA SECTION DE CURSOS Y OFERTAS */
 .cursos-ofertas-section {
-    padding: 60px 20px;
+    padding: 80px 20px;
     background: #f8f9fa;
+    min-height: 100vh;
 }
 
 .cursos-ofertas-container {
@@ -342,21 +439,20 @@
 }
 
 .cursos-ofertas-header h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     color: #2d3748;
     margin-bottom: 20px;
     font-weight: 700;
 }
 
 .cursos-ofertas-subtitle {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: #718096;
     line-height: 1.6;
     max-width: 800px;
     margin: 0 auto;
 }
 
-/* Wrapper principal */
 .cursos-ofertas-wrapper {
     display: flex;
     align-items: center;
@@ -365,14 +461,12 @@
     position: relative;
 }
 
-/* Contenedor del carrusel */
 .cursos-ofertas-carousel-container {
     width: 100%;
-    max-width: 1000px;
+    max-width: 1100px;
     overflow: hidden;
 }
 
-/* Carrusel */
 .cursos-ofertas-carousel {
     display: flex;
     gap: 25px;
@@ -381,193 +475,214 @@
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    scroll-snap-type: x mandatory;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .cursos-ofertas-carousel::-webkit-scrollbar {
     display: none;
 }
 
-/* Tarjeta Principal */
+/* TARJETA BASE - VISTA COMPACTA SIN FONDO */
 .curso-oferta-card {
-    position: relative;
-    width: 280px;
-    height: 340px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    background: white;
+    width: 350px;
+    height: 450px;
+    /* border-radius: 16px; */
+    background: transparent;
+    transition: all 0.3s ease;
     flex-shrink: 0;
-    scroll-snap-align: center;
+    overflow: hidden;
+    position: relative;
 }
 
-/* Estado Compacto (por defecto) */
+/* TARJETA EXPANDIDA - CON FONDO BLANCO Y MÁS ALTA */
+.curso-oferta-card[data-card-state="expanded"] {
+    width: 370px;
+    height: 650px; /* Aumentada la altura para que se vea todo */
+    background: white;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px);
+    z-index: 10;
+}
+
+/* CONTENIDO COMPACTO */
 .curso-oferta-card-compact {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    transition: all 0.3s ease;
-    opacity: 1;
-    transform: scale(1);
 }
 
-.curso-oferta-card[data-card-state="expanded"] .curso-oferta-card-compact {
-    opacity: 0;
-    transform: scale(0.9);
-    pointer-events: none;
-}
-
+/* CONTENEDOR DE IMAGEN CON TÍTULO */
 .curso-oferta-image-container {
     width: 100%;
-    height: 140px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    /* border-radius: 16px 16px 0 0; */
 }
 
-.curso-oferta-placeholder {
-    font-size: 2.5rem;
-    color: white;
+.curso-oferta-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
-.curso-oferta-info-compact {
-    padding: 20px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+/* OVERLAY AZUL PARA EL TÍTULO */
+.curso-oferta-title-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #002C51;
+    padding: 10px 20px 15px 20px;
 }
 
 .curso-oferta-title-compact {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
-    color: #2d3748;
-    margin-bottom: 8px;
+    color: white;
+    margin: 0;
     line-height: 1.3;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* INFORMACIÓN COMPACTA */
+.curso-oferta-info-compact {
+    padding: 20px;
+    /* flex: 1; */
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    gap: 12px;
 }
 
 .curso-oferta-desc-compact {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: #718096;
     line-height: 1.4;
-    margin-bottom: 15px;
+    margin: 0;
+    flex: 1;
+}
+
+/* CONTENEDOR DEL BOTÓN CENTRADO */
+.curso-oferta-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
 }
 
 .curso-oferta-btn-toggle {
-    background: #667eea;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-size: 0.85rem;
+    background: transparent;
+    color: #002C51;
+    border: #002C51 2px solid;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    align-self: flex-start;
 }
 
 .curso-oferta-btn-toggle:hover {
     background: #5a6fd8;
-    transform: translateY(-1px);
+    transform: translateY(-2px);
 }
 
-/* Estado Expandido */
+/* CONTENIDO EXPANDIDO */
 .curso-oferta-card-expanded {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    background: white;
-    opacity: 0;
-    transform: scale(0.9);
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    pointer-events: none;
-    display: flex;
+    display: none;
     flex-direction: column;
-    overflow-y: auto;
+}
+
+.curso-oferta-card[data-card-state="expanded"] .curso-oferta-card-compact {
+    display: none;
 }
 
 .curso-oferta-card[data-card-state="expanded"] .curso-oferta-card-expanded {
-    opacity: 1;
-    transform: scale(1);
-    pointer-events: all;
+    display: flex;
 }
 
+.curso-oferta-expanded-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden; /* Para que no se salga del contenedor */
+}
+
+/* ENCABEZADO DEL INSTRUCTOR */
 .curso-oferta-instructor-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #002C51;
     color: white;
-    padding: 20px;
+    padding: 25px;
     flex-shrink: 0;
 }
 
 .curso-oferta-instructor-profile {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 15px;
+    gap: 15px;
+    margin-bottom: 20px;
 }
 
 .curso-oferta-instructor-photo-container {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    overflow: hidden;
-    border: 2px solid rgba(255, 255, 255, 0.3);
     background: rgba(255, 255, 255, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 600;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    flex-shrink: 0;
 }
 
 .curso-oferta-instructor-info {
     flex: 1;
+    min-width: 0;
 }
 
 .curso-oferta-instructor-name {
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    line-height: 1.2;
 }
 
 .curso-oferta-instructor-tags {
     display: flex;
-    gap: 6px;
+    gap: 8px;
     flex-wrap: wrap;
 }
 
 .curso-oferta-tag {
     background: rgba(255, 255, 255, 0.25);
-    padding: 3px 8px;
-    border-radius: 10px;
-    font-size: 0.7rem;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
     font-weight: 500;
-    backdrop-filter: blur(10px);
 }
 
 .curso-oferta-credentiales {
     list-style: none;
     padding: 0;
     margin: 0;
-    font-size: 0.75rem;
-    line-height: 1.4;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
 }
 
 .curso-oferta-credentiales li {
-    padding: 3px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 5px 0;
+    /* border-bottom: 1px solid rgba(255, 255, 255, 0.15); */
+    padding-left: 12px;
     position: relative;
-    padding-left: 10px;
 }
 
 .curso-oferta-credentiales li:before {
@@ -577,55 +692,85 @@
     color: rgba(255, 255, 255, 0.8);
 }
 
-.curso-oferta-credentiales li:last-child {
-    border-bottom: none;
-}
-
-.curso-oferta-content-expanded {
-    padding: 20px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+/* CONTENEDOR DEL TÍTULO EN LA PARTE DEL INSTRUCTOR */
+.curso-oferta-title-expanded-container {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .curso-oferta-title-expanded {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
-    color: #2d3748;
-    margin-bottom: 8px;
+    color: white;
+    margin: 0;
     line-height: 1.3;
 }
+/* CONTENEDOR DEL TÍTULO CON ICONO */
+.curso-oferta-title-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-.curso-oferta-subtitle-expanded {
-    font-size: 0.85rem;
-    color: #667eea;
-    font-weight: 600;
-    margin-bottom: 10px;
-    font-style: italic;
+.curso-oferta-title-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    filter: brightness(0) invert(1); /* Hace el icono blanco */
+}
+
+/* Para la vista expandida (el título es blanco) */
+.curso-oferta-title-expanded-container .curso-oferta-title-icon {
+    filter: brightness(0) invert(1); /* Mantiene blanco */
+}
+
+/* Si necesitas ajustar el tamaño en responsive */
+@media (max-width: 768px) {
+    .curso-oferta-title-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+/* SEPARADOR ENTRE SECCIONES */
+.curso-oferta-separator {
+    height: 20px;
+    background: #f8f9fa;
+    flex-shrink: 0;
+}
+
+/* CONTENIDO EXPANDIDO INFERIOR */
+.curso-oferta-content-expanded {
+    padding: 25px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow-y: auto; /* Para que el contenido sea scrollable si es muy largo */
 }
 
 .curso-oferta-description-expanded {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: #718096;
-    line-height: 1.5;
-    margin-bottom: 15px;
+    line-height: 1.6;
+    margin-bottom: 20px;
     flex: 1;
 }
 
 .curso-oferta-buttons-expanded {
     display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: auto;
+    flex-shrink: 0;
 }
 
 .curso-oferta-btn-expanded {
-    background: #667eea;
+    background: #002C51;
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-size: 0.85rem;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -634,13 +779,14 @@
 
 .curso-oferta-btn-expanded:hover {
     background: #5a6fd8;
-    transform: translateY(-1px);
+    transform: translateY(-2px);
 }
 
 .curso-oferta-buttons-expanded .curso-oferta-btn-toggle {
     background: transparent;
     color: #667eea;
-    border: 1px solid #667eea;
+    border: 2px solid #667eea;
+    padding: 10px 20px;
     flex: 0;
 }
 
@@ -649,7 +795,7 @@
     color: white;
 }
 
-/* Botones del carrusel */
+/* BOTONES CARROUSEL */
 .cursos-ofertas-carousel-btn {
     background: white;
     border: 2px solid #e2e8f0;
@@ -666,7 +812,6 @@
     font-weight: bold;
     color: #667eea;
     flex-shrink: 0;
-    z-index: 20;
 }
 
 .cursos-ofertas-carousel-btn:hover {
@@ -682,34 +827,36 @@
     transform: none;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-    .cursos-ofertas-wrapper {
-        gap: 15px;
-    }
-    
-    .curso-oferta-card {
-        width: 260px;
-        height: 320px;
-    }
-    
-    .cursos-ofertas-carousel {
-        gap: 20px;
-    }
-}
-
+/* RESPONSIVE */
 @media (max-width: 768px) {
+    .cursos-ofertas-section {
+        padding: 60px 15px;
+    }
+    
+    .cursos-ofertas-header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .cursos-ofertas-subtitle {
+        font-size: 1.1rem;
+    }
+    
     .cursos-ofertas-wrapper {
         gap: 10px;
     }
     
     .curso-oferta-card {
-        width: 240px;
-        height: 300px;
+        width: 300px;
+        height: 400px;
     }
     
-    .cursos-ofertas-header h1 {
-        font-size: 2rem;
+    .curso-oferta-card[data-card-state="expanded"] {
+        width: 320px;
+        height: 580px; /* Ajustada para responsive */
+    }
+    
+    .curso-oferta-image-container {
+        height: 180px;
     }
     
     .cursos-ofertas-carousel-btn {
@@ -717,25 +864,21 @@
         height: 45px;
         font-size: 20px;
     }
-    
-    .curso-oferta-image-container {
-        height: 120px;
-    }
-    
-    .curso-oferta-info-compact,
-    .curso-oferta-content-expanded {
-        padding: 15px;
-    }
 }
 
 @media (max-width: 480px) {
-    .cursos-ofertas-carousel-container {
-        max-width: 100%;
+    .curso-oferta-card {
+        width: 280px;
+        height: 380px;
     }
     
-    .curso-oferta-card {
-        width: 220px;
-        height: 280px;
+    .curso-oferta-card[data-card-state="expanded"] {
+        width: 300px;
+        height: 550px; /* Ajustada para responsive */
+    }
+    
+    .curso-oferta-image-container {
+        height: 160px;
     }
     
     .cursos-ofertas-carousel-btn {
@@ -743,494 +886,182 @@
         height: 40px;
         font-size: 18px;
     }
-    
-    .curso-oferta-buttons-expanded {
-        flex-direction: column;
-    }
 }
 
-/* Sección Nuevo Planeamiento Ofertas */
-.nuevo-planeamiento-ofertas {
-  padding: 6rem 2rem;
-  background: #002C51;
-  display: block; /* Asegura que se muestre */
-}
 
-.npo-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
 
-/* Header */
-.npo-header {
-  text-align: center;
-  margin-bottom: 4rem;
-}
-
-.npo-header h1 {
-  font-size: 3rem;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
-}
-
-.unik-text {
-    font-family: "Tu Fuente Especial", sans-serif;
-    /* font-weight: bold; */
-    font-size: 4.5rem;
-    line-height: 1.6;
-    color: white;
-    max-width: 700px;
-  margin: 0 auto 2rem;
-    /* cualquier otra propiedad tipográfica */
-}
-
-.npo-header p {
-     font-family: "Tu Fuente Especial", sans-serif;
-    /* font-weight: bold; */
-  font-size: 2rem;
-  line-height: 1.2;
-  color: white;
-  max-width: 1100px;
-  margin:2.5rem auto 2rem;
-}
-
-.npo-separator {
-  width: 100px;
-  height: 3px;
-  background: white;
-  margin: 1rem auto;
-}
-
-/* Grid de cursos */
-.npo-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  margin-bottom: 4rem;
-}
-
-/* Item del curso */
-.npo-item {
-  position: relative;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  background: white;
-  height: 300px;
-}
-
-/* Imagen del curso */
-.npo-image {
-  height: 100%;
-  overflow: hidden;
-}
-
-.npo-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: all 0.4s ease;
-}
-
-/* Contenedor principal del contenido */
-.npo-content-wrapper {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 70%; /* Más espacio para el contenido */
-  background: linear-gradient(-135deg, rgba(0, 44, 81, 0.5) 0%, rgba(91, 160, 126, 0.5) 100%);
-  color: white;
-  z-index: 2;
-  transition: all 0.4s ease;
-  transform: translateY(70%); /* Solo muestra el título inicialmente */
-  cursor: pointer;
-}
-
-/* Hover solo cuando el puntero está sobre el contenido */
-.npo-content-wrapper:hover {
-  transform: translateY(0);
-  height: 100%;
-  background: linear-gradient(-135deg, rgba(0, 44, 81, 0.92) 0%, rgba(91, 160, 126, 0.92) 100%);
-}
-
-.npo-content-wrapper:hover ~ .npo-image img {
-  transform: scale(1.05);
-  filter: brightness(0.7);
-}
-
-.npo-content-wrapper:hover .npo-content {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Sección del título (1/5 de la imagen) */
-.npo-title-section {
-  padding: 1.8rem;
-  height: 30%; /* Parte del título */
-  display: flex;
-  align-items: center;
-  justify-content: left;
-  border-bottom: 1px solid rgba(255,255,255,0.3);
-}
-
-/* Título sobre la imagen */
-.npo-title-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1.8rem 2rem;
-  color: white;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(-135deg, rgba(0, 44, 81, 0.9) 0%, rgba(91, 160, 126, 0.9) 100%);
-}
-
-/* Contenedor del título con birrete */
-.title-with-birrete {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  text-align: center;
-}
-
-/* Contenedor del título con icono */
-.title-with-icon {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-}
-
-/* Icono de birrete */
-.birrete-icon {
-  width: 25px;
-  height: 25px;
-  object-fit: contain;
-  filter: brightness(0) invert(1);
-  flex-shrink: 0;
-}
-
-/* Texto del título */
-.npo-title-section h3 { 
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin: 0;
-  line-height: 1.2;
-}
-
-.npo-title-overlay h3 {
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin: 0;
-  line-height: 1.2;
-}
-
-/* Contenido que aparece al hacer hover */
-.npo-content {
-  padding: 1.5rem;
-  height: 70%; /* Parte del contenido */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.3s ease 0.1s;
-}
-
-.npo-content h3 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-.npo-content p {
-  font-size: 1.1rem;
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
-  text-align: left;
-  opacity: 0.9;
-}
-
-/* Botones */
-.npo-buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: left;
-  flex-wrap: wrap;
-}
-
-.npo-btn {
-  display: inline-block;
-  background: white;
-  color: #002C51;
-  padding: 0.6rem 1.2rem;
-  border-radius: 20px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.85rem;
-  transition: all 0.3s ease;
-  border: 2px solid white;
-}
-
-.npo-btn.secundario {
-  display: inline-block;
-  background: white;
-  color: #002C51;
-  padding: 0.6rem 1.2rem;
-  border-radius: 20px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.85rem;
-  transition: all 0.3s ease;
-  border: 2px solid white;
-}
-
-.npo-btn:hover {
-  background: #002C51;
-  color: white;
-  transform: translateY(-2px);
-}
-
-/* Botón Ver cursos */
-.npo-footer {
-  text-align: center;
-  display: block;
-  width: 100%;
-}
-
-.npo-btn.secundario:hover {
-  background: #002C51;
-  color: white;
-  transform: translateY(-2px);
-}
-
-.npo-ver-cursos-btn {
-  display: inline-block;
-  background: white;
-  color: #1a3a6b;
-  padding: 1rem 3rem;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-  border: 2px solid #1a3a6b;
-}
-
-.npo-ver-cursos-btn:hover {
-  background: transparent;
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(26, 58, 107, 0.3);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .nuevo-planeamiento-ofertas {
-    padding: 4rem 1rem;
-  }
-  
-  .npo-header h1 {
-    font-size: 2.2rem;
-  }
-  
-  .npo-header p {
-    font-size: 1.1rem;
-  }
-  
-  .npo-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  
-  .npo-item {
-    height: 350px;
-  }
-  
-  .npo-content {
-    padding: 1.5rem;
-  }
-  
-  .npo-content h3 {
-    font-size: 1.3rem;
-  }
-  
-  .npo-ver-cursos-btn {
-    padding: 0.8rem 2rem;
-    font-size: 1rem;
-  }
-}
-
-/* SECCIÓN PREGUNTAS FRECUENTES - TARJETAS CUADRADAS */
+/* SECCIÓN PREGUNTAS FRECUENTES - TARJETAS COMPACTAS */
 .pfaq-section {
-  /* padding: 5rem 8rem; */
-  background: #ffffff;
-  min-height: 100vh;
-  box-sizing: border-box;
+    background: #ffffff;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 80px 20px;
 }
 
 .pfaq-container {
-  max-width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
-
-
 
 /* Título principal */
 .pfaq-main-title {
-  font-size: 2.3rem;
-  font-weight: 700;
-  color: #002C51;
-  margin: 5% 0 3% 0;
-  text-align: center;
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: #002C51;
+    margin: 0 0 60px 0;
+    text-align: center;
 }
 
 /* Grid de 2 columnas */
 .pfaq-grid {
-  display: flex;
-  gap: 2rem;
-  justify-content: space-between;
+    display: flex;
+    gap: 40px;
+    justify-content: space-between;
 }
 
 .pfaq-column {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-/* Tarjetas cuadradas */
+/* Tarjetas - Tamaño inicial compacto */
 .pfaq-card {
-  width: 85%; /* ← Ancho fijo */
-  height: 70%; /* ← Alto fijo */
-  background: #f5f5f5; /* Fondo gris claro */
-  border-radius: 12px; /* Bordes redondos */
-  padding: 6% 6%; /* 1rem vertical, 1.5rem horizontal */
-  /* min-height: 40px; */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: left; /* ← Centrado HORIZONTAL */
-  transition: all 0.3s ease;
-  text-align: left; /* ← Texto centrado */
-  border: 1px solid #e0e0e0;
-  margin-bottom: 0.5rem; /* ← Espacio entre tarjetas */
-  margin-left: 10%;
-}
-
-.pfaq-card.active{
-  width: 85%; /* ← Ancho fijo */
-  height: 70%; /* ← Alto fijo */
-  padding: 6% 6%;
-  display: flex;
-  text-align: left;
+    background: #f5f5f5;
+    border-radius: 12px;
+    padding: 25px 30px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    border: 1px solid #e0e0e0;
+    min-height: auto; /* Tamaño automático según el título */
+    height: auto; /* Se ajusta al contenido */
 }
 
 .pfaq-card:hover {
-  background: #eeeeee;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background: #eeeeee;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 /* Contenido de la tarjeta */
 .pfaq-card-content {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-between; /* ← Centrado HORIZONTAL */
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  /* gap: 0.8rem;
-  margin-bottom: 0.8rem;
-  margin-top: 20px; */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
 }
 
 /* Pregunta */
 .pfaq-question {
-  
-  font-size: 1rem;
-  font-weight: 700;
-  color: #000000; /* Texto negro */
-  margin: 0;
-  padding: 0.1rem 0 0 0;
-  line-height: 1.1;
-  flex: 1;
-  padding-right: 0.8rem; /* ← Espacio antes del botón */
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #000000;
+    margin: 0;
+    line-height: 1.4;
+    flex: 1;
+    padding-right: 20px;
 }
 
 /* Botón + */
 .pfaq-toggle {
-  /* background: #1a3a6b; */
-  color: #002C51;
-  border: none;
-  width: 25px;
-  height: 25px;
-  /* border-radius: 50%; */
-  font-size: 1.5rem;
-  font-weight: 300;
-  cursor: pointer;
-  display: flex;
-  align-items: right;
-  justify-content: right;
-  flex-shrink: 0;
-  transition: all 0.3s ease;
-  background: none; /* ← Esto quita el fondo */
-  padding: 0; /* ← Esto quita padding interno */
-  margin: 0; /* ← Esto quita márgenes */
+    color: #002C51;
+    border: none;
+    width: 30px;
+    height: 30px;
+    font-size: 1.5rem;
+    font-weight: 300;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    background: none;
+    padding: 0;
+    margin: 0;
 }
 
 /* Respuesta (inicialmente oculta) */
 .pfaq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-  
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    opacity: 0;
 }
 
 .pfaq-answer p {
-  font-size: 1rem;
-  color: #000000; /* Texto negro */
-  line-height: 1.5;
-  margin: 0;
-  padding: 0;
-  text-align: left;
+    font-size: 1rem;
+    color: #000000;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    text-align: left;
 }
 
-/* Estado activo */
+/* Estado activo - Tarjeta expandida */
 .pfaq-card.active {
-  width: 85%; /* ← Ancho fijo */
-  height: 150%; /* ← Alto fijo */
-  background: #eeeeee;
+    background: #eeeeee;
+    /* No necesita min-height porque se expande con el contenido */
 }
 
 .pfaq-card.active .pfaq-answer {
-  max-height: 100%;
-  margin-top: 0.1rem;
+    max-height: 200px; /* Altura suficiente para el contenido */
+    opacity: 1;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #d0d0d0;
+}
+
+.pfaq-card.active .pfaq-toggle {
+    transform: rotate(45deg); /* + se convierte en X */
+    color: #002C51;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  /* .pfaq-section {
-    padding: 3rem 2rem;
-  } */
-  
-  .pfaq-grid {
-    flex-direction: column;
-  }
-  
-  /* .pfaq-card {
-    min-height: 160px;
-    padding: 1.5rem;
-  } */
+    .pfaq-section {
+        padding: 60px 15px;
+    }
+    
+    .pfaq-grid {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .pfaq-main-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+    
+    .pfaq-card {
+        padding: 20px 25px;
+    }
 }
-/* --- fin secction pfaq --- */
 
+@media (max-width: 480px) {
+    .pfaq-main-title {
+        font-size: 1.8rem;
+    }
+    
+    .pfaq-card {
+        padding: 18px 20px;
+    }
+    
+    .pfaq-question {
+        font-size: 1rem;
+    }
+    
+    .pfaq-toggle {
+        width: 25px;
+        height: 25px;
+        font-size: 1.3rem;
+    }
+}
 /* Sección descriptiva con imagen y botón */
 
 /* Cuarto de círculo verde (arriba derecha) */
