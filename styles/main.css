@@ -456,7 +456,7 @@
 /* TARJETA EXPANDIDA - CON FONDO BLANCO Y MÁS ALTA */
 .curso-oferta-card[data-card-state="expanded"] {
     width: 370px;
-    height: 650px; /* Aumentada la altura para que se vea todo */
+    height: 580px; /* Aumentada la altura para que se vea todo */
     background: white;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
     transform: translateY(-10px);
@@ -709,7 +709,7 @@
 /* CONTENIDO EXPANDIDO INFERIOR */
 .curso-oferta-content-expanded {
     padding: 25px;
-    flex: 1;
+    /* flex: 1; */
     display: flex;
     flex-direction: column;
     min-height: 0;
@@ -742,7 +742,15 @@
     cursor: pointer;
     transition: all 0.3s ease;
     flex: 1;
+    /* Estilos adicionales para enlaces */
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    box-sizing: border-box;
+    font-family: inherit; /* Usa la misma fuente que el resto */
 }
+
+
 
 .curso-oferta-btn-expanded:hover {
     background: white;
@@ -1130,7 +1138,7 @@
     position: absolute;
     top: clamp(-25px, -4vw, -50px);
     right: clamp(10px, 2vw, 20px);
-    z-index: 1;
+    z-index: 0;
 }
 
 /* Medio anillo naranja */
