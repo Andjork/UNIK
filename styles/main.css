@@ -428,7 +428,7 @@
 /* TARJETA BASE - VISTA COMPACTA SIN FONDO */
 .curso-oferta-card {
     width: 350px;
-    height: 450px;
+    height: 350px;
     /* border-radius: 16px; */
     background: transparent;
     transition: all 0.3s ease;
@@ -751,7 +751,7 @@
 
 /* BOTONES CARROUSEL */
 .cursos-ofertas-carousel-btn {
-    background: white;
+    background: gray;
     border: 2px solid #e2e8f0;
     border-radius: 50%;
     width: 50px;
@@ -764,13 +764,13 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     font-size: 24px;
     font-weight: bold;
-    color: #667eea;
+    color: white;
     flex-shrink: 0;
 }
 
 .cursos-ofertas-carousel-btn:hover {
-    background: #667eea;
-    border-color: #667eea;
+    background: #002C51;
+    /* border-color: #667eea; */
     color: white;
     transform: scale(1.1);
 }
