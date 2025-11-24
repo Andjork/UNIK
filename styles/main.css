@@ -386,6 +386,22 @@
     color: #2d3748;
     margin-bottom: 20px;
     font-weight: 700;
+    /* border-bottom: 3px solid #002C51; */
+    position: relative; /* Necesario para la línea */
+    padding-bottom: 25px; /* Espacio para la línea */
+    display: inline-block; /* Para que la línea no ocupe todo el ancho */
+}
+
+.cursos-ofertas-header h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); /* Centrado perfecto */
+    width: 120px; /* Ancho personalizado */
+    height: 2px; /* Grosor */
+    background: #002C51;
+    border-radius: 2px;
 }
 
 .cursos-ofertas-subtitle {
