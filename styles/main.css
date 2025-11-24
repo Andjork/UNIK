@@ -529,7 +529,9 @@
 }
 
 .curso-oferta-btn-toggle:hover {
-    background: #5a6fd8;
+    background: #002C51;
+    color: white;
+    border: 2px solid #002C51;
     transform: translateY(-2px);
 }
 
@@ -569,6 +571,12 @@
     align-items: center;
     gap: 15px;
     margin-bottom: 20px;
+}
+
+.curso-oferta-image-circular{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
 }
 
 .curso-oferta-instructor-photo-container {
@@ -721,21 +729,24 @@
 }
 
 .curso-oferta-btn-expanded:hover {
-    background: #5a6fd8;
+    background: white;
+    color: #002C51;
+    border: 2px solid #002C51;
     transform: translateY(-2px);
 }
 
 .curso-oferta-buttons-expanded .curso-oferta-btn-toggle {
-    background: transparent;
-    color: #667eea;
-    border: 2px solid #667eea;
+    background: #002C51;
+    color: white;
+    /* border: 2px solid #667eea; */
     padding: 10px 20px;
     flex: 0;
 }
 
 .curso-oferta-buttons-expanded .curso-oferta-btn-toggle:hover {
-    background: #667eea;
-    color: white;
+    background: white;
+    color: #002C51;
+    border: 2px solid #002C51;
 }
 
 /* BOTONES CARROUSEL */
