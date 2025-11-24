@@ -201,7 +201,7 @@
 }
 
 .cuadro-morado {
-    width: clamp(72px, 9vw, 144px);     /* 60% del original */
+    width: clamp(72px, 9vw, 144px);
     height: clamp(24px, 3vw, 48px);
     background: #8B5FBF;
     /* border-radius: 12px; */
@@ -597,6 +597,15 @@
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
+.curso-oferta-title-compact-4 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+    line-height: 1.3;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
 /* INFORMACIÓN COMPACTA */
 .curso-oferta-info-compact {
     padding: 20px;
@@ -769,6 +778,7 @@
     align-items: center;
     gap: 10px;
 }
+
 
 .curso-oferta-title-icon {
     width: 24px;
@@ -1396,21 +1406,86 @@
 /* feature cards secctions */
 
 .feature-cards-container {
+     position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 20px;
+    /* padding: 40px 20px; */
     gap: 2%; /* Mantiene la proporción del espacio */
 }
+
+.cuadro-gris {
+    /* TAMAÑO - 1/3 del tamaño original */
+    width: clamp(20px, 2.67vw, 40px);
+     height: clamp(98px, 13vw, 195px);
+    
+    /* ESTILO */
+    background: #808080;
+    /* border-radius: 8px; */
+    opacity: 0.8;
+    box-shadow: 0 2px 8px rgba(128, 128, 128, 0.3);
+    
+    /* POSICIÓN - Más a la izquierda con valores negativos */
+    position: absolute;
+    bottom: 0;
+    top: 120px;
+    left: -157px; /* ← VALOR NEGATIVO para salir del contenedor */
+    z-index: 1;
+}
+
+/* CONTENEDOR DE LÍNEAS DIAGONALES */
+.lineas-diagonales {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* LÍNEAS DIAGONALES AZULES INDIVIDUALES */
+.lineas-45-abajo {
+    position: absolute;
+    width: 200px;
+    height: 260px;
+    bottom: -20px;
+    left: -135px;
+    z-index: 9999; /* ← MÁS ALTO */
+    pointer-events: none;
+}
+
+.linea-45-abajo {
+    position: absolute;
+    width: 60px;
+    height: 3px; /* ← MÁS GRUESA */
+    background: #002C51;
+    transform: rotate(45deg);
+    transform-origin: left center;
+    
+    /* TEMPORAL - para ver las líneas */
+    border: 1px solid blue;
+    
+}
+
+/* POSICIONES */
+.linea-45-abajo:nth-child(1) { top: 20px; left: 0; }
+.linea-45-abajo:nth-child(2) { top: 50px; left: 0; }
+.linea-45-abajo:nth-child(3) { top: 80px; left: 0; }
+.linea-45-abajo:nth-child(4) { top: 110px; left: 0; }
+.linea-45-abajo:nth-child(5) { top: 140px; left: 0; }
+.linea-45-abajo:nth-child(6) { top: 170px; left: 0; }
+.linea-45-abajo:nth-child(7) { top: 200px; left: 0; }
+.linea-45-abajo:nth-child(8) { top: 230px; left: 0; }
 
 .feature-card {
     background-color: white;
     padding: 25px 20px;
     border-radius: 12px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    /* text-align: center; */
     transition: all 0.3s ease;
     border: 1px solid #f1f5f9;
     
@@ -1426,6 +1501,8 @@
 
 .feature-card:hover h3 {
     color: #002C51;
+    justify-content: left;
+    align-items: left;
 }
 
 .feature-icon {
@@ -1433,7 +1510,7 @@
     display: flex;
     justify-content: left;
     align-items: left;
-    height: 70px;
+    height: 80px;
 }
 
 .feature-icon img {
