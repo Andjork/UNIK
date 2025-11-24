@@ -28,7 +28,7 @@
 /* Sección "Qué esperar" */
 /* Sección "Qué esperar" */
 .que-esperar-unik {
-    padding: 80px 20px;
+    padding: 0px 20px;
     background: #f8f9fa;
 }
 
@@ -191,63 +191,6 @@
     }
 }
 
-
-
-/* Sección de Video Centrado Total */
-.video-section {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #f8f9fa; /* Color de fondo para los márgenes */
-    padding: 40px; /* Márgenes externos */
-}
-
-.video-container {
-    width: 80%;
-    max-width: 1200px;
-    height: 70vh;
-    max-height: 700px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #000;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.video-container video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Usa 'contain' si prefieres ver todo el video sin recortar */
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .video-section {
-        padding: 30px;
-    }
-    
-    .video-container {
-        width: 90%;
-        height: 60vh;
-    }
-}
-
-@media (max-width: 480px) {
-    .video-section {
-        padding: 20px;
-    }
-    
-    .video-container {
-        width: 95%;
-        height: 50vh;
-        border-radius: 8px;
-    }
-}
 
 /* Carrusel Pantalla Completa */
 .two-column-section {
@@ -1063,40 +1006,11 @@
     }
 }
 /* Sección descriptiva con imagen y botón */
-
-/* Cuarto de círculo verde (arriba derecha) */
-.corner-green {
-  width: 120px;
-  height: 120px;
-  background: #63A88D;
-  border-top-right-radius: 120px;  /* ← ESTA ES LA DIRECCIÓN CORRECTA */
-  position: absolute;
-  top: -50px;
-  right: 20px;
-}
-
-.half-ring-orange {
-  width: 90px;
-  height: 50px;
-  border: 14px solid #E4B23B;
-  border-top: none;                 /* quita la parte plana superior */
-  border-bottom-left-radius: 160px;
-  border-bottom-right-radius: 160px;
-  position: absolute;
-  bottom: 40px;
-  left: -40px;
-}
-
-.unik-logo-tar{
-    width: 30%;
-    height: 100%;
-    /* margin-bottom: 20px;  */
-}
-
 .about-unik-section {
     background: #fff;
-    padding: 4rem 0;
+    padding: 4rem 1rem;
 }
+
 .about-unik-container {
     display: flex;
     align-items: center;
@@ -1106,6 +1020,7 @@
     margin: 0 auto;
     flex-wrap: wrap;
 }
+
 .about-unik-text {
     flex: 1 1 350px;
     display: flex;
@@ -1116,37 +1031,46 @@
     font-weight: 500;
     text-align: left;
 }
+
 .about-unik-block {
     margin-bottom: 0.5rem;
     font-family: 'DM Sans', sans-serif;
 }
+
 .about-unik-block1 {
-    font-size: 66px;
-    line-height: 53px;
+    font-size: clamp(2.5rem, 5vw, 4.125rem);
+    line-height: 1.1;
 }
+
 .about-unik-block2, .about-unik-block3 {
-    line-height: 25px;
+    line-height: 1.4;
+    font-size: clamp(1rem, 2vw, 1.2rem);
 }
-.unik-bold {
-    font-weight: 700;
-}
+
 .unik-regular {
     font-family: 'DM Sans', sans-serif;
     font-weight: 400;
 }
+
 .aprender-bold {
     font-weight: 700;
-    font-size: 66px;
+    font-size: clamp(2.5rem, 5vw, 4.125rem);
     line-height: 1.05;
     display: inline-block;
 }
-.about-unik-block2-bold,
+
 .about-unik-block3-bold {
     font-weight: 700;
     font-family: 'DM Sans', sans-serif;
 }
 
-/* Imagen más grande y botón dentro de la imagen */
+.unik-logo-tar {
+    width: clamp(80px, 25%, 150px);
+    height: auto;
+    vertical-align: middle;
+}
+
+/* Contenedor de imagen con elementos decorativos */
 .about-unik-image-container {
     position: relative;
     flex: 1 1 500px;
@@ -1154,12 +1078,14 @@
     align-items: center;
     justify-content: center;
 }
+
 .about-unik-image-wrapper {
     position: relative;
     display: inline-block;
     width: 100%;
     max-width: 500px;
 }
+
 .about-unik-image {
     width: 100%;
     max-width: 500px;
@@ -1167,63 +1093,179 @@
     box-shadow: 0 4px 24px 0 rgba(26,35,126,0.13);
     display: block;
 }
+
+/* Cuarto de círculo verde (arriba derecha) */
+.corner-green {
+    width: clamp(60px, 10vw, 120px);
+    height: clamp(60px, 10vw, 120px);
+    background: #63A88D;
+    border-top-right-radius: 120px;
+    position: absolute;
+    top: clamp(-25px, -4vw, -50px);
+    right: clamp(10px, 2vw, 20px);
+    z-index: 1;
+}
+
+/* Medio anillo naranja */
+.half-ring-orange {
+    width: clamp(45px, 8vw, 90px);
+    height: clamp(25px, 5vw, 50px);
+    border: clamp(7px, 1.5vw, 14px) solid #E4B23B;
+    border-top: none;
+    border-bottom-left-radius: 160px;
+    border-bottom-right-radius: 160px;
+    position: absolute;
+    bottom: clamp(20px, 4vw, 40px);
+    left: clamp(-20px, -4vw, -40px);
+    z-index: 1;
+}
+
+/* Botón */
 .about-unik-btn {
     position: absolute;
-    right: 24px;
-    bottom: 24px;
+    right: clamp(12px, 2vw, 24px);
+    bottom: clamp(12px, 2vw, 24px);
     display: inline-block;
-    padding: 0.75rem 2.2rem;
+    padding: clamp(0.6rem, 1.5vw, 0.75rem) clamp(1.5rem, 3vw, 2.2rem);
     background: #002C51;
     color: #fff;
     border: none;
     border-radius: 30px;
     font-family: 'DM Sans', sans-serif;
     font-weight: 700;
-    font-size: 20px;
-    font-weight: 600;
+    font-size: clamp(1rem, 2vw, 1.25rem);
     text-decoration: none;
     transition: background 0.2s, box-shadow 0.2s;
     box-shadow: 0 2px 12px 0 rgba(26,35,126,0.08);
     cursor: pointer;
     z-index: 2;
 }
+
 .about-unik-btn:hover {
     background: #005080;
     box-shadow: 0 4px 24px 0 rgba(26,35,126,0.13);
 }
-@media (max-width: 900px) {
-    .about-unik-image-container {
-        flex: 1 1 100%;
-    }
-    .about-unik-image-wrapper {
-        max-width: 100%;
-    }
-    .about-unik-image {
-        max-width: 100%;
-    }
-    .about-unik-btn {
-        right: 12px;
-        bottom: 12px;
-        padding: 0.6rem 1.5rem;
-        font-size: 1rem;
-    }
-}
+
+/* RESPONSIVE DESIGN */
+/* Tablet */
 @media (max-width: 900px) {
     .about-unik-container {
         flex-direction: column;
         gap: 2rem;
         padding: 0 1rem;
     }
-    .about-unik-text, .about-unik-image-container {
-        width: 100%;
-        text-align: center;
-        align-items: center;
-    }
+    
     .about-unik-text {
         text-align: center;
+        align-items: center;
+        flex: 1 1 100%;
+    }
+    
+    .about-unik-image-container {
+        flex: 1 1 100%;
+        order: -1; /* Opcional: poner la imagen primero en móvil */
+    }
+    
+    .about-unik-image-wrapper {
+        max-width: 400px;
     }
 }
 
+/* Mobile */
+@media (max-width: 768px) {
+    .about-unik-section {
+        padding: 2rem 1rem;
+    }
+    
+    .about-unik-container {
+        gap: 1.5rem;
+    }
+    
+    .about-unik-text {
+        gap: 1rem;
+    }
+    
+    .about-unik-block1 {
+        line-height: 1;
+    }
+    
+    .about-unik-block2, 
+    .about-unik-block3 {
+        line-height: 1.3;
+    }
+    
+    .unik-logo-tar {
+        width: 100px;
+    }
+}
+
+/* Mobile pequeño */
+@media (max-width: 480px) {
+    .about-unik-section {
+        padding: 1.5rem 0.5rem;
+    }
+    
+    .about-unik-text {
+        font-size: 1rem;
+    }
+    
+    .about-unik-block1 {
+        font-size: 2rem;
+    }
+    
+    .aprender-bold {
+        font-size: 2rem;
+    }
+    
+    .about-unik-image-wrapper {
+        max-width: 100%;
+    }
+    
+    .corner-green {
+        width: 50px;
+        height: 50px;
+        top: -20px;
+        right: 10px;
+    }
+    
+    .half-ring-orange {
+        width: 40px;
+        height: 20px;
+        border-width: 6px;
+        bottom: 15px;
+        left: -15px;
+    }
+    
+    .about-unik-btn {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Desktop grande */
+@media (min-width: 1200px) {
+    .about-unik-container {
+        gap: 4rem;
+    }
+}
+
+/* Asegurar que los elementos decorativos no se salgan en móvil */
+@media (max-width: 400px) {
+    .corner-green {
+        width: 40px;
+        height: 40px;
+        top: -15px;
+        right: 5px;
+    }
+    
+    .half-ring-orange {
+        width: 35px;
+        height: 18px;
+        border-width: 5px;
+        bottom: 10px;
+        left: -10px;
+    }
+}
 /* feature cards secctions */
 
 
