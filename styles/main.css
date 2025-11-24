@@ -200,6 +200,96 @@
     background: #f8fafc;
 }
 
+.cuadro-morado {
+    width: clamp(72px, 9vw, 144px);     /* 60% del original */
+    height: clamp(24px, 3vw, 48px);
+    background: #8B5FBF;
+    /* border-radius: 12px; */
+    position: absolute;
+    top: 10%;
+    left: 45%;
+    z-index: 9999;
+    box-shadow: 0 4px 15px rgba(139, 95, 191, 0.3);
+    /* opacity: 0.8; */
+}
+
+.linea-amarilla {
+     width: clamp(48px, 6vw, 96px);   /* 20% más ancha que el cuadro */
+    height: 2px;                        /* Grosor de la línea */
+    background: #E4B23B;                /* Amarillo que usas */
+    border-radius: 2px;                 /* Esquinas ligeramente redondeadas */
+    position: absolute;
+    top: calc(50% + 25px);              /* 25px debajo del centro del cuadro */
+    top: 18%;
+    left: 45%;
+    transform: translateX(-50%);        /* Centrado horizontal */
+    z-index: 9998;                      /* Un nivel menos que el cuadro */
+}.adorno-container {
+    position: relative;
+    width: 300px; /* ajusta según tu diseño */
+    height: 120px;
+}
+
+/* PUNTOS RESPONSIVE */
+.puntos {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 80px;    /* ↑ Aumentado para más separación */
+    height: 80px;   /* ↑ Aumentado para más separación */
+    transform: translateX(-30%); 
+    z-index: 9999;
+}
+
+.puntos::before {
+    content: "";
+    display: block;
+    width: 5.6px;
+    height: 5.6px;
+    background: white;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.5));
+    box-shadow:
+        16px 0 white,    /* ↑ Aumentada separación horizontal */
+        32px 0 white,
+        48px 0 white,
+        64px 0 white,
+        0 16px white,    /* ↑ Aumentada separación vertical */
+        16px 16px white,
+        32px 16px white,
+        48px 16px white,
+        64px 16px white,
+        0 32px white,
+        16px 32px white,
+        32px 32px white,
+        48px 32px white,
+        64px 32px white,
+        0 48px white,
+        16px 48px white,
+        32px 48px white,
+        48px 48px white,
+        64px 48px white,
+        0 64px white,
+        16px 64px white,
+        32px 64px white,
+        48px 64px white,
+        64px 64px white;
+}
+
+/* BARRA RESPONSIVE */
+.barra {
+    position: absolute;
+    bottom: 0;
+    right: 0;           /* ← Pegada a la derecha */
+    width: 220px;
+    height: 50px;
+    background: #51B5E1;
+    border-radius: 40px 0 0 0;  /* ← Curva solo en esquina superior izquierda */
+    z-index: 9988;
+}
+
+
+
 /* LADO IZQUIERDO - 50% fijo */
 .left-side {
   height: 100%;
@@ -1154,6 +1244,7 @@
     bottom: clamp(20px, 4vw, 40px);
     left: clamp(-20px, -4vw, -40px);
     z-index: 1;
+    transform: translateX(-25px);
 }
 
 /* Botón */
@@ -1304,7 +1395,6 @@
 }
 /* feature cards secctions */
 
-
 .feature-cards-container {
     display: flex;
     flex-direction: row;
@@ -1312,18 +1402,21 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px 20px;
+    gap: 2%; /* Mantiene la proporción del espacio */
 }
 
 .feature-card {
     background-color: white;
-    padding: 10px 15px;
+    padding: 25px 20px;
     border-radius: 12px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: all 0.3s ease;
     border: 1px solid #f1f5f9;
-    width: 23%; /* Fijo 23% para cada una */
-    margin: 0 1%; /* Pequeño margen entre ellas */
+    
+    /* Tamaño fijo conservado - 23% del contenedor */
+    width: 23%;
+    flex: 0 0 23%; /* No crece, no encoge, base 23% */
 }
 
 .feature-card:hover {
@@ -1359,12 +1452,12 @@
 }
 
 .feature-card h3 {
-  font-weight: bold;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #828282;
-  margin-bottom: 5px;
-  transition: color 0.3s ease;
+    font-weight: bold;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #828282;
+    margin-bottom: 5px;
+    transition: color 0.3s ease;
 }
 
 .feature-card p {
@@ -1375,6 +1468,88 @@
     margin-bottom: 0;
 }
 
+/* RESPONSIVE - Solo ajustamos cuando sea necesario */
+
+/* Tablet - Reducir gap y padding */
+@media (max-width: 1024px) {
+    .feature-cards-container {
+        padding: 30px 15px;
+        gap: 1.5%;
+    }
+    
+    .feature-card {
+        padding: 20px 15px;
+    }
+}
+
+/* Tablet pequeña - 2 cards por fila */
+@media (max-width: 900px) {
+    .feature-cards-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+    
+    .feature-card {
+        width: 48%; /* 2 cards por fila */
+        flex: 0 0 48%;
+    }
+    
+    .feature-icon {
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    
+    .feature-card p {
+        text-align: center;
+    }
+}
+
+/* Mobile - 1 card por fila */
+@media (max-width: 600px) {
+    .feature-cards-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        padding: 20px 10px;
+    }
+    
+    .feature-card {
+        width: 100%;
+        max-width: 400px; /* Máximo ancho en móvil */
+        flex: 0 0 auto;
+    }
+    
+    .feature-card:hover {
+        transform: scale(1.05); /* Efecto más sutil en móvil */
+    }
+}
+
+/* Mobile pequeño - Reducir elementos */
+@media (max-width: 480px) {
+    .feature-card {
+        padding: 15px;
+    }
+    
+    .feature-icon {
+        height: 60px;
+        margin-bottom: 15px;
+    }
+    
+    .feature-icon img {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .feature-card h3 {
+        font-size: 1.3rem;
+    }
+    
+    .feature-card p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+}
 /* fin feature cards secctions */
 
 /* Reset y variables CSS */
