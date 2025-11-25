@@ -28,7 +28,7 @@
 /* Sección "Qué esperar" */
 /* Sección "Qué esperar" */
 .que-esperar-unik {
-    padding: 0px 20px;
+    padding: 0px 20px 20px;
     background: #f8f9fa;
     position: relative;
     overflow: visible;
@@ -107,7 +107,7 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     border: 2px solid transparent;
-    min-height: 180px;
+    min-height: 195px;
     height: 100%;
     box-sizing: border-box;
 }
@@ -215,88 +215,27 @@
     background: #f8fafc;
 }
 
-.cuadro-morado {
-    width: clamp(72px, 9vw, 144px);
-    height: clamp(24px, 3vw, 48px);
-    background: #8B5FBF;
-    /* border-radius: 12px; */
+/* PRIMERA IMAGEN - Superior Central */
+.adorno-imagen-c-a1 {
     position: absolute;
-    top: 10%;
-    left: 45%;
-    z-index: 9999;
-    box-shadow: 0 4px 15px rgba(139, 95, 191, 0.3);
-    /* opacity: 0.8; */
+    top: 20px;           /* Desde la parte superior */
+    left: 50%;           /* Centrado horizontal */
+    transform: translateX(-50%); /* Centrado preciso */
+    width: 150px;        /* Ajusta según necesites */
+    height: auto;        /* Mantiene proporción */
+    z-index: 10;
+    pointer-events: none; /* No interfiere con clicks */
 }
 
-.linea-amarilla {
-     width: clamp(48px, 6vw, 96px);   /* 20% más ancha que el cuadro */
-    height: 2px;                        /* Grosor de la línea */
-    background: #E4B23B;                /* Amarillo que usas */
-    border-radius: 2px;                 /* Esquinas ligeramente redondeadas */
+/* SEGUNDA IMAGEN - Inferior Derecha */
+.adorno-imagen-c-a2 {
     position: absolute;
-    top: calc(50% + 25px);              /* 25px debajo del centro del cuadro */
-    top: 18%;
-    left: 45%;
-    transform: translateX(-50%);        /* Centrado horizontal */
-    z-index: 9998;                      /* Un nivel menos que el cuadro */
-}
-
-/* PUNTOS RESPONSIVE */
-.puntos {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 80px;    /* ↑ Aumentado para más separación */
-    height: 80px;   /* ↑ Aumentado para más separación */
-    transform: translateX(-30%); 
-    z-index: 9999;
-}
-
-.puntos::before {
-    content: "";
-    display: block;
-    width: 5.6px;
-    height: 5.6px;
-    background: white;
-    border-radius: 50%;
-    filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.5));
-    box-shadow:
-        16px 0 white,    /* ↑ Aumentada separación horizontal */
-        32px 0 white,
-        48px 0 white,
-        64px 0 white,
-        0 16px white,    /* ↑ Aumentada separación vertical */
-        16px 16px white,
-        32px 16px white,
-        48px 16px white,
-        64px 16px white,
-        0 32px white,
-        16px 32px white,
-        32px 32px white,
-        48px 32px white,
-        64px 32px white,
-        0 48px white,
-        16px 48px white,
-        32px 48px white,
-        48px 48px white,
-        64px 48px white,
-        0 64px white,
-        16px 64px white,
-        32px 64px white,
-        48px 64px white,
-        64px 64px white;
-}
-
-/* BARRA RESPONSIVE */
-.barra {
-    position: absolute;
-    bottom: 0;
-    right: 0;           /* ← Pegada a la derecha */
-    width: 220px;
-    height: 50px;
-    background: #51B5E1;
-    border-radius: 40px 0 0 0;  /* ← Curva solo en esquina superior izquierda */
-    z-index: 9988;
+    bottom: 0px;        /* Desde la parte inferior */
+    right: 0px;         /* Desde la derecha */
+    width: 320px;        /* Ajusta según necesites */
+    height: auto;        /* Mantiene proporción */
+    z-index: 1999;
+    pointer-events: none; /* No interfiere con clicks */
 }
 
 
