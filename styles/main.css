@@ -488,12 +488,13 @@
 
 /* ESTILOS PARA LA SECTION DE CURSOS Y OFERTAS */
 .cursos-ofertas-section {
-    padding: 80px 0px 0px;
+    padding: 80px 0px 0px 0px;
     background: #e5e5ef;
     min-height: 90vh;
     
     /* Responsive padding */
-    padding: clamp(40px, 8vw, 80px) clamp(15px, 3vw, 0px) 0px;
+    /* min-height: 120vh; */
+    padding: clamp(60px, 10vw, 100px) clamp(15px, 3vw, 20px) clamp(40px, 8vw, 80px);
 }
 
 .cursos-ofertas-container {
@@ -579,6 +580,8 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
     justify-content: flex-start;
+    min-height: 500px; /* Asegurar espacio suficiente */
+    align-items: flex-start; /* Alinear arriba para evitar compresión */
     
     /* Responsive gap y padding */
     gap: clamp(15px, 3vw, 25px);
@@ -592,11 +595,11 @@
 /* TARJETA BASE - VISTA COMPACTA SIN FONDO */
 .curso-oferta-card {
     width: 350px;
-    height: 350px;
+    height: 480px;
     background: transparent;
     transition: all 0.3s ease;
     flex-shrink: 0;
-    overflow: hidden;
+    overflow: visible;
     position: relative;
     
     /* Responsive sizing */
@@ -703,7 +706,7 @@
     flex: 1;
     
     /* Responsive font size */
-    font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+    /* font-size: clamp(0.8rem, 1.8vw, 0.9rem); */
 }
 
 /* CONTENEDOR DEL BOTÓN CENTRADO */
@@ -723,6 +726,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+    z-index: 9999;
     
     /* Responsive padding y font */
     padding: clamp(10px, 2vw, 12px) clamp(20px, 3vw, 25px);
