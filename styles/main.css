@@ -1454,8 +1454,50 @@
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 10;
-    
-    /* Ocultar en móvil */
+}
+
+/* SOLO para pantallas EXTRA grandes (monitores grandes) */
+@media (min-width: 1920px) {
+    .adorno-imagen-c-o {
+        bottom: -25%;
+        right: -30%;
+    }
+}
+
+/* Para laptops y desktops estándar - mantener posición original */
+@media (max-width: 1919px) and (min-width: 1024px) {
+    .adorno-imagen-c-o {
+        /* Mantiene exactamente la posición original */
+        bottom: 0%;
+        right: -16%;
+    }
+}
+
+/* Tablets - reducir tamaño pero mantener posición */
+@media (max-width: 1023px) and (min-width: 769px) {
+    .adorno-imagen-c-o {
+        bottom: 0%;
+        right: -16%;
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* Tablets pequeñas */
+@media (max-width: 768px) and (min-width: 481px) {
+    .adorno-imagen-c-o {
+        bottom: 0%;
+        right: -16%;
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* Móviles - ocultar */
+@media (max-width: 480px) {
+    .adorno-imagen-c-o {
+        display: none !important;
+    }
 }
 
 .about-unik-container {
