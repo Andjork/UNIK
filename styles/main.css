@@ -1192,10 +1192,12 @@
 
 .about-unik-image-wrapper {
     position: relative;
-    display: inline-block;
+    display: block;
     width: 100%;
     max-width: 500px;
+    z-index: 3;
 }
+
 
 .about-unik-image {
     width: 100%;
@@ -1203,34 +1205,28 @@
     border-radius: 24px;
     box-shadow: 0 4px 24px 0 rgba(26,35,126,0.13);
     display: block;
+    z-index: 2;
 }
 
-/* Cuarto de círculo verde (arriba derecha) */
-.corner-green {
-    width: clamp(60px, 10vw, 120px);
-    height: clamp(60px, 10vw, 120px);
-    background: #63A88D;
-    border-top-right-radius: 120px;
+.adorno-imagen-ab-c4 {
     position: absolute;
-    top: clamp(-25px, -4vw, -50px);
-    right: clamp(10px, 2vw, 20px);
-    z-index: 0;
-    transform: translate(16px, -40px);
-}
-
-/* Medio anillo naranja */
-.half-ring-orange {
-    width: clamp(45px, 8vw, 90px);
-    height: clamp(25px, 5vw, 50px);
-    border: clamp(7px, 1.5vw, 14px) solid #E4B23B;
-    border-top: none;
-    border-bottom-left-radius: 160px;
-    border-bottom-right-radius: 160px;
-    position: absolute;
-    bottom: clamp(20px, 4vw, 40px);
-    left: clamp(-20px, -4vw, -40px);
+    top: -45px;
+    right: 25px;
+    width: 100px;
+    height: auto;
     z-index: 1;
-    transform: translateX(-25px);
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.adorno-imagen-ab-ma {
+    position: absolute;
+    top: 50%;
+    left: -40px;
+    transform: translateY(-50%);
+    width: 80px;
+    height: auto;
+    z-index: 3;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
 
 /* Botón */
