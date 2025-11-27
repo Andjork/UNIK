@@ -279,6 +279,7 @@
     margin-top: 0;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 /* LADO DERECHO - 50% fijo */
@@ -421,7 +422,7 @@
 }
 
 .cursos-ofertas-container {
-    max-width: 1270px;
+    max-width: 1372px;
     margin: 0 auto;
     padding: 0 clamp(15px, 3vw, 20px);
     box-sizing: border-box;
@@ -1006,12 +1007,12 @@
 .pfaq-section {
     position: relative;
     background: #dcdde8;
-    min-height: 100vh;
+    min-height: 80vh;
     box-sizing: border-box;
     padding: 20px 20px;
     
     /* Responsive padding */
-    min-height: clamp(80vh, 100vw, 100vh);
+    /* min-height: clamp(80vh, 100vw, 79vh); */
 }
 
 .pfaq-container {
@@ -1681,6 +1682,10 @@ body {
     }
     
     .adorno-imagen-c-o{
+        display: none;
+    }
+
+    .adorno-imagen-q-e{
         display: none;
     }
 
