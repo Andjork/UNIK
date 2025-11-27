@@ -24,6 +24,42 @@ document.addEventListener('click', (e) => {
     }
 });
 
+document.addEventListener('click', (e) => {
+    // Si se hace clic en el botón de expandir/contraer
+    if (e.target.classList.contains('curso-oferta-btn-toggle')) {
+        const button = e.target;
+        const action = button.getAttribute('data-action');
+        const card = button.closest('.curso-oferta-card');
+        
+        if (action === 'expand') {
+            // Cerrar otras tarjetas expandidas
+            document.querySelectorAll('.curso-oferta-card[data-card-state="expanded"]').forEach(otherCard => {
+                if (otherCard !== card) {
+                    otherCard.setAttribute('data-card-state', 'compact');
+                }
+            });
+            // Expandir esta tarjeta
+            card.setAttribute('data-card-state', 'expanded');
+            
+        } else if (action === 'compact') {
+            card.setAttribute('data-card-state', 'compact');
+        }
+    }
+    
+    // NUEVO: Contrae tarjeta al hacer clic fuera 
+    else {
+        const expandedCard = document.querySelector('.curso-oferta-card[data-card-state="expanded"]');
+        const clickedInsideCard = e.target.closest('.curso-oferta-card-expanded') || 
+                                 e.target.closest('.curso-oferta-card[data-card-state="expanded"]');
+        
+        // Si hay una tarjeta expandida y se hizo clic FUERA de ella
+        if (expandedCard && !clickedInsideCard) {
+            expandedCard.setAttribute('data-card-state', 'compact');
+        }
+    }
+});
+
+
 // Carrusel con navegación mejorada
 const carousel = document.getElementById('cursosOfertasCarousel');
 const prevBtn = document.getElementById('cursosOfertasPrevBtn');
@@ -142,14 +178,9 @@ function changeSlide(index) {
     const currentImage = currentSlide.querySelector('.carrusel-fs-imagen');
     const nextImage = nextSlide.querySelector('.carrusel-fs-imagen');
     
-    // Cambiar título inmediatamente
-    titleElement.textContent = carouselData[index].title;
-    
     // Actualizar dots
     dots.forEach(dot => dot.classList.remove('active'));
     dots[index].classList.add('active');
-    
-    // ⭐⭐ LÓGICA CORRECTA BASADA EN TU CÓDIGO ⭐⭐
     
     // 1. Crear tiles con la imagen ACTUAL
     const tilesContainer = createTiles(currentImage.src);
@@ -159,7 +190,7 @@ function changeSlide(index) {
     currentSlide.style.opacity = '0';
     nextSlide.classList.add('active');
     nextSlide.style.opacity = '1';
-    
+
     console.log('Imagen cambiada - Nueva imagen visible AHORA');
     
     // 3. Animar tiles
@@ -169,6 +200,10 @@ function changeSlide(index) {
         isAnimating = false;
         console.log('Animación completada');
     });
+
+    setTimeout(() => {
+        titleElement.textContent = carouselData[index].title; // ← Ejecuta después de 800ms
+    }, 1200);
 }
 
 // Event listeners para los dots

@@ -7,6 +7,7 @@
     
     /* Mejoras responsive */
     box-sizing: border-box;
+    background-color: #f5f5f5;
 }
 
 .main-title-una-experiencia {
@@ -20,6 +21,10 @@
     font-size: clamp(2rem, 5vw, 3.6rem);
 }
 
+.feature-cards-section{
+    background-color: #f5f5f5;
+}
+
 .title-underline {
     width: 120px;
     height: 4px;
@@ -31,40 +36,13 @@
     width: min(120px, 25vw);
 }
 
-/* Media Queries para dispositivos móviles */
-@media (max-width: 768px) {
-    .title-container-una-experiencia {
-        padding: 30px 15px;
-    }
-    
-    .main-title-una-experiencia {
-        line-height: 1.2;
-    }
-    
-    .title-underline {
-        margin: 15px auto 0;
-        height: 3px;
-    }
-}
-
-@media (max-width: 480px) {
-    .title-container-una-experiencia {
-        padding: 20px 10px;
-    }
-    
-    .title-underline {
-        margin: 10px auto 0;
-        width: 80px;
-    }
-}
-/* fin titulo una experiencia */
-
 /* Sección "Qué esperar" */
 .que-esperar-unik {
     padding: 0px 20px 20px;
     background: #f8f9fa;
     position: relative;
     overflow: visible;
+    padding-bottom: 60px;
     
     /* Mejoras responsive */
     box-sizing: border-box;
@@ -72,10 +50,9 @@
 
 .adorno-imagen-q-e {
     position: absolute;
-    top: -27px;
+    top: 0px;
     left: 0px;
-    width: 150px;
-    height: 140px;
+    width: 75px;
     background-image: url('ruta/a/tu-imagen.png');
     background-size: contain;
     background-repeat: no-repeat;
@@ -85,6 +62,7 @@
 }
 
 .que-esperar-header {
+    padding-top: 20px;
     position: relative;
     text-align: center;
     margin-bottom: 60px;
@@ -92,7 +70,7 @@
 
 .titulo-centrado {
     font-size: 3rem;
-    color: #2d3748;
+    color: #002d52;
     margin: 0;
     font-weight: 700;
     display: flex;
@@ -106,7 +84,7 @@
 
 .titulo-linea1 {
     display: block;
-    line-height: 1.5;
+    line-height: 50px;
 }
 
 .titulo-linea2 {
@@ -121,12 +99,10 @@
 }
 
 .unik-logo-texto {
-    height: 50px;
+    height: 66px;
     display: inline-block;
     vertical-align: middle;
-    
-    /* Responsive sizing */
-    height: clamp(35px, 8vw, 50px);
+    padding-bottom: 15px;
 }
 
 .que-esperar-filas {
@@ -231,63 +207,6 @@
     flex-direction: column;
     justify-content: space-between;
     min-height: 100%;
-}
-
-/* Responsive - Tablet */
-@media (max-width: 768px) {
-    .que-esperar-unik {
-        padding: 0px 15px 15px;
-    }
-    
-    .que-esperar-fila {
-        flex-direction: column;
-        gap: 20px;
-    }
-    
-    .que-esperar-item {
-        min-height: 160px;
-    }
-    
-    .que-esperar-header {
-        margin-bottom: 40px;
-    }
-    
-    .titulo-linea2 {
-        gap: 8px;
-    }
-}
-
-/* Responsive - Móvil */
-@media (max-width: 480px) {
-    .que-esperar-unik {
-        padding: 0px 10px 10px;
-    }
-    
-    .que-esperar-item {
-        padding: 20px;
-        min-height: 140px;
-        flex-direction: column;
-        text-align: center;
-        gap: 12px;
-    }
-    
-    .que-esperar-icono {
-        min-width: auto;
-        align-self: center;
-    }
-    
-    .que-esperar-header {
-        margin-bottom: 30px;
-    }
-    
-    .titulo-linea2 {
-        gap: 5px;
-    }
-    
-    /* Desactivar adornos en móvil */
-    .adorno-imagen-q-e {
-        display: none !important;
-    }
 }
 
 /* Carrusel Pantalla Completa */
@@ -470,21 +389,22 @@
 }
 
 .cta-button {
-    background: #1a56db;
-    color: white;
+    background: white;
+    color: #3c73fc;
     border: none;
     padding: 15px 30px;
     border-radius: 30px;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
+    font-weight: bold;
     cursor: pointer;
     transition: background 0.3s;
     width: fit-content;
 }
 
 .cta-button:hover {
-    background: #0f3ba6;
+    background: #3c73fc;
+    color: white;
 }
-
 
 /* ESTILOS PARA LA SECTION DE CURSOS Y OFERTAS */
 .cursos-ofertas-section {
@@ -498,7 +418,7 @@
 }
 
 .cursos-ofertas-container {
-    max-width: 1200px;
+    max-width: 1270px;
     margin: 0 auto;
     padding: 0 clamp(15px, 3vw, 20px);
     box-sizing: border-box;
@@ -514,7 +434,7 @@
 
 .cursos-ofertas-header h1 {
     font-size: 2.8rem;
-    color: #2d3748;
+    color: #002c51;
     margin-bottom: 20px;
     font-weight: 700;
     position: relative;
@@ -522,19 +442,19 @@
     display: inline-block;
     
     /* Responsive font size */
-    font-size: clamp(1.8rem, 5vw, 2.8rem);
-    margin-bottom: clamp(15px, 3vw, 20px);
+    font-size: 54px;
+    margin-bottom: 9px;
     padding-bottom: clamp(15px, 3vw, 25px);
 }
 
 .cursos-ofertas-header h1::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: 13px;
     left: 50%;
     transform: translateX(-50%);
     width: 120px;
-    height: 2px;
+    height: 1px;
     background: #002C51;
     border-radius: 2px;
     
@@ -544,9 +464,9 @@
 
 .cursos-ofertas-subtitle {
     font-size: 1.2rem;
-    color: #718096;
+    color: #002c51;
     line-height: 1.6;
-    max-width: 800px;
+    max-width: 2074px;
     margin: 0 auto;
     
     /* Responsive font size */
@@ -560,6 +480,7 @@
     justify-content: center;
     gap: 20px;
     position: relative;
+    min-width: 800px;
     
     /* Responsive gap */
     gap: clamp(10px, 2vw, 20px);
@@ -580,12 +501,12 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
     justify-content: flex-start;
-    min-height: 500px; /* Asegurar espacio suficiente */
-    align-items: flex-start; /* Alinear arriba para evitar compresión */
+    min-height: 550px; /* Asegurar espacio suficiente */
+    align-items: stretch; /* Alinear arriba para evitar compresión */
     
     /* Responsive gap y padding */
-    gap: clamp(15px, 3vw, 25px);
-    padding: clamp(15px, 2vw, 20px) clamp(5px, 1vw, 10px);
+    /* gap: clamp(15px, 3vw, 25px);
+    padding: clamp(15px, 2vw, 20px) clamp(5px, 1vw, 10px); */
 }
 
 .cursos-ofertas-carousel::-webkit-scrollbar {
@@ -627,6 +548,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 /* CONTENEDOR DE IMAGEN CON TÍTULO */
@@ -668,6 +590,9 @@
     margin: 0;
     line-height: 1.3;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     
     /* Responsive font size */
     font-size: clamp(0.85rem, 2vw, 1rem);
@@ -690,8 +615,11 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    min-height: 0;
+    height: 200px;
+    min-height: 200px;
+    max-height: 200px;
     gap: 12px;
+    overflow-y: auto;
     
     /* Responsive padding */
     padding: clamp(15px, 3vw, 20px);
@@ -704,6 +632,11 @@
     line-height: 1.4;
     margin: 0;
     flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e0 #f7fafc;
     
     /* Responsive font size */
     /* font-size: clamp(0.8rem, 1.8vw, 0.9rem); */
@@ -714,6 +647,7 @@
     display: flex;
     justify-content: center;
     margin-top: auto;
+    flex-shrink: 0;
 }
 
 .curso-oferta-btn-toggle {
@@ -819,7 +753,7 @@
 .curso-oferta-instructor-name {
     font-size: 1.2rem;
     font-weight: 700;
-    margin-bottom: 8px;
+    margin-bottom: 0px;
     line-height: 1.2;
     
     /* Responsive font size */
@@ -837,11 +771,12 @@
 }
 
 .curso-oferta-tag {
-    background: rgba(255, 255, 255, 0.25);
+    background: #3d73fc;
     padding: 4px 10px;
     border-radius: 12px;
     font-size: 0.75rem;
     font-weight: 500;
+    height: 25px;
     
     /* Responsive padding y font */
     padding: clamp(3px, 0.8vw, 4px) clamp(8px, 1.5vw, 10px);
@@ -853,6 +788,7 @@
     padding: 0;
     margin: 0;
     font-size: 0.8rem;
+    font-weight: 700;
     line-height: 1.5;
     margin-bottom: 20px;
     
@@ -926,6 +862,7 @@
     height: 20px;
     background: #f8f9fa;
     flex-shrink: 0;
+    display: none;
     
     /* Responsive height */
     height: clamp(15px, 2.5vw, 20px);
@@ -935,9 +872,12 @@
 .curso-oferta-content-expanded {
     padding: 25px;
     display: flex;
+    align-items: center;
     flex-direction: column;
     min-height: 0;
     overflow-y: auto;
+    padding-top: 7px;
+    padding-top: 7px;
     
     /* Responsive padding */
     padding: clamp(20px, 3vw, 25px);
@@ -957,6 +897,7 @@
 
 .curso-oferta-buttons-expanded {
     display: flex;
+    width: 220px;
     gap: 12px;
     margin-top: auto;
     flex-shrink: 0;
@@ -969,10 +910,13 @@
     background: #002C51;
     color: white;
     border: none;
-    padding: 12px 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     border-radius: 25px;
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 1.7rem;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
     flex: 1;
@@ -981,10 +925,6 @@
     text-align: center;
     box-sizing: border-box;
     font-family: inherit;
-    
-    /* Responsive padding y font */
-    padding: clamp(10px, 2vw, 12px) clamp(20px, 3vw, 25px);
-    font-size: clamp(0.8rem, 1.8vw, 0.9rem);
 }
 
 .curso-oferta-btn-expanded:hover {
@@ -1046,81 +986,12 @@
     transform: none;
 }
 
-/* MEDIA QUERIES ADICIONALES */
-@media (max-width: 768px) {
-    .cursos-ofertas-section {
-        min-height: auto;
-        padding: 40px 15px 0px;
-    }
-    
-    .cursos-ofertas-wrapper {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .cursos-ofertas-carousel-btn {
-        order: 2;
-        margin: 10px 0;
-    }
-    
-    .curso-oferta-instructor-profile {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
-    }
-    
-    .curso-oferta-instructor-photo-container {
-        align-self: center;
-    }
-    
-    .curso-oferta-buttons-expanded {
-        flex-direction: column;
-    }
-}
-
-@media (max-width: 480px) {
-    .cursos-ofertas-carousel {
-        justify-content: center;
-    }
-    
-    .curso-oferta-title-content {
-        flex-direction: column;
-        text-align: center;
-        gap: 5px;
-    }
-    
-    .curso-oferta-instructor-tags {
-        justify-content: center;
-    }
-    
-    .cursos-ofertas-carousel-btn {
-        width: 35px;
-        height: 35px;
-        font-size: 16px;
-    }
-}
-
-/* Para tablets pequeñas */
-@media (max-width: 1024px) and (min-width: 769px) {
-    .curso-oferta-card {
-        width: 320px;
-        height: 320px;
-    }
-    
-    .curso-oferta-card[data-card-state="expanded"] {
-        width: 340px;
-        height: 540px;
-    }
-}
-
 /* SECCIÓN PREGUNTAS FRECUENTES - TARJETAS COMPACTAS */
-
 .adorno-imagen-p-f {
     position: absolute;
     bottom: 0px;
     right: 0px;
-    width: 180px;
-    height: 180px;
+    height: 175px;
     background-image: url('ruta/a/tu-imagen.png');
     background-size: contain;
     background-repeat: no-repeat;
@@ -1131,7 +1002,7 @@
 
 .pfaq-section {
     position: relative;
-    background: #ffffff;
+    background: #dcdde8;
     min-height: 100vh;
     box-sizing: border-box;
     padding: 80px 20px;
@@ -1149,14 +1020,13 @@
 
 /* Título principal */
 .pfaq-main-title {
-    font-size: 2.3rem;
+    font-size: 3.8rem;
     font-weight: 700;
     color: #002C51;
     margin: 0 0 60px 0;
     text-align: center;
     
     /* Responsive font size y margin */
-    font-size: clamp(1.8rem, 4vw, 2.3rem);
     margin: 0 0 clamp(30px, 6vw, 60px) 0;
 }
 
@@ -1183,7 +1053,7 @@
 
 /* Tarjetas - Tamaño inicial compacto */
 .pfaq-card {
-    background: #f5f5f5;
+    background: #d3d6e0;
     border-radius: 12px;
     padding: 25px 30px;
     display: flex;
@@ -1222,7 +1092,7 @@
 .pfaq-question {
     font-size: 1.1rem;
     font-weight: 700;
-    color: #000000;
+    color: #002d52;
     margin: 0;
     line-height: 1.4;
     flex: 1;
@@ -1301,118 +1171,6 @@
     color: #002C51;
 }
 
-/* MEDIA QUERIES RESPONSIVE */
-@media (max-width: 1024px) {
-    .pfaq-grid {
-        gap: 30px;
-    }
-    
-    .pfaq-card {
-        padding: 22px 25px;
-    }
-}
-
-@media (max-width: 768px) {
-    .pfaq-section {
-        padding: 50px 15px;
-        min-height: auto;
-    }
-    
-    .pfaq-grid {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .pfaq-main-title {
-        font-size: 1.8rem;
-        margin-bottom: 30px;
-    }
-    
-    .pfaq-card {
-        padding: 20px 22px;
-    }
-    
-    .pfaq-column {
-        gap: 15px;
-    }
-    
-    .pfaq-question {
-        font-size: 1.05rem;
-        padding-right: 15px;
-    }
-    
-    .pfaq-card.active .pfaq-answer {
-        max-height: 400px; /* Más espacio para contenido en móvil */
-    }
-}
-
-@media (max-width: 480px) {
-    .pfaq-section {
-        padding: 40px 12px;
-    }
-    
-    .pfaq-main-title {
-        font-size: 1.6rem;
-        margin-bottom: 25px;
-    }
-    
-    .pfaq-card {
-        padding: 18px 20px;
-        border-radius: 10px;
-    }
-    
-    .pfaq-question {
-        font-size: 1rem;
-        padding-right: 12px;
-        line-height: 1.3;
-    }
-    
-    .pfaq-toggle {
-        width: 24px;
-        height: 24px;
-        font-size: 1.2rem;
-    }
-    
-    .pfaq-answer p {
-        font-size: 0.9rem;
-        line-height: 1.5;
-    }
-    
-    .pfaq-card.active .pfaq-answer {
-        margin-top: 15px;
-        padding-top: 15px;
-        max-height: 500px; /* Máxima flexibilidad para contenido largo */
-    }
-    
-    /* Desactivar adorno en móvil */
-    .adorno-imagen-p-f {
-        display: none !important;
-    }
-}
-
-/* Para pantallas muy pequeñas */
-@media (max-width: 360px) {
-    .pfaq-section {
-        padding: 30px 10px;
-    }
-    
-    .pfaq-main-title {
-        font-size: 1.4rem;
-    }
-    
-    .pfaq-card {
-        padding: 15px 18px;
-    }
-    
-    .pfaq-question {
-        font-size: 0.95rem;
-    }
-    
-    .pfaq-card-content {
-        align-items: flex-start;
-    }
-}
-
 /* Mejoras de accesibilidad en touch */
 @media (hover: none) and (pointer: coarse) {
     .pfaq-card:hover {
@@ -1426,21 +1184,9 @@
     }
 }
 
-/* Optimización para tablets en landscape */
-@media (max-width: 1024px) and (orientation: landscape) {
-    .pfaq-section {
-        min-height: auto;
-        padding: 40px 20px;
-    }
-    
-    .pfaq-grid {
-        gap: 20px;
-    }
-}
-
 /* Sección descriptiva con imagen y botón */
 .about-unik-section {
-    background: #fff;
+    background: #f5f5f5;
     padding: 4rem 1rem;
     position: relative;
     
@@ -1451,57 +1197,13 @@
 .adorno-imagen-c-o {
     position: absolute;
     bottom: 0%;
-    right: -16%;
+    right: -19%;
     width: 180px;
     height: 180px;
     background-image: url('ruta/a/tu-imagen.png');
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 10;
-}
-
-/* SOLO para pantallas EXTRA grandes (monitores grandes) */
-@media (min-width: 1920px) {
-    .adorno-imagen-c-o {
-        bottom: -25%;
-        right: -30%;
-    }
-}
-
-/* Para laptops y desktops estándar - mantener posición original */
-@media (max-width: 1919px) and (min-width: 1024px) {
-    .adorno-imagen-c-o {
-        /* Mantiene exactamente la posición original */
-        bottom: 0%;
-        right: -16%;
-    }
-}
-
-/* Tablets - reducir tamaño pero mantener posición */
-@media (max-width: 1023px) and (min-width: 769px) {
-    .adorno-imagen-c-o {
-        bottom: 0%;
-        right: -16%;
-        width: 150px;
-        height: 150px;
-    }
-}
-
-/* Tablets pequeñas */
-@media (max-width: 768px) and (min-width: 481px) {
-    .adorno-imagen-c-o {
-        bottom: 0%;
-        right: -16%;
-        width: 120px;
-        height: 120px;
-    }
-}
-
-/* Móviles - ocultar */
-@media (max-width: 480px) {
-    .adorno-imagen-c-o {
-        display: none !important;
-    }
 }
 
 .about-unik-container {
@@ -1544,7 +1246,7 @@
 
 .about-unik-block1 {
     font-size: clamp(2.5rem, 5vw, 4.125rem);
-    line-height: 1.1;
+    line-height: 0.9;
 }
 
 .about-unik-block2, .about-unik-block3 {
@@ -1559,7 +1261,7 @@
 
 .aprender-bold {
     font-weight: 700;
-    font-size: clamp(2.5rem, 5vw, 4.125rem);
+    font-size: 76px;
     line-height: 1.05;
     display: inline-block;
 }
@@ -1570,9 +1272,8 @@
 }
 
 .unik-logo-tar {
-    width: clamp(80px, 25%, 150px);
+    width: 173px;
     height: auto;
-    vertical-align: middle;
 }
 
 /* Contenedor de imagen con elementos decorativos */
@@ -1591,30 +1292,30 @@
     position: relative;
     display: block;
     width: 100%;
-    max-width: 500px;
+    height: 400px;
     z-index: 3;
     
     /* Responsive max-width */
-    max-width: clamp(300px, 80vw, 500px);
+    max-width: 700px;
 }
 
 .about-unik-image {
     width: 100%;
-    max-width: 500px;
     border-radius: 24px;
     box-shadow: 0 4px 24px 0 rgba(26,35,126,0.13);
     display: block;
     z-index: 2;
+    height: 400px;
     
     /* Responsive max-width y border-radius */
-    max-width: clamp(300px, 80vw, 500px);
+    max-width: 700px;
     border-radius: clamp(16px, 3vw, 24px);
 }
 
 .adorno-imagen-ab-c4 {
     position: absolute;
-    top: -20%;
-    right: 0px;
+    top: -48px;
+    right: -45px;
     width: 100px;
     height: auto;
     z-index: 1;
@@ -1626,17 +1327,13 @@
 
 .adorno-imagen-ab-ma {
     position: absolute;
-    top: 50%;
-    left: -40px;
+    top: 75%;
+    left: -48px;
     transform: translateY(-50%);
-    width: 80px;
+    width: 100px;
     height: auto;
     z-index: 3;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-    
-    /* Responsive sizing y posición */
-    width: clamp(50px, 10vw, 80px);
-    left: clamp(-30px, -5vw, -40px);
 }
 
 /* Botón */
@@ -1646,181 +1343,27 @@
     bottom: clamp(12px, 2vw, 24px);
     display: inline-block;
     padding: clamp(0.6rem, 1.5vw, 0.75rem) clamp(1.5rem, 3vw, 2.2rem);
-    background: #002C51;
+    background: #002d52;
     color: #fff;
     border: none;
-    border-radius: 30px;
+    border-radius: 10px;
     font-family: 'DM Sans', sans-serif;
     font-weight: 700;
-    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-size: 25px;
     text-decoration: none;
     transition: background 0.2s, box-shadow 0.2s;
     box-shadow: 0 2px 12px 0 rgba(26,35,126,0.08);
     cursor: pointer;
     z-index: 2;
+    padding-bottom: 6px;
+    padding-top: 6px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .about-unik-btn:hover {
     background: #005080;
     box-shadow: 0 4px 24px 0 rgba(26,35,126,0.13);
-}
-
-/* MEDIA QUERIES RESPONSIVE */
-/* Tablet */
-@media (max-width: 900px) {
-    .about-unik-container {
-        flex-direction: column;
-        gap: 2rem;
-        padding: 0 1rem;
-    }
-    
-    .about-unik-text {
-        text-align: center;
-        align-items: center;
-        flex: 1 1 100%;
-    }
-    
-    .about-unik-image-container {
-        flex: 1 1 100%;
-        order: -1;
-    }
-    
-    .about-unik-image-wrapper {
-        max-width: 400px;
-    }
-    
-    .adorno-imagen-ab-ma {
-        left: -20px;
-    }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-    .about-unik-section {
-        padding: clamp(1.5rem, 4vw, 2rem) clamp(0.5rem, 1.5vw, 1rem);
-    }
-    
-    .about-unik-container {
-        gap: 1.5rem;
-    }
-    
-    .about-unik-text {
-        gap: 1rem;
-    }
-    
-    .about-unik-block1 {
-        line-height: 1;
-    }
-    
-    .about-unik-block2, 
-    .about-unik-block3 {
-        line-height: 1.3;
-    }
-    
-    .unik-logo-tar {
-        width: clamp(70px, 20vw, 100px);
-    }
-    
-    .adorno-imagen-ab-c4 {
-        top: -15%;
-        right: -10px;
-    }
-    
-    .adorno-imagen-ab-ma {
-        left: -15px;
-    }
-}
-
-/* Mobile pequeño */
-@media (max-width: 480px) {
-    .about-unik-section {
-        padding: 1.5rem 0.5rem;
-    }
-    
-    .about-unik-text {
-        font-size: 1rem;
-        text-align: center;
-    }
-    
-    .about-unik-block1 {
-        font-size: clamp(2rem, 8vw, 2.5rem);
-    }
-    
-    .aprender-bold {
-        font-size: clamp(2rem, 8vw, 2.5rem);
-    }
-    
-    .about-unik-image-wrapper {
-        max-width: 100%;
-    }
-    
-    .about-unik-btn {
-        padding: 0.5rem 1.2rem;
-        font-size: 0.9rem;
-        position: relative;
-        right: auto;
-        bottom: auto;
-        margin-top: 1rem;
-        align-self: center;
-    }
-    
-    /* Desactivar adornos en móvil */
-    .adorno-imagen-c-o,
-    .adorno-imagen-ab-c4,
-    .adorno-imagen-ab-ma {
-        display: none !important;
-    }
-}
-
-/* Para pantallas muy pequeñas */
-@media (max-width: 360px) {
-    .about-unik-section {
-        padding: 1rem 0.25rem;
-    }
-    
-    .about-unik-container {
-        gap: 1rem;
-    }
-    
-    .about-unik-text {
-        gap: 0.8rem;
-    }
-    
-    .about-unik-block1 {
-        font-size: 1.8rem;
-    }
-    
-    .aprender-bold {
-        font-size: 1.8rem;
-    }
-    
-    .unik-logo-tar {
-        width: 60px;
-    }
-}
-
-/* Desktop grande */
-@media (min-width: 1200px) {
-    .about-unik-container {
-        gap: 4rem;
-    }
-}
-
-/* Optimización para tablets en landscape */
-@media (max-width: 1024px) and (orientation: landscape) {
-    .about-unik-container {
-        flex-direction: row;
-        gap: 2rem;
-    }
-    
-    .about-unik-text {
-        flex: 1;
-        text-align: left;
-    }
-    
-    .about-unik-image-container {
-        flex: 1;
-    }
 }
 
 /* Mejoras de accesibilidad en touch */
@@ -1844,7 +1387,7 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    max-width: 1200px;
+    max-width: 1370px;
     margin: 0 auto;
     gap: 20px;
     
@@ -1857,10 +1400,8 @@
 .adorno-imagen-e-a {
     position: absolute;
     bottom: 10px;
-    left: -15%;
-    top: auto;
-    right: auto;
-    width: 180px;
+    left: -105px;
+    top: 177px;
     height: 180px;
     background-image: url('ruta/a/tu-imagen.png');
     background-size: contain;
@@ -1904,10 +1445,10 @@
     display: flex;
     justify-content: left;
     align-items: left;
-    height: 80px;
+    height: 70px;
     
     /* Responsive margin y height */
-    margin-bottom: clamp(20px, 3vw, 25px);
+    margin-bottom: 0;
     height: clamp(60px, 8vw, 80px);
 }
 
@@ -1940,7 +1481,7 @@
     
     /* Responsive font size */
     font-size: clamp(1.2rem, 2.5vw, 1.5rem);
-    margin-bottom: clamp(3px, 1vw, 5px);
+    margin-bottom: 0;
 }
 
 .feature-card p {
@@ -1953,169 +1494,6 @@
     /* Responsive font size */
     font-size: clamp(0.85rem, 1.8vw, 0.95rem);
     line-height: 1.5;
-}
-
-/* MEDIA QUERIES RESPONSIVE */
-
-/* Desktop grande - mantener 4 columnas */
-@media (min-width: 1201px) {
-    .feature-card {
-        width: calc(25% - 15px);
-        flex: 1 1 calc(25% - 15px);
-    }
-}
-
-/* Tablet - 3 columnas */
-@media (max-width: 1200px) and (min-width: 901px) {
-    .feature-cards-container {
-        justify-content: center;
-    }
-    
-    .feature-card {
-        width: calc(33.333% - 15px);
-        flex: 1 1 calc(33.333% - 15px);
-        max-width: 300px;
-    }
-    
-    .feature-icon {
-        justify-content: center;
-    }
-    
-    .feature-card p {
-        text-align: center;
-    }
-}
-
-/* Tablet pequeña - 2 columnas */
-@media (max-width: 900px) and (min-width: 601px) {
-    .feature-cards-container {
-        justify-content: center;
-        gap: 20px;
-    }
-    
-    .feature-card {
-        width: calc(50% - 10px);
-        flex: 1 1 calc(50% - 10px);
-        max-width: 350px;
-    }
-    
-    .feature-icon {
-        justify-content: center;
-        margin-bottom: 20px;
-    }
-    
-    .feature-card h3,
-    .feature-card p {
-        text-align: center;
-    }
-}
-
-/* Mobile - 1 columna */
-@media (max-width: 600px) {
-    .feature-cards-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-        padding: 20px 10px;
-    }
-    
-    .feature-card {
-        width: 100%;
-        max-width: 400px;
-        flex: 0 0 auto;
-    }
-    
-    .feature-icon {
-        justify-content: center;
-    }
-    
-    .feature-card h3,
-    .feature-card p {
-        text-align: center;
-    }
-    
-    .feature-card:hover {
-        transform: scale(1.05);
-    }
-    
-    /* Desactivar adorno en móvil */
-    .adorno-imagen-e-a {
-        display: none !important;
-    }
-}
-
-/* Mobile pequeño - Ajustes finos */
-@media (max-width: 480px) {
-    .feature-cards-container {
-        gap: 12px;
-        padding: 15px 8px;
-    }
-    
-    .feature-card {
-        padding: 15px 12px;
-        max-width: 100%;
-    }
-    
-    .feature-icon {
-        height: 50px;
-        margin-bottom: 15px;
-    }
-    
-    .feature-icon img {
-        width: 50px;
-        height: 50px;
-    }
-    
-    .feature-card h3 {
-        font-size: 1.2rem;
-    }
-    
-    .feature-card p {
-        font-size: 0.85rem;
-        line-height: 1.4;
-    }
-}
-
-/* Para pantallas muy pequeñas */
-@media (max-width: 360px) {
-    .feature-cards-container {
-        padding: 12px 5px;
-        gap: 10px;
-    }
-    
-    .feature-card {
-        padding: 12px 10px;
-    }
-    
-    .feature-icon {
-        height: 45px;
-        margin-bottom: 12px;
-    }
-    
-    .feature-icon img {
-        width: 45px;
-        height: 45px;
-    }
-    
-    .feature-card h3 {
-        font-size: 1.1rem;
-    }
-    
-    .feature-card p {
-        font-size: 0.8rem;
-    }
-}
-
-/* Optimización para tablets en landscape */
-@media (max-width: 1024px) and (orientation: landscape) {
-    .feature-cards-container {
-        justify-content: space-around;
-    }
-    
-    .feature-card {
-        width: calc(33.333% - 15px);
-        flex: 1 1 calc(33.333% - 15px);
-    }
 }
 
 /* Mejoras de accesibilidad en touch */
@@ -2208,3 +1586,51 @@ body {
     background-color: var(--white);
     overflow-x: hidden;
 }
+
+/* ============================
+   RESPONSIVE — PANTALLAS MEDIANAS (tablets horizontales)
+   ============================ */
+   @media (max-width: 1400px){
+    .adorno-imagen-c-o{
+        display: none;
+    }
+
+    .adorno-imagen-p-f{
+        display: none;
+    }
+    
+    .adorno-imagen-e-a{
+        display: none;
+    }
+   }
+
+/* ============================
+   RESPONSIVE — TABLETS Y LAPTOPS PEQUEÑAS
+   ============================ */
+
+   @media (max-width: 991px) {
+    .two-column-section{
+        height: 100vh;
+    }
+
+    .left-image-container{
+        padding: 0;
+        height: 70vh;
+    }
+
+    .adorno-imagen-c-a1{
+        top: 92px;
+        width: 100px;
+    }
+
+    .adorno-imagen-ab-c4{
+        right: -24px;
+        width: 71px;
+        top: -36px;
+    }
+
+    .cursos-ofertas-section{
+        padding-top: 30px;
+    }
+
+   }
