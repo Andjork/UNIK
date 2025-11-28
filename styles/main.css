@@ -244,7 +244,7 @@
 /* LADO IZQUIERDO - 50% fijo */
 .left-side {
   height: 100%;
-    flex: 0 0 50%;
+    /* flex: 0 0 50%; */
     display: flex;
     flex-direction: column;
     background: #002C51;
@@ -1815,9 +1815,20 @@ body {
         flex-direction: column;
     }
 
+    .left-side{
+        display: block;
+    }
 
     .fixed-image{
         height: 45%;
+    }
+
+    .cta-button{
+        font-size: 1rem;
+    }
+
+    .cursos-ofertas-carousel-btn{
+        display: none;
     }
 
     .variable-title{
@@ -1833,7 +1844,7 @@ body {
     }
 
     .curso-oferta-card{
-        width: 206px;
+        width: 287px;
     }
 
     .titulo-linea1{
