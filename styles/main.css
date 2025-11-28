@@ -1708,7 +1708,7 @@ body {
     }
 
     .feature-card{
-        width: 350px;
+        width: 325px;
     }
 
     .title-container-una-experiencia{
@@ -1728,6 +1728,7 @@ body {
     }
     .aprender-bold{
         line-height: 0.7;
+        font-size: 70px;
     }
 
     .unik-logo-tar{
@@ -1756,11 +1757,17 @@ body {
     }
 
     .about-unik-image-wrapper{
-        width: 460px;
+        width: 340px;
+        height: 230px;
+    }
+
+    .about-unik-image{
+        height: 230px;
     }
 
     .cursos-ofertas-header h1 {
-        line-height: 65px;
+        line-height: 50px;
+        font-size: 48px;
     }
 
     .cursos-ofertas-header h1::after{
@@ -1784,7 +1791,12 @@ body {
     }
 
     .que-esperar-item {
-        width: 350px;
+        width: 325px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 5px;
     }
 
     .que-esperar-filas{
@@ -1792,12 +1804,63 @@ body {
     }
 
     .pfaq-main-title{
-        line-height: 60px;
+        line-height: 44px;
         margin-bottom: 0px;
         padding-bottom: 25px;
+        font-size: 43px;
     }
 
     .pfaq-grid{
         flex-direction: column;
     }
+
+    .fixed-image{
+        height: 56%;
+    }
+
+    .variable-title{
+        text-align: center;
+    }
+
+    .about-unik-btn{
+        font-size: 18px;
+    }
+
+    .cursos-ofertas-subtitle{
+        font-size: 14px;
+    }
+
+    .curso-oferta-card{
+        width: 206px;
+    }
+
+    .titulo-linea1{
+        line-height: 40px;
+    }
+
+    .main-title-una-experiencia{
+        font-weight: 700;
+    }
+
+    .feature-icon{
+        justify-content: center;
+    }
+
+    .feature-card h3{
+        text-align: center;
+    }
+
+    .feature-card p{
+        text-align: center;
+    }
+
+    .que-esperar-icono img{
+        width: 50px;
+        height: 50px;
+    }
+
+    .que-esperar-item h2{
+        font-size: 25px;
+    }
+
 }
