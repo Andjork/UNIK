@@ -261,6 +261,7 @@
     margin-bottom: 0;
 }
 
+
 .fixed-image {
   height: 80%;
     max-width: 100%;
@@ -1814,8 +1815,9 @@ body {
         flex-direction: column;
     }
 
+
     .fixed-image{
-        height: 56%;
+        height: 45%;
     }
 
     .variable-title{
