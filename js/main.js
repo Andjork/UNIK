@@ -101,6 +101,335 @@ window.addEventListener('load', () => {
 window.addEventListener('resize', updateCarouselButtons);
 
 
+// js/cursos-ofertas.js - VERSIÓN CON PUNTOS FUNCIONALES
+class CursosOfertasCarousel {
+    constructor() {
+        this.carousel = document.getElementById('cursosOfertasCarousel');
+        this.prevBtn = document.getElementById('cursosOfertasPrevBtn');
+        this.nextBtn = document.getElementById('cursosOfertasNextBtn');
+        this.dotsContainer = document.getElementById('cursosOfertasDots');
+        this.carouselContainer = this.carousel?.parentElement;
+        
+        if (!this.carousel || !this.prevBtn || !this.nextBtn || !this.carouselContainer) {
+            console.error('❌ Elementos del carrusel no encontrados');
+            return;
+        }
+
+        this.cards = Array.from(this.carousel.querySelectorAll('.curso-oferta-card'));
+        this.currentSlide = 0; // Usamos slide-based en lugar de position-based
+        this.cardsPerView = this.calculateCardsPerView();
+        this.cardWidth = this.calculateCardWidth();
+        this.gap = 25;
+        
+        console.log('📊 Configuración:', {
+            totalCards: this.cards.length,
+            cardsPerView: this.cardsPerView,
+            totalSlides: Math.ceil(this.cards.length / this.cardsPerView)
+        });
+
+        this.init();
+    }
+
+    init() {
+        this.setupCarouselStyles();
+        this.updateCardsLayout();
+        this.createDots();
+        this.setupEventListeners();
+        this.setupCardToggles();
+        this.setupResizeHandler();
+        this.updateNavigation();
+        this.updateCarousel();
+    }
+
+    setupCarouselStyles() {
+        this.carouselContainer.style.overflow = 'hidden';
+        this.carouselContainer.style.position = 'relative';
+        
+        this.carousel.style.display = 'flex';
+        this.carousel.style.transition = 'transform 0.5s ease';
+        this.carousel.style.willChange = 'transform';
+        this.carousel.style.gap = `${this.gap}px`;
+    }
+
+    calculateCardsPerView() {
+        const width = window.innerWidth;
+        if (width < 768) return 1;
+        if (width < 1024) return 2;
+        return 3;
+    }
+
+    calculateCardWidth() {
+        const containerWidth = this.carouselContainer.clientWidth;
+        return (containerWidth - ((this.cardsPerView - 1) * this.gap)) / this.cardsPerView;
+    }
+
+    updateCardsLayout() {
+        const cardWidth = this.calculateCardWidth();
+        
+        this.cards.forEach(card => {
+            card.style.flex = `0 0 ${cardWidth}px`;
+            card.style.minWidth = `${cardWidth}px`;
+        });
+    }
+
+    createDots() {
+        if (!this.dotsContainer) return;
+        
+        this.dotsContainer.innerHTML = '';
+        
+        // Calcular número de slides
+        const totalSlides = Math.ceil(this.cards.length / this.cardsPerView);
+        
+        console.log('🔘 Creando puntos:', {
+            totalSlides: totalSlides,
+            cardsLength: this.cards.length,
+            cardsPerView: this.cardsPerView
+        });
+        
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('button');
+            dot.className = `cursos-oferta-dot ${i === 0 ? 'active' : ''}`;
+            dot.type = 'button';
+            dot.setAttribute('aria-label', `Ir al slide ${i + 1}`);
+            dot.setAttribute('data-slide', i);
+            
+            // Crear span visual para el punto
+            const dotVisual = document.createElement('span');
+            dotVisual.style.display = 'block';
+            dotVisual.style.width = '10px';
+            dotVisual.style.height = '10px';
+            dotVisual.style.borderRadius = '50%';
+            dotVisual.style.backgroundColor = i === 0 ? '#007bff' : '#ddd';
+            dotVisual.style.transition = 'background-color 0.3s ease';
+            
+            dot.appendChild(dotVisual);
+            dot.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.goToSlide(i);
+            });
+            
+            this.dotsContainer.appendChild(dot);
+        }
+    }
+
+    setupEventListeners() {
+        this.prevBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.prevSlide();
+        });
+        
+        this.nextBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.nextSlide();
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') this.prevSlide();
+            if (e.key === 'ArrowRight') this.nextSlide();
+        });
+    }
+
+    setupCardToggles() {
+        this.cards.forEach(card => {
+            const toggleBtn = card.querySelector('.curso-oferta-btn-toggle');
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    this.toggleCard(card);
+                });
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.curso-oferta-card')) {
+                this.collapseAllCards();
+            }
+        });
+    }
+
+    setupResizeHandler() {
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                this.handleResize();
+            }, 250);
+        });
+    }
+
+    handleResize() {
+        const newCardsPerView = this.calculateCardsPerView();
+        
+        if (newCardsPerView !== this.cardsPerView) {
+            this.cardsPerView = newCardsPerView;
+            this.cardWidth = this.calculateCardWidth();
+            
+            // Recalcular slide actual para evitar desbordamiento
+            const totalSlides = Math.ceil(this.cards.length / this.cardsPerView);
+            this.currentSlide = Math.min(this.currentSlide, totalSlides - 1);
+            
+            this.updateCardsLayout();
+            this.createDots();
+            this.updateCarousel();
+            this.updateNavigation();
+        }
+    }
+
+    toggleCard(card) {
+        const isExpanded = card.getAttribute('data-card-state') === 'expanded';
+        
+        if (isExpanded) {
+            this.collapseCard(card);
+        } else {
+            this.collapseAllCards();
+            this.expandCard(card);
+        }
+    }
+
+    expandCard(card) {
+        card.setAttribute('data-card-state', 'expanded');
+        const toggleBtn = card.querySelector('.curso-oferta-btn-toggle');
+        if (toggleBtn) {
+            toggleBtn.textContent = 'Volver';
+            toggleBtn.setAttribute('data-action', 'compact');
+        }
+    }
+
+    collapseCard(card) {
+        card.setAttribute('data-card-state', 'compact');
+        const toggleBtn = card.querySelector('.curso-oferta-btn-toggle');
+        if (toggleBtn) {
+            toggleBtn.textContent = 'Conoce más';
+            toggleBtn.setAttribute('data-action', 'expand');
+        }
+    }
+
+    collapseAllCards() {
+        this.cards.forEach(card => this.collapseCard(card));
+    }
+
+    calculateMaxSlide() {
+        return Math.max(0, Math.ceil(this.cards.length / this.cardsPerView) - 1);
+    }
+
+    prevSlide() {
+        if (this.currentSlide > 0) {
+            this.currentSlide--;
+            this.updateCarousel();
+            this.updateNavigation();
+        }
+    }
+
+    nextSlide() {
+        const maxSlide = this.calculateMaxSlide();
+        if (this.currentSlide < maxSlide) {
+            this.currentSlide++;
+            this.updateCarousel();
+            this.updateNavigation();
+        }
+    }
+
+    goToSlide(slideIndex) {
+        const maxSlide = this.calculateMaxSlide();
+        if (slideIndex >= 0 && slideIndex <= maxSlide) {
+            this.currentSlide = slideIndex;
+            console.log('🎯 Yendo al slide:', slideIndex);
+            this.updateCarousel();
+            this.updateNavigation();
+        }
+    }
+
+    updateCarousel() {
+        console.log('🔄 Actualizando carrusel al slide:', this.currentSlide);
+        
+        // Calcular desplazamiento basado en slides completos
+        const scrollAmount = this.currentSlide * (this.cardWidth + this.gap) * this.cardsPerView;
+        
+        console.log('📏 Desplazamiento:', {
+            slide: this.currentSlide,
+            cardWidth: this.cardWidth,
+            cardsPerView: this.cardsPerView,
+            scrollAmount: scrollAmount
+        });
+        
+        this.carousel.style.transform = `translateX(-${scrollAmount}px)`;
+        this.updateDots();
+        this.collapseAllCards();
+    }
+
+    updateNavigation() {
+        const maxSlide = this.calculateMaxSlide();
+        
+        this.prevBtn.style.opacity = this.currentSlide > 0 ? '1' : '0.5';
+        this.prevBtn.style.pointerEvents = this.currentSlide > 0 ? 'auto' : 'none';
+        
+        this.nextBtn.style.opacity = this.currentSlide < maxSlide ? '1' : '0.5';
+        this.nextBtn.style.pointerEvents = this.currentSlide < maxSlide ? 'auto' : 'none';
+        
+        console.log('🎛️ Navegación:', {
+            currentSlide: this.currentSlide,
+            maxSlide: maxSlide,
+            prevEnabled: this.currentSlide > 0,
+            nextEnabled: this.currentSlide < maxSlide
+        });
+    }
+
+    updateDots() {
+        if (!this.dotsContainer) return;
+        
+        const dots = this.dotsContainer.querySelectorAll('.cursos-oferta-dot');
+        const totalSlides = Math.ceil(this.cards.length / this.cardsPerView);
+        
+        console.log('🔘 Actualizando puntos:', {
+            currentSlide: this.currentSlide,
+            totalDots: dots.length,
+            totalSlides: totalSlides
+        });
+        
+        dots.forEach((dot, index) => {
+            const isActive = index === this.currentSlide;
+            const dotVisual = dot.querySelector('span');
+            
+            if (dotVisual) {
+                dotVisual.style.backgroundColor = isActive ? '#007bff' : '#ddd';
+                dotVisual.style.transform = isActive ? 'scale(1.2)' : 'scale(1)';
+            }
+            
+            dot.classList.toggle('active', isActive);
+            dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+        });
+    }
+}
+
+// DEBUG: Verificar si los elementos existen
+console.log('🔍 Buscando elementos del carrusel:');
+console.log('Carrusel:', document.getElementById('cursosOfertasCarousel'));
+console.log('Botón anterior:', document.getElementById('cursosOfertasPrevBtn'));
+console.log('Botón siguiente:', document.getElementById('cursosOfertasNextBtn'));
+console.log('Dots:', document.getElementById('cursosOfertasDots'));
+
+// Inicialización con verificación
+function initCursosOfertas() {
+    const carousel = document.getElementById('cursosOfertasCarousel');
+    const prevBtn = document.getElementById('cursosOfertasPrevBtn');
+    const nextBtn = document.getElementById('cursosOfertasNextBtn');
+    
+    if (carousel && prevBtn && nextBtn) {
+        console.log('✅ Todos los elementos encontrados, inicializando...');
+        window.cursosOfertas = new CursosOfertasCarousel();
+    } else {
+        console.log('⏳ Esperando elementos...', {carousel, prevBtn, nextBtn});
+        setTimeout(initCursosOfertas, 100);
+    }
+}
+
+// Iniciar cuando el DOM esté listo
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCursosOfertas);
+} else {
+    initCursosOfertas();
+}
 
 // Carrusel Pantalla Completa
 // Datos para el carrusel

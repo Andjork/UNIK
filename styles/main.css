@@ -244,7 +244,7 @@
 /* LADO IZQUIERDO - 50% fijo */
 .left-side {
   height: 100%;
-    /* flex: 0 0 50%; */
+    flex: 0 0 50%;
     display: flex;
     flex-direction: column;
     background: #002C51;
@@ -989,6 +989,115 @@
     opacity: 0.5;
     cursor: not-allowed;
     transform: none;
+}
+
+/* PUNTOS DE PAGINACIÓN - VERSIÓN MEJORADA */
+.cursos-ofertas-pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    padding: 1rem 0;
+}
+
+.cursos-ofertas-dots {
+    display: flex;
+    gap: 1rem; /* Más espacio entre puntos */
+    align-items: center;
+    background: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
+    backdrop-filter: blur(10px);
+}
+
+.cursos-oferta-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #002C51; /* Gris claro para inactivos */
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    padding: 0;
+    position: relative;
+}
+
+.cursos-oferta-dot:hover {
+    background: #9ca3af;
+    transform: scale(1.3);
+    border-color: var(--uniajc-blue);
+}
+
+.cursos-oferta-dot.active {
+    background: var(--uniajc-blue); /* Azul brillante */
+    border: 2px solid gray; /* Borde blanco para contraste */
+    transform: scale(1.5); /* Más grande */
+    box-shadow: 0 0 0 3px rgba(0, 82, 155, 0.3); /* Sombra exterior */
+}
+
+/* Efecto de pulso para el punto activo */
+.cursos-oferta-dot.active::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 2px solid var(--uniajc-blue);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+/* Estados de focus para accesibilidad */
+.cursos-oferta-dot:focus {
+    outline: 2px solid var(--uniajc-blue);
+    outline-offset: 2px;
+}
+
+/* 📱 SOLO MÓVILES (hasta 767px) - PUNTOS VISIBLES */
+@media (max-width: 767px) {
+    .cursos-ofertas-pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+        padding: 1rem 0;
+    }
+    
+    .cursos-ofertas-dots {
+        gap: 0.8rem;
+        padding: 0.5rem 1rem;
+    }
+    
+    .cursos-oferta-dot {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .cursos-oferta-dot.active {
+        transform: scale(1.4);
+    }
+}
+
+/* 📟 TABLETS Y DESKTOP (768px+) - PUNTOS OCULTOS */
+@media (min-width: 768px) {
+    .cursos-ofertas-pagination {
+        display: none;
+    }
 }
 
 /* SECCIÓN PREGUNTAS FRECUENTES - TARJETAS COMPACTAS */
@@ -1877,3 +1986,4 @@ body {
     }
 
 }
+
