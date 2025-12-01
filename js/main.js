@@ -100,336 +100,367 @@ window.addEventListener('load', () => {
 // Recalcular en resize
 window.addEventListener('resize', updateCarouselButtons);
 
+// cursos-ofertas.js - VERSIÓN CON DESPLAZAMIENTO POR TARJETA
 
-// js/cursos-ofertas.js - VERSIÓN CON PUNTOS FUNCIONALES
-class CursosOfertasCarousel {
-    constructor() {
-        this.carousel = document.getElementById('cursosOfertasCarousel');
-        this.prevBtn = document.getElementById('cursosOfertasPrevBtn');
-        this.nextBtn = document.getElementById('cursosOfertasNextBtn');
-        this.dotsContainer = document.getElementById('cursosOfertasDots');
-        this.carouselContainer = this.carousel?.parentElement;
+// ===== 1. FUNCIONALIDAD TOGGLE DE CARDS =====
+document.addEventListener('click', function(e) {
+    const toggleBtn = e.target.closest('.curso-oferta-btn-toggle');
+    
+    if (toggleBtn) {
+        e.preventDefault();
+        e.stopPropagation();
         
-        if (!this.carousel || !this.prevBtn || !this.nextBtn || !this.carouselContainer) {
-            console.error('❌ Elementos del carrusel no encontrados');
-            return;
+        const action = toggleBtn.getAttribute('data-action');
+        const card = toggleBtn.closest('.curso-oferta-card');
+        
+        if (action === 'expand') {
+            // Cerrar otras tarjetas expandidas
+            document.querySelectorAll('.curso-oferta-card[data-card-state="expanded"]').forEach(otherCard => {
+                if (otherCard !== card) {
+                    otherCard.setAttribute('data-card-state', 'compact');
+                    const otherBtn = otherCard.querySelector('.curso-oferta-btn-toggle');
+                    if (otherBtn) {
+                        otherBtn.textContent = 'Conoce más';
+                        otherBtn.setAttribute('data-action', 'expand');
+                    }
+                }
+            });
+            
+            // Expandir esta tarjeta
+            card.setAttribute('data-card-state', 'expanded');
+            toggleBtn.textContent = 'Volver';
+            toggleBtn.setAttribute('data-action', 'compact');
+            
+        } else if (action === 'compact') {
+            card.setAttribute('data-card-state', 'compact');
+            toggleBtn.textContent = 'Conoce más';
+            toggleBtn.setAttribute('data-action', 'expand');
         }
-
-        this.cards = Array.from(this.carousel.querySelectorAll('.curso-oferta-card'));
-        this.currentSlide = 0; // Usamos slide-based en lugar de position-based
-        this.cardsPerView = this.calculateCardsPerView();
-        this.cardWidth = this.calculateCardWidth();
-        this.gap = 25;
-        
-        console.log('📊 Configuración:', {
-            totalCards: this.cards.length,
-            cardsPerView: this.cardsPerView,
-            totalSlides: Math.ceil(this.cards.length / this.cardsPerView)
-        });
-
-        this.init();
+        return;
     }
-
-    init() {
-        this.setupCarouselStyles();
-        this.updateCardsLayout();
-        this.createDots();
-        this.setupEventListeners();
-        this.setupCardToggles();
-        this.setupResizeHandler();
-        this.updateNavigation();
-        this.updateCarousel();
+    
+    // Cerrar tarjeta al hacer clic fuera
+    const expandedCard = document.querySelector('.curso-oferta-card[data-card-state="expanded"]');
+    if (expandedCard && !e.target.closest('.curso-oferta-card')) {
+        expandedCard.setAttribute('data-card-state', 'compact');
+        const expandedBtn = expandedCard.querySelector('.curso-oferta-btn-toggle');
+        if (expandedBtn) {
+            expandedBtn.textContent = 'Conoce más';
+            expandedBtn.setAttribute('data-action', 'expand');
+        }
     }
+});
 
-    setupCarouselStyles() {
-        this.carouselContainer.style.overflow = 'hidden';
-        this.carouselContainer.style.position = 'relative';
-        
-        this.carousel.style.display = 'flex';
-        this.carousel.style.transition = 'transform 0.5s ease';
-        this.carousel.style.willChange = 'transform';
-        this.carousel.style.gap = `${this.gap}px`;
+// ===== 2. CARRUSEL QUE SE MUEVE TARJETA POR TARJETA =====
+document.addEventListener('DOMContentLoaded', function() {
+    // Elementos básicos
+    const carousel = document.getElementById('cursosOfertasCarousel');
+    const prevBtn = document.getElementById('cursosOfertasPrevBtn');
+    const nextBtn = document.getElementById('cursosOfertasNextBtn');
+    const dotsContainer = document.getElementById('cursosOfertasDots');
+    
+    if (!carousel || !prevBtn || !nextBtn) {
+        console.warn('⚠️ Elementos del carrusel no encontrados');
+        return;
     }
-
-    calculateCardsPerView() {
+    
+    // Configuración
+    const cards = Array.from(carousel.querySelectorAll('.curso-oferta-card'));
+    let currentCardIndex = 0; // Índice de la tarjeta actualmente visible a la izquierda
+    let cardsPerView = getCardsPerView();
+    let cardWidth = 0;
+    const gap = 25;
+    
+    console.log('🎯 Carrusel detectado:', {
+        totalCards: cards.length,
+        cardsPerView: cardsPerView,
+        gap: gap
+    });
+    
+    // Inicializar
+    initCarousel();
+    
+    // ===== FUNCIONES =====
+    
+    function getCardsPerView() {
         const width = window.innerWidth;
         if (width < 768) return 1;
         if (width < 1024) return 2;
         return 3;
     }
-
-    calculateCardWidth() {
-        const containerWidth = this.carouselContainer.clientWidth;
-        return (containerWidth - ((this.cardsPerView - 1) * this.gap)) / this.cardsPerView;
+    
+    function calculateCardWidth() {
+        const container = carousel.parentElement;
+        const containerWidth = container.clientWidth;
+        const totalGap = (cardsPerView - 1) * gap;
+        cardWidth = (containerWidth - totalGap) / cardsPerView;
+        return cardWidth;
     }
-
-    updateCardsLayout() {
-        const cardWidth = this.calculateCardWidth();
+    
+    function initCarousel() {
+        // Calcular ancho de tarjeta
+        calculateCardWidth();
         
-        this.cards.forEach(card => {
+        // Aplicar estilos al carrusel
+        carousel.style.display = 'flex';
+        carousel.style.gap = `${gap}px`;
+        carousel.style.overflowX = 'auto';
+        carousel.style.scrollBehavior = 'smooth';
+        carousel.style.scrollSnapType = 'x mandatory';
+        
+        // Ocultar scrollbar
+        carousel.style.scrollbarWidth = 'none';
+        carousel.style.msOverflowStyle = 'none';
+        
+        // Aplicar ancho a las tarjetas
+        cards.forEach(card => {
             card.style.flex = `0 0 ${cardWidth}px`;
             card.style.minWidth = `${cardWidth}px`;
+            card.style.scrollSnapAlign = 'start';
         });
+        
+        // Crear puntos
+        createDots();
+        
+        // Actualizar navegación
+        updateNavigation();
+        
+        // Posicionar en la primera tarjeta
+        scrollToCard(currentCardIndex);
     }
-
-    createDots() {
-        if (!this.dotsContainer) return;
+    
+    function createDots() {
+        if (!dotsContainer) return;
         
-        this.dotsContainer.innerHTML = '';
+        // Limpiar
+        dotsContainer.innerHTML = '';
         
-        // Calcular número de slides
-        const totalSlides = Math.ceil(this.cards.length / this.cardsPerView);
+        // Calcular número de puntos (una tarjeta por punto en móvil, menos en desktop)
+        let totalDots;
         
-        console.log('🔘 Creando puntos:', {
-            totalSlides: totalSlides,
-            cardsLength: this.cards.length,
-            cardsPerView: this.cardsPerView
-        });
+        if (cardsPerView === 1) {
+            // Móvil: un punto por cada tarjeta
+            totalDots = cards.length;
+        } else {
+            // Tablet/Desktop: un punto por cada "slide" (grupo de tarjetas)
+            totalDots = Math.ceil(cards.length / cardsPerView);
+        }
         
-        for (let i = 0; i < totalSlides; i++) {
+        console.log('🔘 Creando puntos:', totalDots, 'cardsPerView:', cardsPerView);
+        
+        for (let i = 0; i < totalDots; i++) {
             const dot = document.createElement('button');
-            dot.className = `cursos-oferta-dot ${i === 0 ? 'active' : ''}`;
+            dot.className = 'cursos-oferta-dot';
             dot.type = 'button';
-            dot.setAttribute('aria-label', `Ir al slide ${i + 1}`);
-            dot.setAttribute('data-slide', i);
+            dot.setAttribute('data-index', i);
+            dot.setAttribute('aria-label', `Ir a la posición ${i + 1}`);
             
-            // Crear span visual para el punto
-            const dotVisual = document.createElement('span');
-            dotVisual.style.display = 'block';
-            dotVisual.style.width = '10px';
-            dotVisual.style.height = '10px';
-            dotVisual.style.borderRadius = '50%';
-            dotVisual.style.backgroundColor = i === 0 ? '#007bff' : '#ddd';
-            dotVisual.style.transition = 'background-color 0.3s ease';
-            
-            dot.appendChild(dotVisual);
-            dot.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.goToSlide(i);
+            // Estilos básicos
+            Object.assign(dot.style, {
+                width: '14px',
+                height: '14px',
+                borderRadius: '50%',
+                backgroundColor: i === 0 ? '#00529B' : '#002C51',
+                border: i === 0 ? '2px solid white' : 'none',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                margin: '0 5px',
+                padding: '0'
             });
             
-            this.dotsContainer.appendChild(dot);
+            dot.addEventListener('click', function(e) {
+                e.preventDefault();
+                goToPosition(i);
+            });
+            
+            dotsContainer.appendChild(dot);
         }
     }
-
-    setupEventListeners() {
-        this.prevBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            this.prevSlide();
-        });
+    
+    function updateDots() {
+        if (!dotsContainer) return;
         
-        this.nextBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            this.nextSlide();
-        });
+        const dots = dotsContainer.querySelectorAll('.cursos-oferta-dot');
+        let activeDotIndex;
         
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') this.prevSlide();
-            if (e.key === 'ArrowRight') this.nextSlide();
-        });
-    }
-
-    setupCardToggles() {
-        this.cards.forEach(card => {
-            const toggleBtn = card.querySelector('.curso-oferta-btn-toggle');
-            if (toggleBtn) {
-                toggleBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    this.toggleCard(card);
-                });
-            }
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.curso-oferta-card')) {
-                this.collapseAllCards();
-            }
-        });
-    }
-
-    setupResizeHandler() {
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                this.handleResize();
-            }, 250);
-        });
-    }
-
-    handleResize() {
-        const newCardsPerView = this.calculateCardsPerView();
-        
-        if (newCardsPerView !== this.cardsPerView) {
-            this.cardsPerView = newCardsPerView;
-            this.cardWidth = this.calculateCardWidth();
-            
-            // Recalcular slide actual para evitar desbordamiento
-            const totalSlides = Math.ceil(this.cards.length / this.cardsPerView);
-            this.currentSlide = Math.min(this.currentSlide, totalSlides - 1);
-            
-            this.updateCardsLayout();
-            this.createDots();
-            this.updateCarousel();
-            this.updateNavigation();
-        }
-    }
-
-    toggleCard(card) {
-        const isExpanded = card.getAttribute('data-card-state') === 'expanded';
-        
-        if (isExpanded) {
-            this.collapseCard(card);
+        if (cardsPerView === 1) {
+            // Móvil: punto activo = índice de tarjeta actual
+            activeDotIndex = currentCardIndex;
         } else {
-            this.collapseAllCards();
-            this.expandCard(card);
+            // Tablet/Desktop: punto activo = "slide" actual
+            activeDotIndex = Math.floor(currentCardIndex / cardsPerView);
         }
-    }
-
-    expandCard(card) {
-        card.setAttribute('data-card-state', 'expanded');
-        const toggleBtn = card.querySelector('.curso-oferta-btn-toggle');
-        if (toggleBtn) {
-            toggleBtn.textContent = 'Volver';
-            toggleBtn.setAttribute('data-action', 'compact');
-        }
-    }
-
-    collapseCard(card) {
-        card.setAttribute('data-card-state', 'compact');
-        const toggleBtn = card.querySelector('.curso-oferta-btn-toggle');
-        if (toggleBtn) {
-            toggleBtn.textContent = 'Conoce más';
-            toggleBtn.setAttribute('data-action', 'expand');
-        }
-    }
-
-    collapseAllCards() {
-        this.cards.forEach(card => this.collapseCard(card));
-    }
-
-    calculateMaxSlide() {
-        return Math.max(0, Math.ceil(this.cards.length / this.cardsPerView) - 1);
-    }
-
-    prevSlide() {
-        if (this.currentSlide > 0) {
-            this.currentSlide--;
-            this.updateCarousel();
-            this.updateNavigation();
-        }
-    }
-
-    nextSlide() {
-        const maxSlide = this.calculateMaxSlide();
-        if (this.currentSlide < maxSlide) {
-            this.currentSlide++;
-            this.updateCarousel();
-            this.updateNavigation();
-        }
-    }
-
-    goToSlide(slideIndex) {
-        const maxSlide = this.calculateMaxSlide();
-        if (slideIndex >= 0 && slideIndex <= maxSlide) {
-            this.currentSlide = slideIndex;
-            console.log('🎯 Yendo al slide:', slideIndex);
-            this.updateCarousel();
-            this.updateNavigation();
-        }
-    }
-
-    updateCarousel() {
-        console.log('🔄 Actualizando carrusel al slide:', this.currentSlide);
-        
-        // Calcular desplazamiento basado en slides completos
-        const scrollAmount = this.currentSlide * (this.cardWidth + this.gap) * this.cardsPerView;
-        
-        console.log('📏 Desplazamiento:', {
-            slide: this.currentSlide,
-            cardWidth: this.cardWidth,
-            cardsPerView: this.cardsPerView,
-            scrollAmount: scrollAmount
-        });
-        
-        this.carousel.style.transform = `translateX(-${scrollAmount}px)`;
-        this.updateDots();
-        this.collapseAllCards();
-    }
-
-    updateNavigation() {
-        const maxSlide = this.calculateMaxSlide();
-        
-        this.prevBtn.style.opacity = this.currentSlide > 0 ? '1' : '0.5';
-        this.prevBtn.style.pointerEvents = this.currentSlide > 0 ? 'auto' : 'none';
-        
-        this.nextBtn.style.opacity = this.currentSlide < maxSlide ? '1' : '0.5';
-        this.nextBtn.style.pointerEvents = this.currentSlide < maxSlide ? 'auto' : 'none';
-        
-        console.log('🎛️ Navegación:', {
-            currentSlide: this.currentSlide,
-            maxSlide: maxSlide,
-            prevEnabled: this.currentSlide > 0,
-            nextEnabled: this.currentSlide < maxSlide
-        });
-    }
-
-    updateDots() {
-        if (!this.dotsContainer) return;
-        
-        const dots = this.dotsContainer.querySelectorAll('.cursos-oferta-dot');
-        const totalSlides = Math.ceil(this.cards.length / this.cardsPerView);
-        
-        console.log('🔘 Actualizando puntos:', {
-            currentSlide: this.currentSlide,
-            totalDots: dots.length,
-            totalSlides: totalSlides
-        });
         
         dots.forEach((dot, index) => {
-            const isActive = index === this.currentSlide;
-            const dotVisual = dot.querySelector('span');
+            const isActive = index === activeDotIndex;
             
-            if (dotVisual) {
-                dotVisual.style.backgroundColor = isActive ? '#007bff' : '#ddd';
-                dotVisual.style.transform = isActive ? 'scale(1.2)' : 'scale(1)';
-            }
+            dot.style.backgroundColor = isActive ? '#00529B' : '#002C51';
+            dot.style.border = isActive ? '2px solid white' : 'none';
+            dot.style.transform = isActive ? 'scale(1.3)' : 'scale(1)';
             
-            dot.classList.toggle('active', isActive);
+            // Actualizar atributo ARIA
             dot.setAttribute('aria-current', isActive ? 'true' : 'false');
         });
     }
-}
-
-// DEBUG: Verificar si los elementos existen
-console.log('🔍 Buscando elementos del carrusel:');
-console.log('Carrusel:', document.getElementById('cursosOfertasCarousel'));
-console.log('Botón anterior:', document.getElementById('cursosOfertasPrevBtn'));
-console.log('Botón siguiente:', document.getElementById('cursosOfertasNextBtn'));
-console.log('Dots:', document.getElementById('cursosOfertasDots'));
-
-// Inicialización con verificación
-function initCursosOfertas() {
-    const carousel = document.getElementById('cursosOfertasCarousel');
-    const prevBtn = document.getElementById('cursosOfertasPrevBtn');
-    const nextBtn = document.getElementById('cursosOfertasNextBtn');
     
-    if (carousel && prevBtn && nextBtn) {
-        console.log('✅ Todos los elementos encontrados, inicializando...');
-        window.cursosOfertas = new CursosOfertasCarousel();
-    } else {
-        console.log('⏳ Esperando elementos...', {carousel, prevBtn, nextBtn});
-        setTimeout(initCursosOfertas, 100);
+    function scrollToCard(cardIndex) {
+        // Asegurar que el índice esté dentro de los límites
+        const maxIndex = Math.max(0, cards.length - cardsPerView);
+        currentCardIndex = Math.min(Math.max(0, cardIndex), maxIndex);
+        
+        // Calcular desplazamiento: tarjeta actual * (ancho de tarjeta + gap)
+        const scrollAmount = currentCardIndex * (cardWidth + gap);
+        
+        console.log('🔄 Moviendo a tarjeta:', {
+            index: currentCardIndex,
+            cardWidth: cardWidth,
+            gap: gap,
+            scrollAmount: scrollAmount
+        });
+        
+        carousel.scrollTo({
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
+        
+        // Actualizar después de la animación
+        setTimeout(() => {
+            updateNavigation();
+            updateDots();
+        }, 300);
     }
-}
+    
+    function goToPosition(position) {
+        let targetCardIndex;
+        
+        if (cardsPerView === 1) {
+            // Móvil: posición = índice de tarjeta
+            targetCardIndex = position;
+        } else {
+            // Tablet/Desktop: posición * cardsPerView = primera tarjeta del grupo
+            targetCardIndex = position * cardsPerView;
+        }
+        
+        scrollToCard(targetCardIndex);
+    }
+    
+    function moveCarousel(direction) {
+        const maxIndex = Math.max(0, cards.length - cardsPerView);
+        
+        if (direction === 'prev' && currentCardIndex > 0) {
+            // Retroceder UNA tarjeta
+            scrollToCard(currentCardIndex - 1);
+        } else if (direction === 'next' && currentCardIndex < maxIndex) {
+            // Avanzar UNA tarjeta
+            scrollToCard(currentCardIndex + 1);
+        }
+    }
+    
+    function updateNavigation() {
+        const maxIndex = Math.max(0, cards.length - cardsPerView);
+        
+        // Botón anterior
+        if (currentCardIndex > 0) {
+            prevBtn.style.opacity = '1';
+            prevBtn.style.pointerEvents = 'auto';
+            prevBtn.disabled = false;
+        } else {
+            prevBtn.style.opacity = '0.5';
+            prevBtn.style.pointerEvents = 'none';
+            prevBtn.disabled = true;
+        }
+        
+        // Botón siguiente
+        if (currentCardIndex < maxIndex) {
+            nextBtn.style.opacity = '1';
+            nextBtn.style.pointerEvents = 'auto';
+            nextBtn.disabled = false;
+        } else {
+            nextBtn.style.opacity = '0.5';
+            nextBtn.style.pointerEvents = 'none';
+            nextBtn.disabled = true;
+        }
+        
+        console.log('🎛️ Navegación:', {
+            currentIndex: currentCardIndex,
+            maxIndex: maxIndex,
+            prevEnabled: currentCardIndex > 0,
+            nextEnabled: currentCardIndex < maxIndex
+        });
+    }
+    
+    // ===== EVENT LISTENERS =====
+    
+    prevBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        moveCarousel('prev');
+    });
+    
+    nextBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        moveCarousel('next');
+    });
+    
+    // Actualizar navegación al hacer scroll manual
+    carousel.addEventListener('scroll', function() {
+        const scrollLeft = carousel.scrollLeft;
+        // Calcular qué tarjeta está visible en la posición izquierda
+        const estimatedIndex = Math.round(scrollLeft / (cardWidth + gap));
+        
+        if (estimatedIndex !== currentCardIndex) {
+            currentCardIndex = Math.min(estimatedIndex, cards.length - cardsPerView);
+            updateNavigation();
+            updateDots();
+        }
+    });
+    
+    // Redimensionamiento
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+            const newCardsPerView = getCardsPerView();
+            
+            if (newCardsPerView !== cardsPerView) {
+                console.log('📱 Cambiando de', cardsPerView, 'a', newCardsPerView, 'tarjetas por vista');
+                
+                cardsPerView = newCardsPerView;
+                calculateCardWidth();
+                
+                // Reaplicar estilos
+                cards.forEach(card => {
+                    card.style.flex = `0 0 ${cardWidth}px`;
+                    card.style.minWidth = `${cardWidth}px`;
+                });
+                
+                // Recrear puntos
+                createDots();
+                
+                // Ajustar índice actual si es necesario
+                const maxIndex = Math.max(0, cards.length - cardsPerView);
+                if (currentCardIndex > maxIndex) {
+                    currentCardIndex = maxIndex;
+                }
+                
+                // Volver a posicionar
+                scrollToCard(currentCardIndex);
+            }
+        }, 250);
+    });
+    
+    // Forzar visibilidad de puntos
+    if (dotsContainer) {
+        const pagination = dotsContainer.closest('.cursos-ofertas-pagination');
+        if (pagination) {
+            pagination.style.display = 'flex';
+            pagination.style.justifyContent = 'center';
+            pagination.style.marginTop = '2rem';
+        }
+    }
+    
+    console.log('✅ Carrusel inicializado - Movimiento: TARJETA POR TARJETA');
+});
 
-// Iniciar cuando el DOM esté listo
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCursosOfertas);
-} else {
-    initCursosOfertas();
-}
 
 // Carrusel Pantalla Completa
 // Datos para el carrusel
