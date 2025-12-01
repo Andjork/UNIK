@@ -995,7 +995,7 @@
 .cursos-ofertas-pagination {
     display: flex;
     justify-content: center;
-    margin-top: 2rem;
+    margin-top: 0;
     padding: 1rem 0;
 }
 
