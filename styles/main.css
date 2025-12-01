@@ -1029,11 +1029,11 @@
     }
     
     .cursos-oferta-dot {
-        width: 10px;
-        height: 10px;
+        width: 1px;
+        height: 1px;
         border-radius: 50%;
         background: #002C51;
-        border: 2px solid transparent;
+        border: 1px solid transparent;
         cursor: pointer;
         transition: all 0.4s ease;
         padding: 0;
