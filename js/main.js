@@ -128,7 +128,7 @@ document.addEventListener('click', function(e) {
             
             // Expandir esta tarjeta
             card.setAttribute('data-card-state', 'expanded');
-            toggleBtn.textContent = 'Volver';
+            /* toggleBtn.textContent = 'Volver'; */
             toggleBtn.setAttribute('data-action', 'compact');
             
         } else if (action === 'compact') {
