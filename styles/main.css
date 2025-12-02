@@ -1280,7 +1280,7 @@
 .adorno-imagen-c-o {
     position: absolute;
     bottom: -8%;
-    right: -19%;
+    right: -20%;
     width: 180px;
     height: 180px;
     background-image: url('ruta/a/tu-imagen.png');
@@ -1483,7 +1483,7 @@
 .adorno-imagen-e-a {
     position: absolute;
     bottom: 10px;
-    left: -237px;
+    left: -245px;
     top: 177px;
     height: 230px;
     background-image: url('ruta/a/tu-imagen.png');
