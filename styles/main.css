@@ -1280,7 +1280,7 @@
 .adorno-imagen-c-o {
     position: absolute;
     bottom: -8%;
-    right: -20%;
+    right: -22%;
     width: 180px;
     height: 180px;
     background-image: url('ruta/a/tu-imagen.png');
@@ -1483,7 +1483,7 @@
 .adorno-imagen-e-a {
     position: absolute;
     bottom: 10px;
-    left: -245px;
+    left: -267px;
     top: 177px;
     height: 230px;
     background-image: url('ruta/a/tu-imagen.png');
@@ -1677,13 +1677,14 @@ body {
     }
 
     .adorno-imagen-p-f{
-        height: 130px;
+        display: none;
     }
     
     .adorno-imagen-e-a{
         display: none;
     }
 }
+
 
 /* RESPONSIVE — TABLETS Y LAPTOPS PEQUEÑAS */
 @media (max-width: 991px){
