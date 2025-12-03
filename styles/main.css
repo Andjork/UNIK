@@ -1671,6 +1671,21 @@ body {
 }
 
 /* RESPONSIVE — PANTALLAS MEDIANAS (tablets horizontales) */
+@media (max-width: 2560px) and (min-width: 1921px) {
+    
+    /*primera imagen post carusel*/
+    .adorno-imagen-e-a{
+        left: -43%;
+    }
+
+    /*segunda imagen post carusel*/
+    .adorno-imagen-c-o{
+        right: -40%;
+    }
+        
+}
+
+/* RESPONSIVE — PANTALLAS MEDIANAS (tablets horizontales) */
 @media (max-width: 1700px) and (min-width: 992px) {
     
     /*primera imagen post carusel*/
