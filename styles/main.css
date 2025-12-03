@@ -1675,12 +1675,12 @@ body {
     
     /*primera imagen post carusel*/
     .adorno-imagen-e-a{
-        left: -43%;
+        left: -590px;
     }
 
     /*segunda imagen post carusel*/
     .adorno-imagen-c-o{
-        right: -46%;
+        right: -610px;
     }
         
 }
