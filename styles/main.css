@@ -1670,7 +1670,20 @@ body {
     overflow-x: hidden;
 }
 
-/* RESPONSIVE — PANTALLAS MEDIANAS (tablets horizontales) */
+@media (max-width: 3840px) and (min-width: 2565px) {
+    
+    /*primera imagen post carusel*/
+    .adorno-imagen-e-a{
+        left: -740px;
+    }
+
+    /*segunda imagen post carusel*/
+    .adorno-imagen-c-o{
+        right: -760px;
+    }
+        
+}
+
 @media (max-width: 2565px) and (min-width: 1921px) {
     
     /*primera imagen post carusel*/
